@@ -19,4 +19,4 @@ Some Front-End experiments with JavaScript-based technologies.
 - [Open Graph protocol](https://ogp.me/).
 - [Netlify Forms](https://www.netlify.com/products/forms/).
 - VS Code:
-  - _[Custom Data for CSS Language Service](https://github.com/Microsoft/vscode-css-languageservice/blob/master/docs/customData.md)_
+  - _[Custom Data for CSS Language Service](https://github.com/Microsoft/vscode-css-languageservice/blob/master/docs/customData.md)_ page. It is necessary to reload VS Code to apply the changes.
