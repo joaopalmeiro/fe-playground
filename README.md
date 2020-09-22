@@ -18,3 +18,5 @@ Some Front-End experiments with JavaScript-based technologies.
 - [Better TOML](https://marketplace.visualstudio.com/items?itemName=bungcip.better-toml) (VS Code extension).
 - [Open Graph protocol](https://ogp.me/).
 - [Netlify Forms](https://www.netlify.com/products/forms/).
+- VS Code:
+  - _[Custom Data for CSS Language Service](https://github.com/Microsoft/vscode-css-languageservice/blob/master/docs/customData.md)_
