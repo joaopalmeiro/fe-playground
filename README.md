@@ -20,4 +20,4 @@ Some Front-End experiments with JavaScript-based technologies.
 - [Netlify Forms](https://www.netlify.com/products/forms/).
 - VS Code:
   - _[Custom Data for CSS Language Service](https://github.com/Microsoft/vscode-css-languageservice/blob/master/docs/customData.md)_ page. It is necessary to reload VS Code to apply the changes.
-  - The `@apply` directive was not added to the `tailwind.css-data.json` file because it is declared at the CSS property level. The CSS Language Service probably does not expect `atDirectives` at this level and will not pick up such directives ([source](https://stackoverflow.com/questions/47607602/how-to-add-a-tailwind-css-rule-to-css-checker)).
+    - The `@apply` directive was not added to the `tailwind.css-data.json` file because it is declared at the CSS property level. The CSS Language Service probably does not expect `atDirectives` at this level and will not pick up such directives ([source](https://stackoverflow.com/questions/47607602/how-to-add-a-tailwind-css-rule-to-css-checker)).
