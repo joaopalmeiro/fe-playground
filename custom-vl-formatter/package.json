@@ -1,0 +1,13 @@
+{
+  "name": "custom-vl-formatter",
+  "version": "0.0.1",
+  "description": "Custom formatter (Vega expression function) for Vega-Lite",
+  "scripts": {
+    "start": "live-server --port=8000 --host=localhost"
+  },
+  "author": "João Palmeiro",
+  "license": "MIT",
+  "dependencies": {
+    "live-server": "^1.2.1"
+  }
+}

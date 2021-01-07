@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Custom formatter (Vega expression function) for Vega-Lite</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+  </head>
+  <body>
+    <div id="vis"></div>
+
+    <script type="text/javascript">
+      vega.expressionFunction("customFormatter", function (datum, params) {
+        return datum + "%";
+      });
+
+      const spec = {
+        $schema: "https://vega.github.io/schema/vega-lite/v4.json",
+        config: {
+          customFormatTypes: true,
+        },
+        description: "A simple bar chart with embedded data.",
+        data: {
+          values: [
+            { a: "A", b: 28 },
+            { a: "B", b: 55 },
+            { a: "C", b: 43 },
+            { a: "D", b: 91 },
+            { a: "E", b: 81 },
+            { a: "F", b: 53 },
+            { a: "G", b: 19 },
+            { a: "H", b: 87 },
+            { a: "I", b: 52 },
+          ],
+        },
+        width: 300,
+        height: 300,
+        mark: "bar",
+        encoding: {
+          x: { field: "a", type: "ordinal" },
+          y: {
+            field: "b",
+            type: "quantitative",
+            axis: {
+              formatType: "customFormatter",
+            },
+          },
+          tooltip: [
+            { field: "b", type: "quantitative", formatType: "customFormatter" },
+          ],
+        },
+      };
+      vegaEmbed("#vis", spec);
+    </script>
+  </body>
+</html>
