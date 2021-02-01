@@ -9,8 +9,15 @@ function App() {
         <h1>Charts</h1>
       </header>
       <main className="App-charts">
-        <ParentSize>
-          {({ width, height }) => <Radar width={width} height={height} />}
+        <ParentSize className="App-chart">
+          {({ width, height }) => (
+            <Radar width={width} height={height} showPoints={false} />
+          )}
+        </ParentSize>
+        <ParentSize className="App-chart">
+          {({ width, height }) => (
+            <Radar width={width} height={height} showPoints={false} />
+          )}
         </ParentSize>
       </main>
     </div>

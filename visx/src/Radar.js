@@ -9,6 +9,8 @@ const degrees = 360;
 const defaultMargin = { top: 40, left: 80, right: 80, bottom: 80 };
 const defaultLevels = 5;
 const silver = "#d9d9d9";
+const orange = "#ff9933";
+const pumpkin = "#f5810c";
 
 const data = letterFrequency.slice(2, 12);
 const y = (d) => d.frequency;
@@ -27,11 +29,37 @@ const genPoints = (length, radius) => {
   }));
 };
 
+const genPolygonPoints = (dataArray, scale, getValue) => {
+  const step = (Math.PI * 2) / dataArray.length;
+
+  const points = new Array(dataArray.length).fill({
+    x: 0,
+    y: 0,
+  });
+
+  const pointString = new Array(dataArray.length + 1)
+    .fill("")
+    .reduce((accumulator, _, i) => {
+      if (i > dataArray.length) return accumulator;
+
+      const xVal = scale(getValue(dataArray[i - 1])) * Math.sin(i * step);
+      const yVal = scale(getValue(dataArray[i - 1])) * Math.cos(i * step);
+      points[i - 1] = { x: xVal, y: yVal };
+
+      accumulator += `${xVal},${yVal} `;
+
+      return accumulator;
+    });
+
+  return { points, pointString };
+};
+
 function Radar({
   width,
   height,
   levels = defaultLevels,
   margin = defaultMargin,
+  showPoints = false,
 }) {
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
@@ -50,6 +78,7 @@ function Radar({
   const webs = genAngles(data.length);
   const points = genPoints(data.length, radius);
   const zeroPoint = new Point({ x: 0, y: 0 });
+  const polygonPoints = genPolygonPoints(data, (d) => yScale(d) ?? 0, y);
 
   return (
     <svg width={width} height={height}>
@@ -67,7 +96,6 @@ function Radar({
             strokeLinecap="round"
           />
         ))}
-
         {/* Vertical lines of the web */}
         {[...new Array(data.length)].map((_, i) => (
           <Line
@@ -77,6 +105,23 @@ function Radar({
             stroke={silver}
           />
         ))}
+        <polygon
+          points={polygonPoints.pointString}
+          fill={orange}
+          fillOpacity={0.3}
+          stroke={orange}
+          strokeWidth={1}
+        />
+        {showPoints &&
+          polygonPoints.points.map((point, i) => (
+            <circle
+              key={`radar-point-${i}`}
+              cx={point.x}
+              cy={point.y}
+              r={4}
+              fill={pumpkin}
+            />
+          ))}
       </Group>
     </svg>
   );
