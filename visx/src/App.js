@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Radar 🕸️ Chart vs. Stellar ✨ Chart</h1>
+        <h1 className="title">Radar 🕸️ Chart vs. Stellar ✨ Chart</h1>
       </header>
       <main className="App-charts">
         <ParentSize className="App-chart">

@@ -31,6 +31,9 @@ const genPoints = (length, radius) => {
 const genPolygonPoints = (dataArray, scale, getValue) => {
   const step = (Math.PI * 2) / dataArray.length;
 
+  const midstep = Math.PI / dataArray.length;
+  const midvalue = 0.05 * Math.max(...data.map(getValue));
+
   const pointString = new Array(dataArray.length + 1)
     .fill("")
     .reduce((accumulator, _, i) => {
