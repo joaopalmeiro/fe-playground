@@ -1,4 +1,4 @@
-# visx
+# radar-stellar-visx
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -13,3 +13,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## References
 
 - "[ParentSize component increases svg's hight non-stop](https://github.com/airbnb/visx/issues/881)" issue.
+- Chris Coyier's "[Emojis as Favicons](https://css-tricks.com/emojis-as-favicons/)" blog post.

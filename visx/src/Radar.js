@@ -1,16 +1,16 @@
-import React from "react";
-import { Group } from "@visx/group";
-import { letterFrequency } from "@visx/mock-data";
-import { scaleLinear } from "@visx/scale";
-import { Point } from "@visx/point";
-import { Line, LineRadial } from "@visx/shape";
+import React from 'react';
+import { Group } from '@visx/group';
+import { letterFrequency } from '@visx/mock-data';
+import { scaleLinear } from '@visx/scale';
+import { Point } from '@visx/point';
+import { Line, LineRadial } from '@visx/shape';
 
 const degrees = 360;
 const defaultMargin = { top: 40, left: 80, right: 80, bottom: 80 };
 const defaultLevels = 5;
-const silver = "#d9d9d9";
-const orange = "#ff9933";
-const pumpkin = "#f5810c";
+const silver = '#d9d9d9';
+const orange = '#ff9933';
+const pumpkin = '#f5810c';
 
 const data = letterFrequency.slice(2, 12);
 const y = (d) => d.frequency;
@@ -38,7 +38,7 @@ const genPolygonPoints = (dataArray, scale, getValue) => {
   });
 
   const pointString = new Array(dataArray.length + 1)
-    .fill("")
+    .fill('')
     .reduce((accumulator, _, i) => {
       if (i > dataArray.length) return accumulator;
 

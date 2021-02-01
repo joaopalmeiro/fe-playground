@@ -1,18 +1,20 @@
-import React from "react";
-import { Group } from "@visx/group";
-import { letterFrequency } from "@visx/mock-data";
-import { scaleLinear } from "@visx/scale";
-import { Point } from "@visx/point";
-import { Line, LineRadial } from "@visx/shape";
+import React from 'react';
+import { Group } from '@visx/group';
+import { letterFrequency } from '@visx/mock-data';
+import { scaleLinear } from '@visx/scale';
+import { Point } from '@visx/point';
+import { Line, LineRadial } from '@visx/shape';
 
 const degrees = 360;
 const defaultMargin = { top: 40, left: 80, right: 80, bottom: 80 };
 const defaultLevels = 5;
-const silver = "#d9d9d9";
-const orange = "#ff9933";
+const silver = '#d9d9d9';
+const orange = '#ff9933';
 
 const data = letterFrequency.slice(2, 12);
 const y = (d) => d.frequency;
+
+console.table(data);
 
 const genAngles = (length) =>
   [...new Array(length + 1)].map((_, i) => ({
@@ -35,14 +37,17 @@ const genPolygonPoints = (dataArray, scale, getValue) => {
   const midvalue = 0.05 * Math.max(...data.map(getValue));
 
   const pointString = new Array(dataArray.length + 1)
-    .fill("")
+    .fill('')
     .reduce((accumulator, _, i) => {
       if (i > dataArray.length) return accumulator;
 
       const xVal = scale(getValue(dataArray[i - 1])) * Math.sin(i * step);
       const yVal = scale(getValue(dataArray[i - 1])) * Math.cos(i * step);
 
-      accumulator += `${xVal},${yVal} `;
+      const xMidVal = scale(midvalue) * Math.sin(i * step + midstep);
+      const yMidVal = scale(midvalue) * Math.cos(i * step + midstep);
+
+      accumulator += `${xVal},${yVal} ${xMidVal},${yMidVal} `;
 
       return accumulator;
     });
@@ -107,6 +112,7 @@ function Stellar({
           stroke={orange}
           strokeWidth={1}
         />
+        {/* <circle cx={zeroPoint.x} cy={zeroPoint.y} r={4} fill={"white"} /> */}
       </Group>
     </svg>
   );
