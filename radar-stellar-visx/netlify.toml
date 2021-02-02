@@ -1,0 +1,4 @@
+[build]
+base = "radar-stellar-visx/"
+publish = "radar-stellar-visx/build/"
+command = "yarn build"
