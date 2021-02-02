@@ -1,4 +1,3 @@
-import { ParentSize } from '@visx/responsive';
 import './App.css';
 import Radar from './Radar';
 import Stellar from './Stellar';
@@ -13,14 +12,15 @@ function App({ width, height }) {
         </h1>
       </header>
       <main className="App-charts">
-        <ParentSize>
-          {({ width, height }) => (
-            <Radar width={width} height={height} showPoints={false} />
-          )}
-        </ParentSize>
-        <ParentSize>
-          {({ width, height }) => <Stellar width={width} height={height} />}
-        </ParentSize>
+        <Radar
+          width={width < 600 ? width : width / 2}
+          height={width < 600 ? height / 2 : height}
+          showPoints={false}
+        />
+        <Stellar
+          width={width < 600 ? width : width / 2}
+          height={width < 600 ? height / 2 : height}
+        />
       </main>
     </div>
   );
