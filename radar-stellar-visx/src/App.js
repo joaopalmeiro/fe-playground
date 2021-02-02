@@ -13,13 +13,13 @@ function App({ width, height }) {
       </header>
       <main className="App-charts">
         <Radar
-          width={width < 600 ? width : width / 2}
-          height={width < 600 ? height / 2 : height}
+          width={width <= 639 ? width : width / 2}
+          height={width <= 639 ? height / 2 : height}
           showPoints={false}
         />
         <Stellar
-          width={width < 600 ? width : width / 2}
-          height={width < 600 ? height / 2 : height}
+          width={width <= 639 ? width : width / 2}
+          height={width <= 639 ? height / 2 : height}
         />
       </main>
     </div>
