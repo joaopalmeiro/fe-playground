@@ -101,6 +101,7 @@ function Stellar({
         ))}
         {/** Labels */}
         {height >= 400 &&
+          width >= 400 &&
           yScaleTicks.slice(1, yScaleTicks.length).map((tick, i) => (
             <text
               key={`radial-grid-${i}`}
