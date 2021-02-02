@@ -16,5 +16,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 - Alexandre Morin-Chassé's "[The Stellar Chart: An Elegant Alternative to Radar Charts](https://medium.com/nightingale/the-stellar-chart-an-elegant-alternative-to-radar-charts-ae6a6931a28e)" blog post.
 - João Palmeiro's "[Stellar Chart, a Type of Chart to Be on Your Radar](https://matplotlib.org/matplotblog/posts/stellar-chart-alternative-radar-chart/)" blog post.
+- "[Radar](https://airbnb.io/visx/radar)" example from [visx](https://github.com/airbnb/visx) documentation.
 - "[ParentSize component increases svg's hight non-stop](https://github.com/airbnb/visx/issues/881)" issue.
 - Chris Coyier's "[Emojis as Favicons](https://css-tricks.com/emojis-as-favicons/)" blog post.

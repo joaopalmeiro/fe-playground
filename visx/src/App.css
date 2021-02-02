@@ -11,3 +11,7 @@
 .title {
   color: var(--black);
 }
+
+.title-pun {
+  color: var(--light-gray);
+}

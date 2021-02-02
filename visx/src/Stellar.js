@@ -32,7 +32,7 @@ const genPolygonPoints = (dataArray, scale, getValue) => {
   const step = (Math.PI * 2) / dataArray.length;
 
   const midstep = Math.PI / dataArray.length;
-  const midvalue = 0.05 * Math.max(...data.map(getValue));
+  const midvalue = 0.05 * Math.max(...dataArray.map(getValue));
 
   const pointString = new Array(dataArray.length + 1)
     .fill('')
@@ -106,11 +106,12 @@ function Stellar({
         <polygon
           points={polygonPoints}
           fill={orange}
-          fillOpacity={0.3}
+          fillOpacity={1}
           stroke={orange}
           strokeWidth={1}
+          strokeLinejoin="round"
         />
-        {/* <circle cx={zeroPoint.x} cy={zeroPoint.y} r={4} fill={"white"} /> */}
+        <circle cx={zeroPoint.x} cy={zeroPoint.y} r={4} fill={'white'} />
       </Group>
     </svg>
   );
