@@ -16,14 +16,14 @@ import { genAngles, genPoints, range, round005 } from './utils.js';
 const data = letterFrequency.slice(2, 12);
 const y = (d) => d.frequency;
 
-const computeStellarCenterRadius = (height) => {
-  if (height < 200) {
+const computeStellarCenterRadius = (height, width) => {
+  if (height < 200 || width < 200) {
     return 0.5;
-  } else if (height < 300) {
+  } else if (height < 300 || width < 300) {
     return 1;
-  } else if (height < 400) {
+  } else if (height < 400 || width < 400) {
     return 2;
-  } else if (height < 550) {
+  } else if (height < 550 || width < 550) {
     return 3;
   } else {
     return 4;
@@ -135,7 +135,7 @@ function Stellar({
         <circle
           cx={zeroPoint.x}
           cy={zeroPoint.y}
-          r={computeStellarCenterRadius(height)}
+          r={computeStellarCenterRadius(height, width)}
           fill={'white'}
         />
       </Group>

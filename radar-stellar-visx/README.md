@@ -1,5 +1,7 @@
 # radar-stellar-visx
 
+**[Demo](https://radar-stellar-visx.netlify.app)**
+
 An example of a Radar Chart and a [Stellar Chart](https://medium.com/nightingale/the-stellar-chart-an-elegant-alternative-to-radar-charts-ae6a6931a28e) created with [visx](https://github.com/airbnb/visx).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
