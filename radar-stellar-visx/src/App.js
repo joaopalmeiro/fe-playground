@@ -13,12 +13,12 @@ function App() {
         </h1>
       </header>
       <main className="App-charts">
-        <ParentSize className="App-chart">
+        <ParentSize>
           {({ width, height }) => (
             <Radar width={width} height={height} showPoints={false} />
           )}
         </ParentSize>
-        <ParentSize className="App-chart">
+        <ParentSize>
           {({ width, height }) => <Stellar width={width} height={height} />}
         </ParentSize>
       </main>
