@@ -47,6 +47,7 @@ function Example({
   height,
   levels = defaultLevels,
   margin = defaultMargin,
+  showLabels = true,
 }) {
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
@@ -87,19 +88,20 @@ function Example({
           />
         ))}
         {/** Labels */}
-        {yScaleTicks.slice(1, yScaleTicks.length).map((tick, i) => (
-          <text
-            key={`radial-grid-${i}`}
-            y={-(yScale(tick) ?? 0)}
-            dy="-.33em"
-            dx=".33em"
-            fontSize={8}
-            fill={silver}
-            textAnchor="start"
-          >
-            {tick}
-          </text>
-        ))}
+        {showLabels &&
+          yScaleTicks.slice(1, yScaleTicks.length).map((tick, i) => (
+            <text
+              key={`radial-grid-${i}`}
+              y={-(yScale(tick) ?? 0)}
+              dy="-.33em"
+              dx=".33em"
+              fontSize={8}
+              fill={silver}
+              textAnchor="start"
+            >
+              {tick}
+            </text>
+          ))}
         {[...new Array(data.length)].map((_, i) => (
           <Line
             key={`stellar-line-${i}`}
