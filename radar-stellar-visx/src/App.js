@@ -3,9 +3,9 @@ import './App.css';
 import Radar from './Radar';
 import Stellar from './Stellar';
 
-function App() {
+function App({ width, height }) {
   return (
-    <div className="App">
+    <div className="App" style={{ width, height }}>
       <header className="App-header">
         <h1 className="title">
           Radar 🕸️ Chart v<span className="title-pun">i</span>s

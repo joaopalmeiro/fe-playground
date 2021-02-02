@@ -1,15 +1,23 @@
 .App {
+  display: flex;
+  flex-direction: column;
+}
+
+.App-header {
   text-align: center;
 }
 
 .App-charts {
-  height: 100vh;
   display: flex;
-  flex-direction: row;
+  flex: 1;
+  overflow: hidden;
 }
 
 .title {
   color: var(--black);
+  /* Source: https://tailwindcss.com/docs/margin */
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
 }
 
 .title-pun {
