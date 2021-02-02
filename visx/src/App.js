@@ -1,7 +1,7 @@
+import { ParentSize } from '@visx/responsive';
 import './App.css';
 import Radar from './Radar';
 import Stellar from './Stellar';
-import { ParentSize } from '@visx/responsive';
 
 function App() {
   return (

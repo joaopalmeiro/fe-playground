@@ -1,31 +1,33 @@
-import React from 'react';
 import { Group } from '@visx/group';
 import { letterFrequency } from '@visx/mock-data';
-import { scaleLinear } from '@visx/scale';
 import { Point } from '@visx/point';
+import { scaleLinear } from '@visx/scale';
 import { Line, LineRadial } from '@visx/shape';
-
-const degrees = 360;
-const defaultMargin = { top: 40, left: 80, right: 80, bottom: 80 };
-const defaultLevels = 5;
-const silver = '#d9d9d9';
-const orange = '#ff9933';
+import React from 'react';
+import {
+  defaultLevels,
+  defaultMargin,
+  degrees,
+  orange,
+  silver,
+} from './constants.js';
+import { genAngles, genPoints, range, round005 } from './utils.js';
 
 const data = letterFrequency.slice(2, 12);
 const y = (d) => d.frequency;
 
-const genAngles = (length) =>
-  [...new Array(length + 1)].map((_, i) => ({
-    angle: i * (degrees / length),
-  }));
-
-const genPoints = (length, radius) => {
-  const step = (Math.PI * 2) / length;
-
-  return [...new Array(length)].map((_, i) => ({
-    x: radius * Math.sin(i * step),
-    y: radius * Math.cos(i * step),
-  }));
+const computeStellarCenterRadius = (height) => {
+  if (height < 200) {
+    return 0.5;
+  } else if (height < 300) {
+    return 1;
+  } else if (height < 400) {
+    return 2;
+  } else if (height < 550) {
+    return 3;
+  } else {
+    return 4;
+  }
 };
 
 const genPolygonPoints = (dataArray, scale, getValue) => {
@@ -70,10 +72,13 @@ function Stellar({
 
   const yScale = scaleLinear({
     range: [0, radius],
-    domain: [0, Math.max(...data.map(y))],
+    domain: [0, round005(Math.max(...data.map(y)))],
+    // domain: [0, Math.max(...data.map(y))],
   });
 
-  const webs = genAngles(data.length);
+  const yScaleTicks = range(...yScale.domain(), yScale.domain()[1] / levels);
+
+  const webs = genAngles(data.length, degrees);
   const points = genPoints(data.length, radius);
   const zeroPoint = new Point({ x: 0, y: 0 });
   const polygonPoints = genPolygonPoints(data, (d) => yScale(d) ?? 0, y);
@@ -94,6 +99,21 @@ function Stellar({
             strokeLinecap="round"
           />
         ))}
+        {/** Labels */}
+        {height >= 400 &&
+          yScaleTicks.slice(1, yScaleTicks.length).map((tick, i) => (
+            <text
+              key={`radial-grid-${i}`}
+              y={-(yScale(tick) ?? 0)}
+              dy="-.33em"
+              dx=".33em"
+              fontSize={8}
+              fill={silver}
+              textAnchor="start"
+            >
+              {tick}
+            </text>
+          ))}
         {/* Vertical lines of the web */}
         {[...new Array(data.length)].map((_, i) => (
           <Line
@@ -111,7 +131,12 @@ function Stellar({
           strokeWidth={1}
           strokeLinejoin="round"
         />
-        <circle cx={zeroPoint.x} cy={zeroPoint.y} r={4} fill={'white'} />
+        <circle
+          cx={zeroPoint.x}
+          cy={zeroPoint.y}
+          r={computeStellarCenterRadius(height)}
+          fill={'white'}
+        />
       </Group>
     </svg>
   );

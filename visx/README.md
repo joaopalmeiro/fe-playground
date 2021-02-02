@@ -19,3 +19,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - "[Radar](https://airbnb.io/visx/radar)" example from [visx](https://github.com/airbnb/visx) documentation.
 - "[ParentSize component increases svg's hight non-stop](https://github.com/airbnb/visx/issues/881)" issue.
 - Chris Coyier's "[Emojis as Favicons](https://css-tricks.com/emojis-as-favicons/)" blog post.
+- [`Array.from()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from) page from MDN Web Docs.
