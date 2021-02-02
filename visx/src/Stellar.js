@@ -14,8 +14,6 @@ const orange = '#ff9933';
 const data = letterFrequency.slice(2, 12);
 const y = (d) => d.frequency;
 
-console.table(data);
-
 const genAngles = (length) =>
   [...new Array(length + 1)].map((_, i) => ({
     angle: i * (degrees / length),
