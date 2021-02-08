@@ -9,3 +9,4 @@
 ## References
 
 - Joel M. Turner's "[Bar Chart in React with @vx](https://joelmturner.com/blog/data-vis-react-bar-chart-vx/)" blog post.
+- "[Letter frequency](https://en.wikipedia.org/wiki/Letter_frequency)" Wikipedia page.

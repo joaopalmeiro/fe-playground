@@ -1,12 +1,13 @@
 import { Group } from '@visx/group';
-import { letterFrequency } from '@visx/mock-data';
+import { letterFrequency as data } from '@visx/mock-data';
 import { Bar } from '@visx/shape';
 import { scaleBand, scaleLinear } from '@visx/scale';
 import React, { useMemo } from 'react';
-import { AxisLeft, AxisBottom } from '@visx/axis';
+import { AxisBottom } from '@visx/axis';
 
-const data = letterFrequency.slice(5);
 const verticalMargin = 120;
+const background = '#ecf4f3';
+const bar = '#006a71';
 
 // Accessors
 const getLetter = (d) => d.letter;
@@ -42,6 +43,7 @@ function Example({ width, height }) {
 
   return (
     <svg width={width} height={height}>
+      <rect width={width} height={height} fill={background} rx={14} />
       <Group top={verticalMargin / 2}>
         {data.map((d) => {
           const letter = getLetter(d);
@@ -57,11 +59,16 @@ function Example({ width, height }) {
               y={barY}
               width={barWidth}
               height={barHeight}
-              fill="#3b6978"
+              fill={bar}
             />
           );
         })}
-        <AxisBottom scale={xScale} label="Letter" labelOffset={15} top={yMax} />
+        <AxisBottom
+          scale={xScale}
+          label="Letter (English)"
+          top={yMax}
+          numTicks={data.length}
+        />
       </Group>
     </svg>
   );
