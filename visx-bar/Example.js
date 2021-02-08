@@ -3,6 +3,7 @@ import { letterFrequency } from '@visx/mock-data';
 import { Bar } from '@visx/shape';
 import { scaleBand, scaleLinear } from '@visx/scale';
 import React, { useMemo } from 'react';
+import { AxisLeft, AxisBottom } from '@visx/axis';
 
 const data = letterFrequency.slice(5);
 const verticalMargin = 120;
@@ -60,6 +61,7 @@ function Example({ width, height }) {
             />
           );
         })}
+        <AxisBottom scale={xScale} label="Letter" labelOffset={15} top={yMax} />
       </Group>
     </svg>
   );
