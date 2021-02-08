@@ -56,7 +56,7 @@ function Example({ width, height }) {
               y={barY}
               width={barWidth}
               height={barHeight}
-              fill="rgba(23, 233, 217, .5)"
+              fill="#3b6978"
             />
           );
         })}
