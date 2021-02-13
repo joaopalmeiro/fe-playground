@@ -87,7 +87,7 @@ function Example({
             strokeLinecap="round"
           />
         ))}
-        {/** Labels */}
+        {/* Labels */}
         {showLabels &&
           yScaleTicks.slice(1, yScaleTicks.length).map((tick, i) => (
             <text

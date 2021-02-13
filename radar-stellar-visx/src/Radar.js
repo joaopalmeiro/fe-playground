@@ -87,7 +87,7 @@ function Radar({
             strokeLinecap="round"
           />
         ))}
-        {/** Labels */}
+        {/* Labels */}
         {height >= 400 &&
           width >= 400 &&
           yScaleTicks.slice(1, yScaleTicks.length).map((tick, i) => (
