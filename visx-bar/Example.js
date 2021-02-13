@@ -1,21 +1,24 @@
+import { AxisBottom } from '@visx/axis';
 import { Group } from '@visx/group';
 import { letterFrequency as data } from '@visx/mock-data';
-import { Bar } from '@visx/shape';
 import { scaleBand, scaleLinear } from '@visx/scale';
+import { Bar } from '@visx/shape';
 import React, { useMemo } from 'react';
-import { AxisBottom } from '@visx/axis';
 
 const verticalMargin = 120;
+const horizontalMargin = 30;
+
 const background = '#ecf4f3';
 const bar = '#006a71';
 
 // Accessors
 const getLetter = (d) => d.letter;
-const getLetterFrequency = (d) => Number(d.frequency) * 100;
+// const getLetterFrequency = (d) => Number(d.frequency) * 100;
+const getLetterFrequency = (d) => d.frequency;
 
 function Example({ width, height }) {
   // Bounds
-  const xMax = width;
+  const xMax = width - horizontalMargin;
   const yMax = height - verticalMargin;
 
   // Scales (memoize for performance)
@@ -44,23 +47,37 @@ function Example({ width, height }) {
   return (
     <svg width={width} height={height}>
       <rect width={width} height={height} fill={background} rx={14} />
-      <Group top={verticalMargin / 2}>
+      <Group left={horizontalMargin / 2} top={verticalMargin / 2}>
         {data.map((d) => {
           const letter = getLetter(d);
+          const letterFrequency = getLetterFrequency(d);
+
           const barWidth = xScale.bandwidth();
-          const barHeight = yMax - (yScale(getLetterFrequency(d)) ?? 0);
+          const barHeight = yMax - (yScale(letterFrequency) ?? 0);
+
           const barX = xScale(letter);
           const barY = yMax - barHeight;
 
           return (
-            <Bar
-              key={`bar-${letter}`}
-              x={barX}
-              y={barY}
-              width={barWidth}
-              height={barHeight}
-              fill={bar}
-            />
+            <React.Fragment key={`labeled-bar-${letter}`}>
+              <Bar
+                key={`bar-${letter}`}
+                x={barX}
+                y={barY}
+                width={barWidth}
+                height={barHeight}
+                fill={bar}
+              />
+              <text
+                key={`text-label-${letter}`}
+                x={barX}
+                y={barY}
+                fontSize={8}
+                textAnchor="middle"
+              >
+                {letterFrequency}
+              </text>
+            </React.Fragment>
           );
         })}
         <AxisBottom
