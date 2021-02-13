@@ -3,6 +3,7 @@ import { Group } from '@visx/group';
 import { letterFrequency as data } from '@visx/mock-data';
 import { scaleBand, scaleLinear } from '@visx/scale';
 import { Bar } from '@visx/shape';
+import { format } from 'd3-format';
 import React, { useMemo } from 'react';
 
 const verticalMargin = 120;
@@ -72,14 +73,18 @@ function Example({ width, height }) {
                 key={`text-label-${letter}`}
                 x={barX}
                 y={barY}
+                dx={barWidth / 2}
+                dy="-.25em"
                 fontSize={8}
                 textAnchor="middle"
               >
-                {letterFrequency}
+                {/* Breakpoint: https://tailwindcss.com/docs/breakpoints */}
+                {format(width >= 640 ? '.2~%' : '.0%')(letterFrequency)}
               </text>
             </React.Fragment>
           );
         })}
+        {/* Default values: https://github.com/airbnb/visx/blob/master/packages/visx-axis/src/axis/AxisBottom.tsx */}
         <AxisBottom
           scale={xScale}
           label="Letter (English)"
