@@ -1,7 +1,9 @@
+import GrapeLayout from './GrapeLayout';
+
 function App() {
   return (
-    <div className="App">
-      <p className="b">Teste</p>
+    <div className="App ma3">
+      <GrapeLayout />
     </div>
   );
 }
