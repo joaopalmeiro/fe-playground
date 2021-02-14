@@ -15,14 +15,13 @@ function App() {
         // Pivot: pivot wider
 
         const rawTable = aq.fromCSV(csvString, { autoType: false });
-        const yearCols = rawTable.columnNames((col) =>
-          aq.op.startswith(col, '201')
-        );
 
         setTable(
           rawTable
             .slice(0, -3)
-            .select(yearCols, { 'Total por região (milhões Kg)': 'Região' })
+            .select(aq.matches(/^201\d$/), {
+              'Total por região (milhões Kg)': 'Região',
+            })
             .fold(aq.not('Região'), {
               as: ['Ano', 'Total'],
             })
