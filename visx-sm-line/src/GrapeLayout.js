@@ -20,7 +20,7 @@ function GrapeLayout({ data, xvar, yvar, breakdown }) {
           yvar={yvar}
           breakdown={breakdown}
           lineToHighlight={uniqueValues[1]}
-          mirrorYAxis={true}
+          showYAxis={false}
         />
       </div>
       <div className="w-100 flex justify-center">
@@ -62,7 +62,7 @@ function GrapeLayout({ data, xvar, yvar, breakdown }) {
           yvar={yvar}
           breakdown={breakdown}
           lineToHighlight={uniqueValues[6]}
-          mirrorYAxis={true}
+          showYAxis={false}
         />
       </div>
       <div className="w-100 flex justify-center">

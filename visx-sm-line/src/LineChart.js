@@ -67,9 +67,37 @@ export default function LineChart({
         />
         {showYAxis &&
           (mirrorYAxis ? (
-            <AxisRight left={xMax + 5} scale={yScale} numTicks={5} />
+            <AxisRight
+              left={xMax + 5}
+              scale={yScale}
+              numTicks={5}
+              stroke={Theme.axisColor}
+              tickStroke={Theme.axisColor}
+              tickLabelProps={() => ({
+                dx: '0.25em',
+                dy: '0.25em',
+                fill: Theme.axisColor,
+                fontFamily: 'Arial',
+                fontSize: 10,
+                textAnchor: 'start',
+              })}
+            />
           ) : (
-            <AxisLeft left={-5} scale={yScale} numTicks={5} />
+            <AxisLeft
+              left={-5}
+              scale={yScale}
+              numTicks={5}
+              stroke={Theme.axisColor}
+              tickStroke={Theme.axisColor}
+              tickLabelProps={() => ({
+                dx: '-0.25em',
+                dy: '0.25em',
+                fill: Theme.axisColor,
+                fontFamily: 'Arial',
+                fontSize: 10,
+                textAnchor: 'end',
+              })}
+            />
           ))}
 
         {[...colorValuesBackground].map((color) => {
