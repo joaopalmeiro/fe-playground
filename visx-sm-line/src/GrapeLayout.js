@@ -6,7 +6,7 @@ function GrapeLayout({ data, xvar, yvar, breakdown }) {
 
   return (
     <div className="flex flex-column">
-      <div className="outline w-100 flex justify-center">
+      <div className="w-100 flex justify-center">
         <LineChart
           data={data}
           xvar={xvar}
@@ -20,9 +20,10 @@ function GrapeLayout({ data, xvar, yvar, breakdown }) {
           yvar={yvar}
           breakdown={breakdown}
           lineToHighlight={uniqueValues[1]}
+          mirrorYAxis={true}
         />
       </div>
-      <div className="outline w-100 mt2 flex justify-center">
+      <div className="w-100 flex justify-center">
         <LineChart
           data={data}
           xvar={xvar}
@@ -36,6 +37,7 @@ function GrapeLayout({ data, xvar, yvar, breakdown }) {
           yvar={yvar}
           breakdown={breakdown}
           lineToHighlight={uniqueValues[3]}
+          showYAxis={false}
         />
         <LineChart
           data={data}
@@ -43,9 +45,10 @@ function GrapeLayout({ data, xvar, yvar, breakdown }) {
           yvar={yvar}
           breakdown={breakdown}
           lineToHighlight={uniqueValues[4]}
+          mirrorYAxis={true}
         />
       </div>
-      <div className="outline w-100 mt2 flex justify-center">
+      <div className="w-100 flex justify-center">
         <LineChart
           data={data}
           xvar={xvar}
@@ -59,9 +62,10 @@ function GrapeLayout({ data, xvar, yvar, breakdown }) {
           yvar={yvar}
           breakdown={breakdown}
           lineToHighlight={uniqueValues[6]}
+          mirrorYAxis={true}
         />
       </div>
-      <div className="outline w-100 mt2 flex justify-center">
+      <div className="w-100 flex justify-center">
         <LineChart
           data={data}
           xvar={xvar}

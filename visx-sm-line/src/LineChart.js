@@ -1,8 +1,9 @@
-import { AxisBottom, AxisLeft } from '@visx/axis';
+import { AxisBottom, AxisLeft, AxisRight } from '@visx/axis';
 import { curveLinear } from '@visx/curve';
 import { Group } from '@visx/group';
 import { scaleLinear, scalePoint } from '@visx/scale';
 import { LinePath } from '@visx/shape';
+import Theme from './Theme';
 
 export default function LineChart({
   data,
@@ -13,6 +14,8 @@ export default function LineChart({
   width = 300,
   height = 300,
   margin = { top: 40, right: 30, bottom: 50, left: 40 },
+  showYAxis = true,
+  mirrorYAxis = false,
 }) {
   // Accessors
   const xAccessor = (d) => d[xvar];
@@ -48,8 +51,26 @@ export default function LineChart({
   return (
     <svg width={width} height={height}>
       <Group left={margin.left} top={margin.top}>
-        <AxisBottom top={yMax} scale={xScale} />
-        <AxisLeft left={-5} scale={yScale} numTicks={5} />
+        <AxisBottom
+          top={yMax}
+          scale={xScale}
+          stroke={Theme.axisColor}
+          tickStroke={Theme.axisColor}
+          tickLabelProps={() => ({
+            // Default values: https://github.com/airbnb/visx/blob/master/packages/visx-axis/src/axis/AxisBottom.tsx
+            dy: '0.25em',
+            fill: Theme.axisColor,
+            fontFamily: 'Arial',
+            fontSize: 10,
+            textAnchor: 'middle',
+          })}
+        />
+        {showYAxis &&
+          (mirrorYAxis ? (
+            <AxisRight left={xMax + 5} scale={yScale} numTicks={5} />
+          ) : (
+            <AxisLeft left={-5} scale={yScale} numTicks={5} />
+          ))}
 
         {[...colorValuesBackground].map((color) => {
           const dataToPlot = data.filter((d) => colorAccessor(d) === color);
@@ -61,7 +82,7 @@ export default function LineChart({
               curve={curveLinear}
               x={(d) => xScale(xAccessor(d))}
               y={(d) => yScale(yAccessor(d))}
-              stroke={'lightgray'}
+              stroke={Theme.backgroundLine}
               strokeWidth={1}
             />
           );
@@ -74,8 +95,8 @@ export default function LineChart({
           curve={curveLinear}
           x={(d) => xScale(xAccessor(d))}
           y={(d) => yScale(yAccessor(d))}
-          stroke={'red'}
-          strokeWidth={1}
+          stroke={Theme.highlightLine}
+          strokeWidth={1.5}
         />
       </Group>
     </svg>
