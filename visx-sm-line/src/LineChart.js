@@ -57,7 +57,7 @@ export default function LineChart({
           stroke={Theme.axisColor}
           tickStroke={Theme.axisColor}
           tickLabelProps={() => ({
-            // Default values: https://github.com/airbnb/visx/blob/master/packages/visx-axis/src/axis/AxisBottom.tsx
+            // Default values: https://github.com/airbnb/visx/blob/master/packages/visx-axis/src/axis/AxisBottom.tsx.
             dy: '0.25em',
             fill: Theme.axisColor,
             fontFamily: 'Arial',
