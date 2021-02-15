@@ -1,6 +1,6 @@
-import GrapeLayout from './GrapeLayout';
-import { useState, useEffect } from 'react';
 import * as aq from 'arquero';
+import { useEffect, useState } from 'react';
+import GrapeLayout from './GrapeLayout';
 
 function App() {
   const [table, setTable] = useState(aq.table());
@@ -35,10 +35,15 @@ function App() {
 
   return (
     <div className="App ma3">
-      <GrapeLayout />
       {Object.entries(table.data()).length > 0 &&
-        table.data().constructor === Object &&
-        table.print()}
+        table.data().constructor === Object && (
+          <GrapeLayout
+            data={table.objects()}
+            xvar={'Ano'}
+            yvar={'Total'}
+            breakdown={'Região'}
+          />
+        )}
     </div>
   );
 }
