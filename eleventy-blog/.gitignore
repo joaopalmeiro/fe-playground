@@ -37,6 +37,6 @@ yarn-error.log*
 *.tsbuildinfo
 
 # Build artefacts
-# public
+public
 src/css
 social
