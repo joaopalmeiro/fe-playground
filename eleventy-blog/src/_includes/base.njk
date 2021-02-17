@@ -6,6 +6,7 @@
     <title>{{ title }}</title>
   </head>
   <body>
+    {{ "/src/icons/twitter.svg" | svgContents | safe }}
     <h1>{{ title }}</h1>
 
     {{ content | safe }}
