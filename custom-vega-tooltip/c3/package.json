@@ -5,7 +5,7 @@
   "scripts": {
     "start": "npm run watch",
     "serve": "live-server --port=8000 --host=localhost",
-    "build:sass": "sass vega-tooltip.scss:vega-tooltip.css --no-source-map",
+    "build:sass": "sass tooltip.scss:tooltip.css --no-source-map",
     "watch": "npm-run-all --parallel watch:* serve",
     "watch:sass": "npm run build:sass -- --watch"
   },

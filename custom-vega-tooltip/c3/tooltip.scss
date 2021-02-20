@@ -1,0 +1,57 @@
+@mixin prefix($property, $value, $prefixes: ()) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
+
+  // Standard non-prefixed declaration.
+  #{$property}: $value;
+}
+
+// More info: https://github.com/c3js/c3/blob/master/src/scss/tooltip.scss.
+
+// .c3-tooltip-container
+#c3-vg-tooltip-element {
+  visibility: hidden;
+  z-index: 1000;
+
+  &.visible {
+    visibility: visible;
+  }
+
+  // .c3-tooltip
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: #fff;
+    empty-cells: show;
+    @include prefix(
+      box-shadow,
+      7px 7px 12px -9px rgb(119, 119, 119),
+      webkit moz
+    );
+    opacity: 0.9;
+
+    tr {
+      border: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #aaa;
+      font-size: 14px;
+      padding: 2px 5px;
+      text-align: left;
+      color: #fff;
+    }
+
+    td {
+      font-size: 13px;
+      padding: 3px 6px;
+      background-color: #fff;
+      border-left: 1px dotted #999;
+    }
+
+    .value {
+      text-align: right;
+    }
+  }
+}

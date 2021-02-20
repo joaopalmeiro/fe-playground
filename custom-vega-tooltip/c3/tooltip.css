@@ -1,0 +1,36 @@
+#c3-vg-tooltip-element {
+  visibility: hidden;
+  z-index: 1000;
+}
+#c3-vg-tooltip-element.visible {
+  visibility: visible;
+}
+#c3-vg-tooltip-element table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: #fff;
+  empty-cells: show;
+  -webkit-box-shadow: 7px 7px 12px -9px #777777;
+  -moz-box-shadow: 7px 7px 12px -9px #777777;
+  box-shadow: 7px 7px 12px -9px #777777;
+  opacity: 0.9;
+}
+#c3-vg-tooltip-element table tr {
+  border: 1px solid #ccc;
+}
+#c3-vg-tooltip-element table th {
+  background-color: #aaa;
+  font-size: 14px;
+  padding: 2px 5px;
+  text-align: left;
+  color: #fff;
+}
+#c3-vg-tooltip-element table td {
+  font-size: 13px;
+  padding: 3px 6px;
+  background-color: #fff;
+  border-left: 1px dotted #999;
+}
+#c3-vg-tooltip-element table .value {
+  text-align: right;
+}
