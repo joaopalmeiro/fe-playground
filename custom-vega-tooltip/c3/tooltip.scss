@@ -1,3 +1,6 @@
+$white: #fff;
+$black: #222;
+
 @mixin prefix($property, $value, $prefixes: ()) {
   @each $prefix in $prefixes {
     #{'-' + $prefix + '-' + $property}: $value;
@@ -7,12 +10,17 @@
   #{$property}: $value;
 }
 
-// More info: https://github.com/c3js/c3/blob/master/src/scss/tooltip.scss.
+// More info:
+// - https://github.com/c3js/c3/blob/master/src/scss/tooltip.scss.
+// - https://github.com/vega/vega-tooltip/blob/v0.25.0/vega-tooltip.scss.
 
 // .c3-tooltip-container
 #c3-vg-tooltip-element {
   visibility: hidden;
   z-index: 1000;
+  font-family: sans-serif;
+  position: fixed;
+  color: $black;
 
   &.visible {
     visibility: visible;
@@ -22,7 +30,7 @@
   table {
     border-collapse: collapse;
     border-spacing: 0;
-    background-color: #fff;
+    background-color: $white;
     empty-cells: show;
     @include prefix(
       box-shadow,
@@ -31,22 +39,25 @@
     );
     opacity: 0.9;
 
+    // Table row.
     tr {
       border: 1px solid #ccc;
     }
 
+    // Table header.
     th {
       background-color: #aaa;
       font-size: 14px;
       padding: 2px 5px;
       text-align: left;
-      color: #fff;
+      color: $white;
     }
 
+    // Table data/cell.
     td {
       font-size: 13px;
       padding: 3px 6px;
-      background-color: #fff;
+      background-color: $white;
       border-left: 1px dotted #999;
     }
 

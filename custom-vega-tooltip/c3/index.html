@@ -33,7 +33,7 @@
         },
         width: 300,
         height: 300,
-        mark: { type: "bar", tooltip: true, cursor: "context-menu" },
+        mark: { type: "bar", tooltip: true },
         encoding: {
           x: { field: "a", type: "nominal", axis: { labelAngle: 0 } },
           y: { field: "b", type: "quantitative" },
@@ -133,8 +133,11 @@
 
       // Classes are "special functions": https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes.
       // var handler = new vegaTooltip.Handler();
+
+      // More info: https://github.com/vega/vega-tooltip/blob/master/docs/APIs.md#options.
       var customHandler = new CustomHandler({
         id: "c3-vg-tooltip-element",
+        disableDefaultStyle: true,
       });
 
       // More info: https://github.com/vega/vega-embed/blob/v6.12.2/src/embed.ts#L340.

@@ -1,6 +1,9 @@
 #c3-vg-tooltip-element {
   visibility: hidden;
   z-index: 1000;
+  font-family: sans-serif;
+  position: fixed;
+  color: #222;
 }
 #c3-vg-tooltip-element.visible {
   visibility: visible;

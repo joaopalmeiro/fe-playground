@@ -5,5 +5,7 @@
   },
   "files.associations": {
     "*.njk": "html"
-  }
+  },
+  "colorize.colorized_variables": ["SASS"],
+  "editor.colorDecorators": false
 }
