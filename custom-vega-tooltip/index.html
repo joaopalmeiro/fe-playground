@@ -36,6 +36,7 @@
         },
       };
 
+      // Private class fields (stage 3 proposal): https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields.
       class CustomHandler extends vegaTooltip.Handler {
         // More info: https://github.com/vega/vega-tooltip/blob/master/src/Handler.ts#L57.
         tooltipHandler(handler, event, item, value) {
@@ -48,6 +49,8 @@
 
             document.body.appendChild(this.el);
           }
+
+          console.log(this.el);
 
           // Fullscreen API: https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API.
           const tooltipContainer =
@@ -63,7 +66,8 @@
             return;
           }
 
-          // Set the tooltip content-
+          // Set the tooltip content (table).
+          // More info: https://github.com/vega/vega-tooltip/blob/master/src/formatValue.ts.
           this.el.innerHTML = vegaTooltip.formatValue(
             value,
             this.options.sanitize,
@@ -73,6 +77,7 @@
           // Make the tooltip visible.
           this.el.classList.add("visible", `${this.options.theme}-theme`);
 
+          // More info: https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect.
           const { x, y } = vegaTooltip.calculatePosition(
             event,
             this.el.getBoundingClientRect(),
@@ -84,6 +89,7 @@
         }
       }
 
+      // Classes are "special functions": https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes.
       // var handler = new vegaTooltip.Handler();
       var customHandler = new CustomHandler();
 
