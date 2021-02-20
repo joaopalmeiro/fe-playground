@@ -39,7 +39,26 @@
 
       // Private class fields (stage 3 proposal): https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields.
       class CustomHandler extends vegaTooltip.Handler {
-        c3FormatValue(value, valueToHtml) {}
+        c3FormatValue(value, valueToHtml) {
+          if (vega.isObject(value)) {
+            const variables = Object.keys(value);
+
+            if (variables.length > 0) {
+              let content = "<table>";
+
+              for (const variable of variables) {
+                let val = value[variable];
+              }
+
+              content += `</table>`;
+            }
+
+            // Show empty object if there are no properties.
+            return content || "{}";
+          }
+
+          return valueToHtml(value);
+        }
 
         // More info: https://github.com/vega/vega-tooltip/blob/master/src/Handler.ts#L57.
         tooltipHandler(handler, event, item, value) {
@@ -73,11 +92,13 @@
 
           // Set the tooltip content (table).
           // More info: https://github.com/vega/vega-tooltip/blob/master/src/formatValue.ts.
-          this.el.innerHTML = vegaTooltip.formatValue(
-            value,
-            this.options.sanitize,
-            this.options.maxDepth
-          );
+          // this.el.innerHTML = vegaTooltip.formatValue(
+          //   value,
+          //   this.options.sanitize,
+          //   this.options.maxDepth
+          // );
+
+          this.el.innerHTML = this.c3FormatValue(value, this.options.sanitize);
 
           // console.log(vega.isObject(value)); // true
           // const { title, image, ...rest } = value;
