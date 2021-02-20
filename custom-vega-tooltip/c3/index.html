@@ -6,6 +6,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-tooltip@0.25.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-util@1.16.0"></script>
   </head>
   <body style="text-align: center">
     <div id="vis"></div>
@@ -38,6 +39,8 @@
 
       // Private class fields (stage 3 proposal): https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields.
       class CustomHandler extends vegaTooltip.Handler {
+        c3FormatValue(value, valueToHtml) {}
+
         // More info: https://github.com/vega/vega-tooltip/blob/master/src/Handler.ts#L57.
         tooltipHandler(handler, event, item, value) {
           // console.log(handler, event, item, value);
@@ -70,14 +73,15 @@
 
           // Set the tooltip content (table).
           // More info: https://github.com/vega/vega-tooltip/blob/master/src/formatValue.ts.
-          // Capitalize: https://www.digitalocean.com/community/tutorials/js-capitalizing-strings.
           this.el.innerHTML = vegaTooltip.formatValue(
             value,
             this.options.sanitize,
             this.options.maxDepth
           );
 
-          // console.log(this.el);
+          // console.log(vega.isObject(value)); // true
+          // const { title, image, ...rest } = value;
+          // console.log(title, image, rest); // undefined undefined value
 
           // Make the tooltip visible.
           this.el.classList.add("visible", `${this.options.theme}-theme`);
@@ -96,7 +100,7 @@
 
       // Classes are "special functions": https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes.
       // var handler = new vegaTooltip.Handler();
-      var customHandler = new CustomHandler({ offsetX: 10, offsetY: 10 });
+      var customHandler = new CustomHandler();
 
       // More info: https://github.com/vega/vega-embed/blob/v6.12.2/src/embed.ts#L340.
       vegaEmbed("#vis", spec, {
