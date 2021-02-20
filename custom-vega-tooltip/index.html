@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Custom tooltip for Vega-Lite</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-tooltip@0.25.0"></script>
+  </head>
+  <body style="text-align: center">
+    <div id="vis"></div>
+
+    <script type="text/javascript">
+      var spec = {
+        $schema: "https://vega.github.io/schema/vega-lite/v4.json",
+        description: "A simple bar chart with embedded data.",
+        data: {
+          values: [
+            { a: "A", b: 28 },
+            { a: "B", b: 55 },
+            { a: "C", b: 43 },
+            { a: "D", b: 91 },
+            { a: "E", b: 81 },
+            { a: "F", b: 53 },
+            { a: "G", b: 19 },
+            { a: "H", b: 87 },
+            { a: "I", b: 52 },
+          ],
+        },
+        width: 300,
+        height: 300,
+        mark: { type: "bar", tooltip: true },
+        encoding: {
+          x: { field: "a", type: "ordinal" },
+          y: { field: "b", type: "quantitative" },
+        },
+      };
+
+      class CustomHandler extends vegaTooltip.Handler {
+        // More info: https://github.com/vega/vega-tooltip/blob/master/src/Handler.ts#L57.
+        tooltipHandler(handler, event, item, value) {
+          // Append a div element (to use as a tooltip) unless it already exists.
+          this.el = document.getElementById(this.options.id);
+          if (!this.el) {
+            this.el = document.createElement("div");
+            this.el.setAttribute("id", this.options.id);
+            this.el.classList.add("vg-tooltip");
+
+            document.body.appendChild(this.el);
+          }
+
+          // Fullscreen API: https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API.
+          const tooltipContainer =
+            document.fullscreenElement != null
+              ? document.fullscreenElement
+              : document.body;
+          tooltipContainer.appendChild(this.el);
+
+          // Hide tooltip for null, undefined, or empty string values.
+          // "Clean".
+          if (value == null || value === "") {
+            this.el.classList.remove("visible", `${this.options.theme}-theme`);
+            return;
+          }
+
+          // Set the tooltip content-
+          this.el.innerHTML = vegaTooltip.formatValue(
+            value,
+            this.options.sanitize,
+            this.options.maxDepth
+          );
+
+          // Make the tooltip visible.
+          this.el.classList.add("visible", `${this.options.theme}-theme`);
+
+          const { x, y } = vegaTooltip.calculatePosition(
+            event,
+            this.el.getBoundingClientRect(),
+            this.options.offsetX,
+            this.options.offsetY
+          );
+
+          this.el.setAttribute("style", `top: ${y}px; left: ${x}px`);
+        }
+      }
+
+      // var handler = new vegaTooltip.Handler();
+      var customHandler = new CustomHandler();
+
+      // More info: https://github.com/vega/vega-embed/blob/v6.12.2/src/embed.ts#L340.
+      vegaEmbed("#vis", spec, {
+        tooltip: customHandler.call,
+      });
+    </script>
+  </body>
+</html>
