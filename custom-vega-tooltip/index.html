@@ -31,7 +31,7 @@
         height: 300,
         mark: { type: "bar", tooltip: true },
         encoding: {
-          x: { field: "a", type: "ordinal" },
+          x: { field: "a", type: "nominal", axis: { labelAngle: 0 } },
           y: { field: "b", type: "quantitative" },
         },
       };
@@ -40,6 +40,8 @@
       class CustomHandler extends vegaTooltip.Handler {
         // More info: https://github.com/vega/vega-tooltip/blob/master/src/Handler.ts#L57.
         tooltipHandler(handler, event, item, value) {
+          // console.log(handler, event, item, value);
+
           // Append a div element (to use as a tooltip) unless it already exists.
           this.el = document.getElementById(this.options.id);
           if (!this.el) {
@@ -50,7 +52,7 @@
             document.body.appendChild(this.el);
           }
 
-          console.log(this.el);
+          // console.log(this.el);
 
           // Fullscreen API: https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API.
           const tooltipContainer =
@@ -68,11 +70,18 @@
 
           // Set the tooltip content (table).
           // More info: https://github.com/vega/vega-tooltip/blob/master/src/formatValue.ts.
-          this.el.innerHTML = vegaTooltip.formatValue(
-            value,
-            this.options.sanitize,
-            this.options.maxDepth
-          );
+          // Capitalize: https://www.digitalocean.com/community/tutorials/js-capitalizing-strings.
+          this.el.innerHTML =
+            `<p>${item.ariaRoleDescription.replace(/^\w/, (c) =>
+              c.toUpperCase()
+            )}</p>` +
+            vegaTooltip.formatValue(
+              value,
+              this.options.sanitize,
+              this.options.maxDepth
+            );
+
+          // console.log(this.el);
 
           // Make the tooltip visible.
           this.el.classList.add("visible", `${this.options.theme}-theme`);
@@ -91,7 +100,7 @@
 
       // Classes are "special functions": https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes.
       // var handler = new vegaTooltip.Handler();
-      var customHandler = new CustomHandler();
+      var customHandler = new CustomHandler({ offsetX: 10, offsetY: 10 });
 
       // More info: https://github.com/vega/vega-embed/blob/v6.12.2/src/embed.ts#L340.
       vegaEmbed("#vis", spec, {
