@@ -42,16 +42,24 @@
         c3FormatValue(value, valueToHtml) {
           if (vega.isObject(value)) {
             const variables = Object.keys(value);
+            let content = "";
 
             if (variables.length > 0) {
-              let content = "<table>";
+              content += "<table><tbody>";
+              content += '<tr><th colspan="2">Data</th></tr>';
 
               for (const variable of variables) {
-                let val = value[variable];
+                const val = value[variable];
+
+                content += `<tr><td class="key">${valueToHtml(
+                  variable
+                )}</td><td class="value">${valueToHtml(val)}</td></tr>`;
               }
 
-              content += `</table>`;
+              content += `</tbody></table>`;
             }
+
+            console.log(content);
 
             // Show empty object if there are no properties.
             return content || "{}";
