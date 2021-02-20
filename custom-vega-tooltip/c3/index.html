@@ -7,6 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-tooltip@0.25.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-util@1.16.0"></script>
+    <link rel="stylesheet" href="vega-tooltip.css" />
   </head>
   <body style="text-align: center">
     <div id="vis"></div>
@@ -59,7 +60,7 @@
               content += `</tbody></table>`;
             }
 
-            console.log(content);
+            // console.log(content);
 
             // Show empty object if there are no properties.
             return content || "{}";
