@@ -1,4 +1,4 @@
-# Custom tooltip for Vega-Lite (C3)
+# Custom tooltip for Vega-Lite ([C3](https://c3js.org/))
 
 [Link](https://joaopalmeiro.github.io/fe-playground/custom-vega-tooltip/c3/).
 

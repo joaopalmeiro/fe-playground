@@ -9,6 +9,8 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-tooltip@0.25.0"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
+
+    <link rel="stylesheet" href="tooltip.css" />
   </head>
   <body style="text-align: center">
     <div id="vis"></div>
@@ -45,24 +47,36 @@
         // - https://javascript.info/class-inheritance.
         constructor(selector, options) {
           super(options);
-          this.tippy = selector;
+          this.tippyTooltip = tippy(document.querySelector(selector), {
+            content: "",
+            followCursor: true,
+            interactive: false,
+            arrow: true,
+            ignoreAttributes: true,
+            theme: "custom",
+            // If `false`, it is possible to select the content by double-clicking.
+            hideOnClick: false,
+          });
+
+          this.tippyTooltip.disable();
         }
 
         tooltipHandler(handler, event, item, value) {
+          // const dim = document.getElementById("vis").getBoundingClientRect();
           if (value) {
-            console.log(value);
-            tippy(".marks", {
-              content: "My tooltip!",
-              followCursor: true,
-              interactive: true,
-              duration: 0,
-              arrow: false,
-            });
+            // More info: https://atomiks.github.io/tippyjs/v6/methods/.
+            this.tippyTooltip.setContent(value.a);
+            this.tippyTooltip.enable();
+            this.tippyTooltip.show();
+          } else {
+            // this.tippyTooltip.hide();
+            this.tippyTooltip.disable();
           }
         }
       }
 
-      const customHandler = new CustomHandler(".marks");
+      const customHandler = new CustomHandler("#vis");
+      // const customHandler = new CustomHandler(".marks");
 
       // console.log(customHandler);
 
