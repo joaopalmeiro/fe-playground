@@ -49,7 +49,8 @@
           super(options);
           this.tippyTooltip = tippy(document.querySelector(selector), {
             content: "",
-            followCursor: true,
+            // followCursor: true,
+            followCursor: false,
             interactive: false,
             arrow: true,
             ignoreAttributes: true,
@@ -65,12 +66,27 @@
 
         tooltipHandler(handler, event, item, value) {
           // const dim = document.getElementById("vis").getBoundingClientRect();
+          // console.log(event);
+
           if (value) {
             // console.log(this.tippyTooltip);
             // console.log(this.tippyTooltip.state);
 
             // More info: https://atomiks.github.io/tippyjs/v6/methods/.
-            this.tippyTooltip.setContent(value.a);
+            this.tippyTooltip.setContent(`${value.a}: ${value.b}`); // Hard coded!
+
+            // If `followCursor` is `false`.
+            // More info: https://atomiks.github.io/tippyjs/v6/misc/#context-menu.
+            this.tippyTooltip.setProps({
+              getReferenceClientRect: () => ({
+                width: 0,
+                height: 0,
+                top: event.clientY,
+                bottom: event.clientY,
+                left: event.clientX,
+                right: event.clientX,
+              }),
+            });
 
             // No need if `trigger` is `"manual"`.
             // this.tippyTooltip.enable();
