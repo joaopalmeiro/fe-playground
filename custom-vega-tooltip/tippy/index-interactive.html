@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Custom tooltip for Vega-Lite</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-tooltip@0.25.0"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+
+    <link rel="stylesheet" href="tooltip.css" />
+  </head>
+  <body style="text-align: center">
+    <div id="vis"></div>
+
+    <script type="text/javascript">
+      var spec = {
+        $schema: "https://vega.github.io/schema/vega-lite/v4.json",
+        description: "A simple bar chart with embedded data.",
+        data: {
+          values: [
+            { a: "A", b: 28 },
+            { a: "B", b: 55 },
+            { a: "C", b: 43 },
+            { a: "D", b: 91 },
+            { a: "E", b: 81 },
+            { a: "F", b: 53 },
+            { a: "G", b: 19 },
+            { a: "H", b: 87 },
+            { a: "I", b: 52 },
+          ],
+        },
+        width: 300,
+        height: 300,
+        mark: { type: "bar", tooltip: true },
+        encoding: {
+          x: { field: "a", type: "nominal", axis: { labelAngle: 0 } },
+          y: { field: "b", type: "quantitative" },
+        },
+      };
+
+      class CustomHandler extends vegaTooltip.Handler {
+        // More info:
+        // - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#sub_classing_with_extends.
+        // - https://javascript.info/class-inheritance.
+        constructor(selector, options) {
+          super(options);
+          this.tippyTooltip = tippy(document.querySelector(selector), {
+            content: "",
+            // followCursor: true,
+            followCursor: false,
+            interactive: true,
+            arrow: true,
+            ignoreAttributes: true,
+            theme: "custom",
+            // If `false`, it is possible to select the content by double-clicking.
+            hideOnClick: false,
+            trigger: "manual",
+          });
+
+          // No need if `trigger` is `"manual"`.
+          // this.tippyTooltip.disable();
+        }
+
+        tooltipHandler(handler, event, item, value) {
+          // const dim = document.getElementById("vis").getBoundingClientRect();
+          // console.log(event);
+          // console.log(this.tippyTooltip.reference);
+          // console.log(event.target);
+
+          // if (value) {
+          if (event.target) {
+            // console.log(this.tippyTooltip);
+            // console.log(this.tippyTooltip.state);
+
+            console.log(this.tippyTooltip);
+
+            if (
+              value &&
+              `${value.a}: ${value.b}` !== this.tippyTooltip.props.content
+            ) {
+              // If `followCursor` is `false`.
+              // More info: https://atomiks.github.io/tippyjs/v6/misc/#context-menu.
+              this.tippyTooltip.setProps({
+                getReferenceClientRect: () => ({
+                  width: 0,
+                  height: 0,
+                  top: event.clientY,
+                  bottom: event.clientY,
+                  left: event.clientX,
+                  right: event.clientX,
+                }),
+              });
+
+              this.tippyTooltip.setContent(`${value.a}: ${value.b}`); // Hard coded!
+            }
+
+            // More info: https://atomiks.github.io/tippyjs/v6/methods/.
+            // this.tippyTooltip.setContent(`${value.a}: ${value.b}`); // Hard coded!
+
+            // No need if `trigger` is `"manual"`.
+            // this.tippyTooltip.enable();
+            this.tippyTooltip.show();
+          } else {
+            // `.hide()` instead of `.disable()` if `trigger` is `"manual"`.
+            this.tippyTooltip.hide();
+            // this.tippyTooltip.disable();
+          }
+        }
+      }
+
+      const customHandler = new CustomHandler("#vis");
+      // const customHandler = new CustomHandler(".marks");
+
+      // console.log(customHandler);
+
+      vegaEmbed("#vis", spec, {
+        tooltip: customHandler.call,
+      });
+    </script>
+  </body>
+</html>
