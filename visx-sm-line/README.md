@@ -14,3 +14,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [Conditionally firing an effect](https://reactjs.org/docs/hooks-reference.html#conditionally-firing-an-effect).
 - Flavio Copes' "[How to check if an object is empty in JavaScript](https://flaviocopes.com/how-to-check-object-empty/)" blog post.
 - Flavio Copes' "[How to change commas into dots with JavaScript](https://flaviocopes.com/how-to-comma-dot-javascript/)" blog post.
+- [visx simple pie chart](https://codesandbox.io/s/tf4ed).
