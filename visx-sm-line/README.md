@@ -18,3 +18,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [visx simple pie chart](https://codesandbox.io/s/tf4ed).
 - Zachary Bennett's "[Using Multiple Fetch Statements with ComponentWillMount In React](https://www.pluralsight.com/guides/using-multiple-fetch-statements-with-componentwillmount-in-react)" blog post.
 - "[How do I get the dimension of \<AxisLeft\>?](https://github.com/airbnb/visx/issues/1031)" issue.
+- [SmolCSS](https://smolcss.dev/).
+- Stephanie Eckles' "[Solutions to Replace the 12-Column Grid](https://moderncss.dev/solutions-to-replace-the-12-column-grid/)" blog post.
