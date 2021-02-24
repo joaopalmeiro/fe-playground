@@ -7,6 +7,11 @@ import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
 import Theme from './Theme';
 import PieChart from './PieChart';
 
+const getObjectWithMax = (data, accessor) =>
+  data.reduce((prev, current) =>
+    accessor(prev) > accessor(current) ? prev : current
+  );
+
 export default function LineChart({
   data,
   xvar,
@@ -46,17 +51,18 @@ export default function LineChart({
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
 
-  // Unique values
-  const xValues = new Set(data.map(xAccessor));
-  const colorValuesBackground = new Set(data.map(colorAccessor));
-  colorValuesBackground.delete(lineToHighlight);
-
   // Data subsets
   const mainData = data.filter((d) => categoryAccessor(d) === mainCategory);
   const categoryData = data.filter((d) => categoryAccessor(d) !== mainCategory);
   const dataToHighlight = mainData.filter(
     (d) => colorAccessor(d) === lineToHighlight
   );
+
+  // Unique values
+  const xValues = new Set(data.map(xAccessor));
+  const colorValuesBackground = new Set(data.map(colorAccessor));
+  colorValuesBackground.delete(lineToHighlight);
+  const maxX = xAccessor(getObjectWithMax(dataToHighlight, yAccessor));
 
   // Scales
   const yScale = scaleLinear({
@@ -84,14 +90,16 @@ export default function LineChart({
             scale={xScale}
             stroke={Theme.axisColor}
             tickStroke={Theme.axisColor}
-            tickLabelProps={() => ({
-              // Default values: https://github.com/airbnb/visx/blob/master/packages/visx-axis/src/axis/AxisBottom.tsx.
-              dy: '0.25em',
-              fill: Theme.axisColor,
-              fontFamily: 'Arial',
-              fontSize: 10,
-              textAnchor: 'middle',
-            })}
+            tickLabelProps={(value) => {
+              return {
+                // Default values: https://github.com/airbnb/visx/blob/master/packages/visx-axis/src/axis/AxisBottom.tsx.
+                dy: '0.25em',
+                fill: Theme.axisColor,
+                fontSize: 10,
+                textAnchor: 'middle',
+                className: 'arial ' + (value === maxX ? 'b' : 'normal'),
+              };
+            }}
           />
           {showYAxis &&
             (mirrorYAxis ? (
@@ -105,7 +113,7 @@ export default function LineChart({
                   dx: '0.25em',
                   dy: '0.25em',
                   fill: Theme.axisColor,
-                  fontFamily: 'Arial',
+                  className: 'arial',
                   fontSize: 10,
                   textAnchor: 'start',
                 })}
@@ -121,7 +129,7 @@ export default function LineChart({
                   dx: '-0.25em',
                   dy: '0.25em',
                   fill: Theme.axisColor,
-                  fontFamily: 'Arial',
+                  className: 'arial',
                   fontSize: 10,
                   textAnchor: 'end',
                 })}
@@ -180,7 +188,14 @@ export default function LineChart({
       {tooltipOpen && (
         <TooltipInPortal top={tooltipTop} left={tooltipLeft}>
           <div className="flex flex-column">
-            <span className="tc bb b--black-10">{tooltipData}</span>
+            <span
+              className={
+                'tc bb b--black-10 arial ' +
+                (tooltipData === maxX ? 'b' : 'normal')
+              }
+            >
+              {tooltipData}
+            </span>
             <PieChart
               data={categoryData.filter(
                 (d) =>

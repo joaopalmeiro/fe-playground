@@ -3,3 +3,7 @@
 body {
   -webkit-font-smoothing: antialiased;
 }
+
+.arial {
+  font-family: arial, sans-serif;
+}

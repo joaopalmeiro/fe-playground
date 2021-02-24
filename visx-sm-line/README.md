@@ -16,4 +16,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Flavio Copes' "[How to check if an object is empty in JavaScript](https://flaviocopes.com/how-to-check-object-empty/)" blog post.
 - Flavio Copes' "[How to change commas into dots with JavaScript](https://flaviocopes.com/how-to-comma-dot-javascript/)" blog post.
 - [visx simple pie chart](https://codesandbox.io/s/tf4ed).
-- Zachary Bennett's [Using Multiple Fetch Statements with ComponentWillMount In React](https://www.pluralsight.com/guides/using-multiple-fetch-statements-with-componentwillmount-in-react) blog post.
+- Zachary Bennett's "[Using Multiple Fetch Statements with ComponentWillMount In React](https://www.pluralsight.com/guides/using-multiple-fetch-statements-with-componentwillmount-in-react)" blog post.
+- "[How do I get the dimension of \<AxisLeft\>?](https://github.com/airbnb/visx/issues/1031)" issue.
