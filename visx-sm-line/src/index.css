@@ -7,3 +7,18 @@ body {
 .arial {
   font-family: arial, sans-serif;
 }
+
+/* Source: https://smolcss.dev/ */
+.smol-css-grid {
+  --min: 300px;
+  --gap: 0rem;
+
+  display: grid;
+  grid-gap: var(--gap);
+  grid-template-columns: repeat(auto-fit, var(--min));
+}
+
+.smol-centering {
+  display: grid;
+  place-content: center;
+}

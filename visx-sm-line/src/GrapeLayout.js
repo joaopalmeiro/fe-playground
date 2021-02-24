@@ -4,9 +4,11 @@ function GrapeLayout({ data, xvar, yvar, breakdown, cvar, mainCategory }) {
   const colorAccessor = (d) => d[breakdown];
   const uniqueValues = [...new Set(data.map(colorAccessor))];
 
+  // Classes for debugging: `debug` and `outline`
+  // <div className="smol-css-grid smol-centering outline debug">
   return (
     <div className="flex flex-column">
-      <div className="w-100 flex justify-center">
+      <div className="smol-css-grid smol-centering">
         <LineChart
           data={data}
           xvar={xvar}
@@ -27,7 +29,7 @@ function GrapeLayout({ data, xvar, yvar, breakdown, cvar, mainCategory }) {
           showYAxis={false}
         />
       </div>
-      <div className="w-100 flex justify-center">
+      <div className="smol-css-grid smol-centering">
         <LineChart
           data={data}
           xvar={xvar}
@@ -58,7 +60,7 @@ function GrapeLayout({ data, xvar, yvar, breakdown, cvar, mainCategory }) {
           mirrorYAxis={true}
         />
       </div>
-      <div className="w-100 flex justify-center">
+      <div className="smol-css-grid smol-centering">
         <LineChart
           data={data}
           xvar={xvar}
@@ -79,7 +81,7 @@ function GrapeLayout({ data, xvar, yvar, breakdown, cvar, mainCategory }) {
           showYAxis={false}
         />
       </div>
-      <div className="w-100 flex justify-center">
+      <div className="smol-css-grid smol-centering">
         <LineChart
           data={data}
           xvar={xvar}
