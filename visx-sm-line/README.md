@@ -20,3 +20,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - "[How do I get the dimension of \<AxisLeft\>?](https://github.com/airbnb/visx/issues/1031)" issue.
 - [SmolCSS](https://smolcss.dev/).
 - Stephanie Eckles' "[Solutions to Replace the 12-Column Grid](https://moderncss.dev/solutions-to-replace-the-12-column-grid/)" blog post.
+- [useWindowSize](https://usehooks.com/useWindowSize/).
