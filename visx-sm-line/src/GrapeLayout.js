@@ -1,6 +1,6 @@
 import LineChart from './LineChart';
 
-function GrapeLayout({ data, xvar, yvar, breakdown }) {
+function GrapeLayout({ data, xvar, yvar, breakdown, cvar, mainCategory }) {
   const colorAccessor = (d) => d[breakdown];
   const uniqueValues = [...new Set(data.map(colorAccessor))];
 
@@ -13,6 +13,8 @@ function GrapeLayout({ data, xvar, yvar, breakdown }) {
           yvar={yvar}
           breakdown={breakdown}
           lineToHighlight={uniqueValues[0]}
+          cvar={cvar}
+          mainCategory={mainCategory}
         />
         <LineChart
           data={data}
@@ -20,6 +22,8 @@ function GrapeLayout({ data, xvar, yvar, breakdown }) {
           yvar={yvar}
           breakdown={breakdown}
           lineToHighlight={uniqueValues[1]}
+          cvar={cvar}
+          mainCategory={mainCategory}
           showYAxis={false}
         />
       </div>
@@ -30,6 +34,8 @@ function GrapeLayout({ data, xvar, yvar, breakdown }) {
           yvar={yvar}
           breakdown={breakdown}
           lineToHighlight={uniqueValues[2]}
+          cvar={cvar}
+          mainCategory={mainCategory}
         />
         <LineChart
           data={data}
@@ -37,6 +43,8 @@ function GrapeLayout({ data, xvar, yvar, breakdown }) {
           yvar={yvar}
           breakdown={breakdown}
           lineToHighlight={uniqueValues[3]}
+          cvar={cvar}
+          mainCategory={mainCategory}
           showYAxis={false}
         />
         <LineChart
@@ -45,6 +53,8 @@ function GrapeLayout({ data, xvar, yvar, breakdown }) {
           yvar={yvar}
           breakdown={breakdown}
           lineToHighlight={uniqueValues[4]}
+          cvar={cvar}
+          mainCategory={mainCategory}
           mirrorYAxis={true}
         />
       </div>
@@ -55,6 +65,8 @@ function GrapeLayout({ data, xvar, yvar, breakdown }) {
           yvar={yvar}
           breakdown={breakdown}
           lineToHighlight={uniqueValues[5]}
+          cvar={cvar}
+          mainCategory={mainCategory}
         />
         <LineChart
           data={data}
@@ -62,6 +74,8 @@ function GrapeLayout({ data, xvar, yvar, breakdown }) {
           yvar={yvar}
           breakdown={breakdown}
           lineToHighlight={uniqueValues[6]}
+          cvar={cvar}
+          mainCategory={mainCategory}
           showYAxis={false}
         />
       </div>
@@ -72,6 +86,8 @@ function GrapeLayout({ data, xvar, yvar, breakdown }) {
           yvar={yvar}
           breakdown={breakdown}
           lineToHighlight={uniqueValues[7]}
+          cvar={cvar}
+          mainCategory={mainCategory}
         />
       </div>
     </div>

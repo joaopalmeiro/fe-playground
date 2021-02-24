@@ -5,6 +5,7 @@ import { scaleLinear, scalePoint } from '@visx/scale';
 import { LinePath, Circle } from '@visx/shape';
 import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
 import Theme from './Theme';
+import PieChart from './PieChart';
 
 export default function LineChart({
   data,
@@ -12,6 +13,8 @@ export default function LineChart({
   yvar,
   breakdown,
   lineToHighlight,
+  cvar,
+  mainCategory,
   width = 300,
   height = 300,
   margin = { top: 40, right: 30, bottom: 50, left: 40 },
@@ -37,6 +40,7 @@ export default function LineChart({
   const xAccessor = (d) => d[xvar];
   const yAccessor = (d) => Number(d[yvar].replace(/,/g, '.'));
   const colorAccessor = (d) => d[breakdown];
+  const categoryAccessor = (d) => d[cvar];
 
   // Bounds
   const xMax = width - margin.left - margin.right;
@@ -47,7 +51,10 @@ export default function LineChart({
   const colorValuesBackground = new Set(data.map(colorAccessor));
   colorValuesBackground.delete(lineToHighlight);
 
-  const dataToHighlight = data.filter(
+  // Data subsets
+  const mainData = data.filter((d) => categoryAccessor(d) === mainCategory);
+  const categoryData = data.filter((d) => categoryAccessor(d) !== mainCategory);
+  const dataToHighlight = mainData.filter(
     (d) => colorAccessor(d) === lineToHighlight
   );
 
@@ -55,9 +62,9 @@ export default function LineChart({
   const yScale = scaleLinear({
     range: [yMax, 0],
     domain: [
-      // Math.min(...data.map(yAccessor)),
+      // Math.min(...mainData.map(yAccessor)),
       0,
-      Math.max(...data.map(yAccessor)),
+      Math.max(...mainData.map(yAccessor)),
     ],
     nice: true,
   });
@@ -122,7 +129,9 @@ export default function LineChart({
             ))}
 
           {[...colorValuesBackground].map((color) => {
-            const dataToPlot = data.filter((d) => colorAccessor(d) === color);
+            const dataToPlot = mainData.filter(
+              (d) => colorAccessor(d) === color
+            );
 
             return (
               <LinePath
@@ -158,7 +167,7 @@ export default function LineChart({
                 onMouseMove={() => {
                   showTooltip({
                     tooltipData: xAccessor(point),
-                    tooltipTop: yScale(yAccessor(point)),
+                    tooltipTop: yScale(yAccessor(point)) - 50,
                     tooltipLeft: xScale(xAccessor(point)) + 5,
                   });
                 }}
@@ -170,7 +179,18 @@ export default function LineChart({
       </svg>
       {tooltipOpen && (
         <TooltipInPortal top={tooltipTop} left={tooltipLeft}>
-          <span className="b">{tooltipData}</span>
+          <div className="flex flex-column">
+            <span className="tc bb b--black-10">{tooltipData}</span>
+            <PieChart
+              data={categoryData.filter(
+                (d) =>
+                  xAccessor(d) === tooltipData &&
+                  colorAccessor(d) === lineToHighlight
+              )}
+              valueAccessor={yAccessor}
+              categoryAccessor={categoryAccessor}
+            ></PieChart>
+          </div>
         </TooltipInPortal>
       )}
     </>
