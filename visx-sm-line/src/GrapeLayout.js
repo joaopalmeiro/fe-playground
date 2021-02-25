@@ -1,5 +1,5 @@
 import LineChart from './LineChart';
-import useWindowSize from './use-window-size';
+import useWindowSize from './useWindowSize';
 
 function GrapeLayout({ data, xvar, yvar, breakdown, cvar, mainCategory }) {
   const size = useWindowSize();
