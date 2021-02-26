@@ -6,7 +6,6 @@ import { LinePath, Circle } from '@visx/shape';
 import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
 import Theme from './Theme';
 import PieChart from './PieChart';
-import { titleCase } from 'title-case';
 
 const getObjectWithMax = (data, accessor) =>
   data.reduce((prev, current) =>
@@ -86,7 +85,7 @@ export default function LineChart({
     <>
       <svg ref={containerRef} width={width} height={height}>
         <Group left={margin.left} top={margin.top}>
-          <text>{titleCase(lineToHighlight.toLowerCase())}</text>
+          <text className={'space ttc'}>{lineToHighlight.toLowerCase()}</text>
           <AxisBottom
             top={yMax}
             scale={xScale}
@@ -99,7 +98,7 @@ export default function LineChart({
                 fill: Theme.axisColor,
                 fontSize: value === maxX ? 11 : 10,
                 textAnchor: 'middle',
-                className: 'arial ' + (value === maxX ? 'b' : 'normal'),
+                className: 'space ' + (value === maxX ? 'b' : 'normal'),
               };
             }}
           />
@@ -115,7 +114,7 @@ export default function LineChart({
                   dx: '0.25em',
                   dy: '0.25em',
                   fill: Theme.axisColor,
-                  className: 'arial',
+                  className: 'space',
                   fontSize: 10,
                   textAnchor: 'start',
                 })}
@@ -131,7 +130,7 @@ export default function LineChart({
                   dx: '-0.25em',
                   dy: '0.25em',
                   fill: Theme.axisColor,
-                  className: 'arial',
+                  className: 'space',
                   fontSize: 10,
                   textAnchor: 'end',
                 })}
@@ -193,7 +192,7 @@ export default function LineChart({
           <div className="flex flex-column">
             <span
               className={
-                'tc bb b--black-10 arial ' +
+                'tc bb b--black-10 space ' +
                 (tooltipData === maxX ? 'b' : 'normal')
               }
             >

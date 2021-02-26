@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Notes
 
 - Grape bunch: 2-3-2-1.
-- [Arquero documentation](https://github.com/uwdata/arquero/tree/v2.3.0/docs).
+- [Arquero documentation](https://github.com/uwdata/arquero/tree/v2.3.0/docs) (2.3.0).
 
 ## References
 
@@ -22,3 +22,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Stephanie Eckles' "[Solutions to Replace the 12-Column Grid](https://moderncss.dev/solutions-to-replace-the-12-column-grid/)" blog post.
 - [useWindowSize](https://usehooks.com/useWindowSize/).
 - [useToggle](https://www.joshwcomeau.com/snippets/react-hooks/use-toggle/).
+- Aanjulena Sweet's "[Bootstrap Button Toggle (On/Off Switch)](https://codepen.io/aanjulena/pen/ZLZjzV)" pen.
+- Florian Karsten's [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) font.
+- Sarah L. Fossheim's [website](https://fossheim.io/).
