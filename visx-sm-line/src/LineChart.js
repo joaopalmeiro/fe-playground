@@ -97,7 +97,7 @@ export default function LineChart({
                 // Default values: https://github.com/airbnb/visx/blob/master/packages/visx-axis/src/axis/AxisBottom.tsx.
                 dy: '0.25em',
                 fill: Theme.axisColor,
-                fontSize: 10,
+                fontSize: value === maxX ? 11 : 10,
                 textAnchor: 'middle',
                 className: 'arial ' + (value === maxX ? 'b' : 'normal'),
               };
