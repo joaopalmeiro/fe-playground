@@ -1,9 +1,13 @@
 import * as aq from 'arquero';
 import { useEffect, useState } from 'react';
 import GrapeLayout from './GrapeLayout';
+import useToggle from './useToggle';
+
+const getFirstCol = (text) => text.slice(0, text.indexOf(','));
 
 function App() {
   const [table, setTable] = useState(aq.table());
+  const [isOn, toggleIsOn] = useToggle();
 
   // For reference only
   // const getTable = () => {
@@ -29,8 +33,6 @@ function App() {
   //       );
   //     });
   // };
-
-  const getFirstCol = (text) => text.slice(0, text.indexOf(','));
 
   useEffect(() => {
     // getTable();
@@ -89,8 +91,16 @@ function App() {
 
   return (
     <>
-      <header className="bb mh6 tc b--black-10">
+      <header className="mh6 bb b--black-10">
         <h1 className="f1">Produção de uvas</h1>
+        <div>
+          <button
+            className={`btn-xs btn-toggle${isOn ? ' active' : ''}`}
+            onClick={toggleIsOn}
+          >
+            <div className="handle"></div>
+          </button>
+        </div>
       </header>
       <div className="App ma3">
         {Object.entries(table.data()).length > 0 &&

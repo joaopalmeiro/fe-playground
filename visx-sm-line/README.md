@@ -21,3 +21,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [SmolCSS](https://smolcss.dev/).
 - Stephanie Eckles' "[Solutions to Replace the 12-Column Grid](https://moderncss.dev/solutions-to-replace-the-12-column-grid/)" blog post.
 - [useWindowSize](https://usehooks.com/useWindowSize/).
+- [useToggle](https://www.joshwcomeau.com/snippets/react-hooks/use-toggle/).

@@ -17,9 +17,10 @@
     "title-case": "^3.0.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "eject": "react-scripts eject"
+    "start": "yarn less && react-scripts start",
+    "build": "yarn less && react-scripts build",
+    "eject": "react-scripts eject",
+    "less": "lessc src/toogle.less src/toogle.css --math=parens-division"
   },
   "eslintConfig": {
     "extends": [
@@ -37,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "less": "^4.1.1"
   }
 }

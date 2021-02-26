@@ -172,6 +172,7 @@ export default function LineChart({
                 key={`point-${colorAccessor(point)}-${i}`}
                 cx={xScale(xAccessor(point))}
                 cy={yScale(yAccessor(point))}
+                className={'pointer'}
                 r={10}
                 fill={'transparent'}
                 onMouseMove={() => {
