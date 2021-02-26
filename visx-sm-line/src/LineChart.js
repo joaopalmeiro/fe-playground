@@ -85,7 +85,11 @@ export default function LineChart({
     <>
       <svg ref={containerRef} width={width} height={height}>
         <Group left={margin.left} top={margin.top}>
-          <text className={'f5 space ttc fossheim-purple'}>
+          <text
+            textAnchor={'middle'}
+            dx={xMax / 2}
+            className={'f5 space ttc fossheim-purple'}
+          >
             {lineToHighlight.toLowerCase()}
           </text>
           <AxisBottom
