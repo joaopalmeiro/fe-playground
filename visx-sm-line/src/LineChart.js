@@ -85,7 +85,9 @@ export default function LineChart({
     <>
       <svg ref={containerRef} width={width} height={height}>
         <Group left={margin.left} top={margin.top}>
-          <text className={'space ttc'}>{lineToHighlight.toLowerCase()}</text>
+          <text className={'f5 space ttc fossheim-purple'}>
+            {lineToHighlight.toLowerCase()}
+          </text>
           <AxisBottom
             top={yMax}
             scale={xScale}
@@ -192,7 +194,7 @@ export default function LineChart({
           <div className="flex flex-column">
             <span
               className={
-                'tc bb b--black-10 space ' +
+                'tc bb b--custom-light-gray space toggle-gray f6 ' +
                 (tooltipData === maxX ? 'b' : 'normal')
               }
             >

@@ -13,6 +13,19 @@ body {
   font-family: 'Space Grotesk', sans-serif;
 }
 
+.fossheim-purple {
+  color: #3e3355;
+  fill: #3e3355;
+}
+
+.toogle-gray {
+  color: #6b7381;
+}
+
+.b--custom-light-gray {
+  border-color: #e7e8eb;
+}
+
 /* Source: https://smolcss.dev/ */
 .smol-css-grid {
   --min: 300px;

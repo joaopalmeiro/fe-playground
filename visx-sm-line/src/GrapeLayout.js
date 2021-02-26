@@ -11,7 +11,7 @@ function GrapeLayout({ data, xvar, yvar, breakdown, cvar, mainCategory }) {
   // <div className="smol-css-grid smol-centering outline debug">
   return (
     <div className="flex flex-column">
-      <div className="smol-css-grid smol-centering debug">
+      <div className="smol-css-grid smol-centering">
         <LineChart
           data={data}
           xvar={xvar}

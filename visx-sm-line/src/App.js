@@ -91,15 +91,17 @@ function App() {
 
   return (
     <>
-      <header className="space mh6 bb b--black-10 flex flex-column items-center">
-        <h1 className="tc f1">Produção de uvas</h1>
-        <p>Ajuda?</p>
-        <button
-          className={`btn-xs btn-toggle${isOn ? ' active' : ''}`}
-          onClick={toggleIsOn}
-        >
-          <div className="handle"></div>
-        </button>
+      <header className="space fossheim-purple mh6 mt4 bb b--custom-light-gray flex flex-column items-center">
+        <h1 className="tc f1 mb3 mt0">Produção de uvas</h1>
+        <div className="flex mb1">
+          <p className="mh1 mv0 f6 toogle-gray">Ajuda?</p>
+          <button
+            className={`btn-xs btn-toggle${isOn ? ' active' : ''}`}
+            onClick={toggleIsOn}
+          >
+            <div className="handle"></div>
+          </button>
+        </div>
       </header>
       <div className="App ma3">
         {Object.entries(table.data()).length > 0 &&

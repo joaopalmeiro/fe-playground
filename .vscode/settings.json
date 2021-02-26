@@ -6,6 +6,6 @@
   "files.associations": {
     "*.njk": "html"
   },
-  "colorize.colorized_variables": ["SASS"],
+  "colorize.colorized_variables": ["SASS", "LESS"],
   "editor.colorDecorators": false
 }
