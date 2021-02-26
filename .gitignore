@@ -115,3 +115,4 @@ dist
 .yarn/install-state.gz
 .pnp.*
 formatter.js
+visx-sm-line/src/toogle.css
