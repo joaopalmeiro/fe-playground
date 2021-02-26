@@ -6,6 +6,7 @@ import { LinePath, Circle } from '@visx/shape';
 import { useTooltip, useTooltipInPortal } from '@visx/tooltip';
 import Theme from './Theme';
 import PieChart from './PieChart';
+import { titleCase } from 'title-case';
 
 const getObjectWithMax = (data, accessor) =>
   data.reduce((prev, current) =>
@@ -85,6 +86,7 @@ export default function LineChart({
     <>
       <svg ref={containerRef} width={width} height={height}>
         <Group left={margin.left} top={margin.top}>
+          <text>{titleCase(lineToHighlight.toLowerCase())}</text>
           <AxisBottom
             top={yMax}
             scale={xScale}
