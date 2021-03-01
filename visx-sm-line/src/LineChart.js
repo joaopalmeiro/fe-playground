@@ -12,6 +12,28 @@ const getObjectWithMax = (data, accessor) =>
     accessor(prev) > accessor(current) ? prev : current
   );
 
+// Default values:
+// - https://github.com/airbnb/visx/blob/master/packages/visx-axis/src/axis/AxisRenderer.tsx
+// - https://github.com/airbnb/visx/blob/master/packages/visx-axis/src/axis/AxisBottom.tsx
+const tickLength = 8;
+const strokeWidth = 1 / 2;
+const fontSize = 10 + 1;
+const dy = 0.25 * 10;
+const bottomMargin = strokeWidth + tickLength + fontSize + dy;
+
+const titleFontSize = 16; // .f5 -> 1 rem
+const topMargin = titleFontSize;
+
+const singleMargin = Math.max(30, bottomMargin, topMargin);
+
+// const defaultMargin = { top: 40, right: 30, bottom: 50, left: 40 };
+const defaultMargin = {
+  top: singleMargin,
+  right: singleMargin,
+  bottom: singleMargin,
+  left: singleMargin,
+};
+
 export default function LineChart({
   data,
   xvar,
@@ -22,7 +44,7 @@ export default function LineChart({
   mainCategory,
   width = 300,
   height = 300,
-  margin = { top: 40, right: 30, bottom: 50, left: 40 },
+  margin = defaultMargin,
   showYAxis = true,
   mirrorYAxis = false,
 }) {
