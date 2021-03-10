@@ -205,8 +205,8 @@ export default function LineChart({
                 onMouseMove={() => {
                   showTooltip({
                     tooltipData: xAccessor(point),
-                    tooltipTop: yScale(yAccessor(point)) - 50,
-                    tooltipLeft: xScale(xAccessor(point)) + 5,
+                    tooltipTop: yScale(yAccessor(point)) - singleMargin * 2, // - 50
+                    tooltipLeft: xScale(xAccessor(point)) - 10, // + 5
                   });
                 }}
                 onMouseLeave={hideTooltip}
