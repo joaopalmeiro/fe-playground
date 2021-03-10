@@ -11,6 +11,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 - Grape bunch: 2-3-2-1.
 - [Arquero documentation](https://github.com/uwdata/arquero/tree/v2.3.0/docs) (2.3.0).
+- [`tachyons-animate`](https://github.com/anater/tachyons-animate).
 
 ## References
 
