@@ -91,13 +91,15 @@ function App() {
 
   return (
     <>
-      <header className="space fossheim-purple mh6 mt4 bb b--custom-light-gray flex flex-column items-center">
-        <h1 className="tc f1 mb3 mt0">Produção de uvas</h1>
-        <p className="sans-serif">
+      <header className="space fossheim-purple mh6 mh4-m mt4 bb b--custom-light-gray flex flex-column items-center">
+        <h1 className="tc f1 mb3 mt0">
+          Produção de uvas <span className="icon f2">🍇</span>
+        </h1>
+        <p className="sans-serif f5 mb3 tc">
           na área geográfica correspondente à Denominação de Origem Controlada
           (DOP) "Alentejo"
         </p>
-        <p className="sans-serif">
+        <p className="sans-serif f6 mt0 mb4 tc toogle-gray">
           Fonte: Comissão Vitivinícola Regional Alentejana • Relatório Anual
           2019
         </p>

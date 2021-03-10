@@ -40,3 +40,8 @@ body {
   display: grid;
   place-content: center;
 }
+
+.icon {
+  color: transparent;
+  text-shadow: 0 0 #3e3355;
+}

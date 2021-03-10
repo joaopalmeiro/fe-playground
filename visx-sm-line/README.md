@@ -31,3 +31,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Florian Karsten's [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) font.
 - Sarah L. Fossheim's [website](https://fossheim.io/).
 - [Vinhos DOP](https://www.ivv.gov.pt/np4/67/).
+- Preethi Sam's "[How to Use Emojis as Icons](https://preethisam.com/2018/06/25/how-to-use-emojis-as-icons/)" blog post.
