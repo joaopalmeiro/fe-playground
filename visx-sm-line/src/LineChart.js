@@ -106,7 +106,8 @@ export default function LineChart({
 
   return (
     <>
-      <svg ref={containerRef} width={width} height={height}>
+      {/* `overflow` is `visible` to make it easier to insert help labels without messing with the layout. */}
+      <svg ref={containerRef} width={width} height={height} overflow="visible">
         <Group left={margin.left} top={margin.top}>
           <text
             textAnchor={'middle'}
@@ -149,6 +150,11 @@ export default function LineChart({
                   fontSize: 10,
                   textAnchor: 'start',
                 })}
+                tickFormat={(value, index, ticks) =>
+                  showHelp && index === ticks[ticks.length - 1].index
+                    ? `${value} (milhões Kg)`
+                    : value
+                }
               />
             ) : (
               <AxisLeft
@@ -165,6 +171,11 @@ export default function LineChart({
                   fontSize: 10,
                   textAnchor: 'end',
                 })}
+                tickFormat={(value, index, ticks) =>
+                  showHelp && index === ticks[ticks.length - 1].index
+                    ? `${value} (milhões Kg)`
+                    : value
+                }
               />
             ))}
 
