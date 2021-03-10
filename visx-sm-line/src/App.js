@@ -113,6 +113,7 @@ function App() {
               breakdown={'Região'}
               cvar={'Categoria'}
               mainCategory={'Total'}
+              showHelp={isOn}
             />
           )}
       </div>

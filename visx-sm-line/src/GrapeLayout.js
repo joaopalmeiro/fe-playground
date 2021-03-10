@@ -1,7 +1,15 @@
 import LineChart from './LineChart';
 import useWindowSize from './useWindowSize';
 
-function GrapeLayout({ data, xvar, yvar, breakdown, cvar, mainCategory }) {
+function GrapeLayout({
+  data,
+  xvar,
+  yvar,
+  breakdown,
+  cvar,
+  mainCategory,
+  showHelp,
+}) {
   const size = useWindowSize();
 
   const colorAccessor = (d) => d[breakdown];
@@ -20,6 +28,7 @@ function GrapeLayout({ data, xvar, yvar, breakdown, cvar, mainCategory }) {
           lineToHighlight={uniqueValues[0]}
           cvar={cvar}
           mainCategory={mainCategory}
+          showHelp={showHelp}
         />
         <LineChart
           data={data}
@@ -31,6 +40,7 @@ function GrapeLayout({ data, xvar, yvar, breakdown, cvar, mainCategory }) {
           mainCategory={mainCategory}
           // 300px + 300px + 1rem (16px) + 1rem (16px)
           showYAxis={size.width >= 600 + 16 * 2 ? false : true}
+          showHelp={showHelp}
         />
       </div>
       <div className="smol-css-grid smol-centering">
@@ -42,6 +52,7 @@ function GrapeLayout({ data, xvar, yvar, breakdown, cvar, mainCategory }) {
           lineToHighlight={uniqueValues[2]}
           cvar={cvar}
           mainCategory={mainCategory}
+          showHelp={showHelp}
         />
         <LineChart
           data={data}
@@ -52,6 +63,7 @@ function GrapeLayout({ data, xvar, yvar, breakdown, cvar, mainCategory }) {
           cvar={cvar}
           mainCategory={mainCategory}
           showYAxis={size.width >= 600 + 16 * 2 ? false : true}
+          showHelp={showHelp}
         />
         <LineChart
           data={data}
@@ -62,6 +74,7 @@ function GrapeLayout({ data, xvar, yvar, breakdown, cvar, mainCategory }) {
           cvar={cvar}
           mainCategory={mainCategory}
           mirrorYAxis={size.width >= 900 + 16 * 2 ? true : false}
+          showHelp={showHelp}
         />
       </div>
       <div className="smol-css-grid smol-centering">
@@ -73,6 +86,7 @@ function GrapeLayout({ data, xvar, yvar, breakdown, cvar, mainCategory }) {
           lineToHighlight={uniqueValues[5]}
           cvar={cvar}
           mainCategory={mainCategory}
+          showHelp={showHelp}
         />
         <LineChart
           data={data}
@@ -83,6 +97,7 @@ function GrapeLayout({ data, xvar, yvar, breakdown, cvar, mainCategory }) {
           cvar={cvar}
           mainCategory={mainCategory}
           showYAxis={size.width >= 600 + 16 * 2 ? false : true}
+          showHelp={showHelp}
         />
       </div>
       <div className="smol-css-grid smol-centering">
@@ -94,6 +109,7 @@ function GrapeLayout({ data, xvar, yvar, breakdown, cvar, mainCategory }) {
           lineToHighlight={uniqueValues[7]}
           cvar={cvar}
           mainCategory={mainCategory}
+          showHelp={showHelp}
         />
       </div>
     </div>

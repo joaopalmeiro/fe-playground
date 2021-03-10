@@ -47,6 +47,7 @@ export default function LineChart({
   margin = defaultMargin,
   showYAxis = true,
   mirrorYAxis = false,
+  showHelp = false,
 }) {
   // Tooltip
   const {
