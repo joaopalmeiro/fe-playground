@@ -93,6 +93,14 @@ function App() {
     <>
       <header className="space fossheim-purple mh6 mt4 bb b--custom-light-gray flex flex-column items-center">
         <h1 className="tc f1 mb3 mt0">Produção de uvas</h1>
+        <p className="sans-serif">
+          na área geográfica correspondente à Denominação de Origem Controlada
+          (DOP) "Alentejo"
+        </p>
+        <p className="sans-serif">
+          Fonte: Comissão Vitivinícola Regional Alentejana • Relatório Anual
+          2019
+        </p>
         <div className="flex mb1">
           <p className="mh1 mv0 f6 toogle-gray">Ajuda?</p>
           <button

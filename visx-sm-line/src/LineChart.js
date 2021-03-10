@@ -113,7 +113,9 @@ export default function LineChart({
             dx={xMax / 2}
             className={'f5 space ttc fossheim-purple'}
           >
-            {lineToHighlight.toLowerCase()}
+            {showHelp
+              ? `Sub-Região ${lineToHighlight.toLowerCase()}`
+              : lineToHighlight.toLowerCase()}
           </text>
           <AxisBottom
             top={yMax}
