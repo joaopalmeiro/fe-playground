@@ -114,9 +114,14 @@ export default function LineChart({
             dx={xMax / 2}
             className={'f5 space ttc fossheim-purple'}
           >
-            {showHelp
-              ? `Sub-Região ${lineToHighlight.toLowerCase()}`
-              : lineToHighlight.toLowerCase()}
+            {showHelp ? (
+              <>
+                <tspan className="toogle-gray">{'Sub-Região'}</tspan>
+                <tspan>{` ${lineToHighlight.toLowerCase()}`}</tspan>
+              </>
+            ) : (
+              lineToHighlight.toLowerCase()
+            )}
           </text>
           <AxisBottom
             top={yMax}
@@ -133,6 +138,9 @@ export default function LineChart({
                 className: 'space ' + (value === maxX ? 'b' : 'normal'),
               };
             }}
+            tickFormat={(value) =>
+              showHelp && value === maxX ? `${value} (top)` : value
+            }
           />
           {showYAxis &&
             (mirrorYAxis ? (
