@@ -1,0 +1,49 @@
+.grid-section {
+  margin-top: 20px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.box {
+  height: 100px;
+  width: 150px;
+  background-color: coral;
+  margin: 5px 10px;
+  transition: all 1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  color: white;
+  padding: 10px;
+}
+
+.move-up:hover {
+  background-color: crimson;
+  transition: all 0.5s;
+  transform: translateY(-10px);
+}
+
+.move-down:hover {
+  background-color: crimson;
+  transition: all 0.5s;
+  transform: translateY(10px);
+}
+
+.penguin-cursor {
+  /* Optional X- and Y-coordinates (unitless nonnegative numbers less than 32) */
+  /* These will set the cursor's hotspot (relative to the top-left corner) */
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🐧</text></svg>")
+      16 0,
+    auto;
+}
+
+.bar-chart-cursor {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>📊</text></svg>")
+      16 0,
+    auto;
+}
