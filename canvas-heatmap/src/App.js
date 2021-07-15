@@ -1,5 +1,5 @@
-import { genSquareMatrixData } from './utils';
 import Heatmap from './Heatmap';
+import { genSquareMatrixData } from './utils';
 
 function App() {
   const data = genSquareMatrixData(150);

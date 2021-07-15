@@ -9,6 +9,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Development: `yarn start`.
 - Deployment: `yarn build`.
 
+## References
+
+- Lucas Miranda's [Canvas with React.js](https://medium.com/@pdx.lucasm/canvas-with-react-js-32e133c05258) blog post.
+
 ## Notes
 
 - [faker.js](https://github.com/Marak/faker.js):
@@ -18,3 +22,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   - [Demo](https://danibram.github.io/mocker-data-generator/).
 - [@visx/mock-data](https://github.com/airbnb/visx/tree/master/packages/visx-mock-data).
 - [Adding scaleSequential to @visx/scale](https://github.com/airbnb/visx/issues/953) (open) issue.
+- ESLint + CRA:
+  - [Extending or replacing the default ESLint config](https://create-react-app.dev/docs/setting-up-your-editor/#extending-or-replacing-the-default-eslint-config).
+  - [import/order: Enforce a convention in module import order](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/order.md) ([eslint-plugin-import](https://github.com/benmosher/eslint-plugin-import)).
+  - Check the configuration used: `./node_modules/.bin/eslint --print-config package.json`.
