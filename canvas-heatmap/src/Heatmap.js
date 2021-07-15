@@ -1,4 +1,6 @@
-import { scaleOrdinal } from 'd3-scale';
+import { extent } from 'd3-array';
+import { scaleOrdinal, scaleSequential } from 'd3-scale';
+import { interpolateYlOrRd } from 'd3-scale-chromatic';
 import React, { useRef, useEffect } from 'react';
 
 import { cellPadding, chartDimensions } from './constants';
@@ -16,6 +18,11 @@ const computeX = (column, cellWidth, padding) => {
 };
 const computeY = (row, cellHeight, padding) => {
   return row * cellHeight + cellHeight * 0.5 + padding * row + padding;
+};
+
+// Cells
+const renderRect = (ctx, x, y, width, height) => {
+  ctx.save();
 };
 
 export default function Heatmap({ data }) {
@@ -42,11 +49,15 @@ export default function Heatmap({ data }) {
     ),
     y: scaleOrdinal(yUniqueValues.map((_, idx) => computeY(idx, cellHeight, cellPadding))).domain(
       yUniqueValues
-    )
+    ),
+    // More info:
+    // - https://github.com/d3/d3-scale/blob/main/src/sequential.js
+    // - https://github.com/d3/d3-scale/blob/main/src/linear.js#L6
+    color: scaleSequential(extent(data, colorAccessor), interpolateYlOrRd).nice()
   };
 
   useEffect(() => {
-    const context = canvasEl.current.getContext('2d');
+    const ctx = canvasEl.current.getContext('2d');
   }, []);
 
   return <canvas ref={canvasEl} width={chartDimensions.width} height={chartDimensions.height} />;
