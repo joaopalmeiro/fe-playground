@@ -25,4 +25,38 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - ESLint + CRA:
   - [Extending or replacing the default ESLint config](https://create-react-app.dev/docs/setting-up-your-editor/#extending-or-replacing-the-default-eslint-config).
   - [import/order: Enforce a convention in module import order](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/order.md) ([eslint-plugin-import](https://github.com/benmosher/eslint-plugin-import)).
-  - Check the configuration used: `./node_modules/.bin/eslint --print-config package.json`.
+  - Check the configuration used ([source](https://eslint.org/docs/user-guide/command-line-interface#options)): `./node_modules/.bin/eslint --print-config package.json`.
+- [Linguist](https://github.com/github/linguist):
+  - [Supported languages](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml).
+  - [Syntax highlighting documentation](https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks#syntax-highlighting).
+  - [Highlighting React Code in GitHub Flavored Markdown](https://www.pluralsight.com/guides/highlight-react-in-github-markdown): `javascript` or `jsx`.
+- [Window.devicePixelRatio](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio):
+  - `(...) ratio of pixel sizes: the size of one _CSS pixel_ to the size of one _physical pixel_.`
+  - Use to correct the resolution in a `<canvas>`.
+- [Setting Default Values with JavaScript’s Destructuring](https://wesbos.com/destructuring-default-values): default/fallback values and renaming (e.g., `const { middle: middleName = 'Super Rad' } = person;`).
+
+**Canvas component snippet**:
+
+```jsx
+import React, { useRef, useEffect } from 'react';
+
+const Canvas = (props) => {
+  const canvasRef = useRef(null);
+
+  // It could be a prop.
+  const draw = (ctx) => {
+    // ...
+  };
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext('2d');
+
+    draw(context);
+  }, [draw]);
+
+  return <canvas ref={canvasRef} {...props} />;
+};
+
+export default Canvas;
+```
