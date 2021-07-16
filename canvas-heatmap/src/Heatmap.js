@@ -1,3 +1,4 @@
+import Tippy from '@tippyjs/react';
 import { extent } from 'd3-array';
 import { scaleOrdinal, scaleSequential } from 'd3-scale';
 import { interpolateYlOrRd } from 'd3-scale-chromatic';
@@ -59,6 +60,11 @@ const getOpacity = (cell, currentCell, hoverFn) => {
 export default function Heatmap({ data }) {
   // https://reactjs.org/docs/hooks-reference.html#useref
   const canvasEl = useRef(null); // useRef(initialValue);
+
+  // Tooltip
+  const [visible, setVisible] = useState(false);
+  const show = () => setVisible(true);
+  const hide = () => setVisible(false);
 
   const [currentCell, setCurrentCell] = useState(null);
 
@@ -144,23 +150,29 @@ export default function Heatmap({ data }) {
       );
 
       setCurrentCell(cell);
+      show();
     },
     [cellHeight, cellWidth, data, margin.left, margin.top, xScale, yScale]
   );
 
   const handleMouseLeave = useCallback(() => {
     setCurrentCell(null);
+    hide();
   }, []);
 
   // Source: https://github.com/plouc/nivo/blob/master/packages/heatmap/src/HeatMapCanvas.js
   return (
-    <canvas
-      ref={canvasEl}
-      width={outerWidth}
-      height={outerHeight}
-      onMouseEnter={handleMouseHover}
-      onMouseMove={handleMouseHover}
-      onMouseLeave={handleMouseLeave}
-    />
+    <>
+      <Tippy content={JSON.stringify(currentCell)} visible={visible} reference={canvasEl} />
+
+      <canvas
+        ref={canvasEl}
+        width={outerWidth}
+        height={outerHeight}
+        onMouseEnter={handleMouseHover}
+        onMouseMove={handleMouseHover}
+        onMouseLeave={handleMouseLeave}
+      />
+    </>
   );
 }
