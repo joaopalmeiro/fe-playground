@@ -2,11 +2,11 @@ import { extent } from 'd3-array';
 import { scaleOrdinal, scaleSequential } from 'd3-scale';
 import { interpolateYlOrRd } from 'd3-scale-chromatic';
 // import randomColor from 'randomcolor';
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 
 import { cellPadding, chartDimensions, opacity } from './constants';
 import { useDimensions } from './hooks';
-import { getUniqueValues } from './utils';
+import { getUniqueValues, getRelativeCursor, isCursorInRect } from './utils';
 
 // Accessors
 const xAccessor = (d) => d.x;
@@ -43,7 +43,6 @@ export default function Heatmap({ data }) {
   // https://reactjs.org/docs/hooks-reference.html#useref
   const canvasEl = useRef(null); // useRef(initialValue);
 
-  // TODO
   const [currentCell, setCurrentCell] = useState(null);
 
   const { margin, innerWidth, innerHeight, outerWidth, outerHeight } = useDimensions(
@@ -91,7 +90,43 @@ export default function Heatmap({ data }) {
         opacity
       )
     );
-  }, [cellHeight, cellWidth, colorScale, data, margin.left, margin.top, xScale, yScale]); // or `margin`
+  }, [cellHeight, cellWidth, colorScale, data, margin.left, margin.top, xScale, yScale]);
+  // `margin.left, margin.top` or `margin`
 
-  return <canvas ref={canvasEl} width={outerWidth} height={outerHeight} />;
+  // Event handling
+  const handleMouseHover = useCallback(
+    (event) => {
+      const [x, y] = getRelativeCursor(canvasEl.current, event);
+
+      const cell = data.find((instance) =>
+        isCursorInRect(
+          xScale(xAccessor(instance)) + margin.left - cellWidth / 2,
+          yScale(yAccessor(instance)) + margin.top - cellHeight / 2,
+          cellWidth,
+          cellHeight,
+          x,
+          y
+        )
+      );
+
+      // TODO
+      setCurrentCell(cell);
+    },
+    [cellHeight, cellWidth, data, margin.left, margin.top, xScale, yScale]
+  );
+
+  const handleMouseLeave = useCallback(() => {
+    setCurrentCell(null);
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasEl}
+      width={outerWidth}
+      height={outerHeight}
+      onMouseEnter={handleMouseHover}
+      onMouseMove={handleMouseHover}
+      onMouseLeave={handleMouseLeave}
+    />
+  );
 }
