@@ -4,7 +4,13 @@ import { interpolateYlOrRd } from 'd3-scale-chromatic';
 // import randomColor from 'randomcolor';
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 
-import { cellPadding, chartDimensions, opacity } from './constants';
+import {
+  cellPadding,
+  chartDimensions,
+  hoverOpacity,
+  hoverOthersOpacity,
+  backgroundColor
+} from './constants';
 import { useDimensions } from './hooks';
 import { getUniqueValues, getRelativeCursor, isCursorInRect } from './utils';
 
@@ -37,6 +43,17 @@ const renderRect = (ctx, x, y, width, height, color, opacity) => {
   ctx.fillRect(x - width / 2, y - height / 2, width, height);
 
   ctx.restore();
+};
+
+// Opacity
+const rowColumn = (cell, currentCell) => cell.x === currentCell.x || cell.y === currentCell.y;
+
+const getOpacity = (cell, currentCell, hoverFn) => {
+  if (currentCell) {
+    return hoverFn(cell, currentCell) ? hoverOpacity : hoverOthersOpacity;
+  }
+
+  return hoverOpacity;
 };
 
 export default function Heatmap({ data }) {
@@ -77,8 +94,13 @@ export default function Heatmap({ data }) {
   useEffect(() => {
     const ctx = canvasEl.current.getContext('2d');
 
+    // Required for dynamic opacity to work
+    ctx.fillStyle = backgroundColor;
+    ctx.fillRect(0, 0, outerWidth, outerHeight);
+
     ctx.translate(margin.left, margin.top);
 
+    // console.log(currentCell);
     data.forEach((instance) =>
       renderRect(
         ctx,
@@ -87,10 +109,22 @@ export default function Heatmap({ data }) {
         cellWidth,
         cellHeight,
         colorScale(colorAccessor(instance)),
-        opacity
+        getOpacity(instance, currentCell, rowColumn)
       )
     );
-  }, [cellHeight, cellWidth, colorScale, data, margin.left, margin.top, xScale, yScale]);
+  }, [
+    cellHeight,
+    cellWidth,
+    colorScale,
+    currentCell,
+    data,
+    margin.left,
+    margin.top,
+    outerHeight,
+    outerWidth,
+    xScale,
+    yScale
+  ]);
   // `margin.left, margin.top` or `margin`
 
   // Event handling
@@ -109,7 +143,6 @@ export default function Heatmap({ data }) {
         )
       );
 
-      // TODO
       setCurrentCell(cell);
     },
     [cellHeight, cellWidth, data, margin.left, margin.top, xScale, yScale]
@@ -119,6 +152,7 @@ export default function Heatmap({ data }) {
     setCurrentCell(null);
   }, []);
 
+  // Source: https://github.com/plouc/nivo/blob/master/packages/heatmap/src/HeatMapCanvas.js
   return (
     <canvas
       ref={canvasEl}

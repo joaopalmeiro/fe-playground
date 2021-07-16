@@ -12,4 +12,8 @@ export const defaultMargin = {
 }; // px
 
 export const cellPadding = 0; // px
-export const opacity = 1;
+
+export const hoverOpacity = 1;
+export const hoverOthersOpacity = 0.35;
+
+export const backgroundColor = 'white';
