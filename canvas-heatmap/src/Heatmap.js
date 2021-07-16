@@ -97,6 +97,14 @@ export default function Heatmap({ data }) {
   // - https://github.com/d3/d3-scale/blob/main/src/linear.js#L6
   const colorScale = scaleSequential(extent(data, colorAccessor), interpolateYlOrRd).nice();
 
+  const getTooltipOffset = (currentCell) => {
+    if (currentCell) {
+      return [xScale(xAccessor(currentCell)), yScale(yAccessor(currentCell))];
+    }
+
+    return [0, 10]; // Default
+  };
+
   useEffect(() => {
     const ctx = canvasEl.current.getContext('2d');
 
@@ -163,7 +171,12 @@ export default function Heatmap({ data }) {
   // Source: https://github.com/plouc/nivo/blob/master/packages/heatmap/src/HeatMapCanvas.js
   return (
     <>
-      <Tippy content={JSON.stringify(currentCell)} visible={visible} reference={canvasEl} />
+      <Tippy
+        content={JSON.stringify(currentCell)}
+        visible={visible}
+        reference={canvasEl}
+        offset={getTooltipOffset(currentCell)}
+      />
 
       <canvas
         ref={canvasEl}
