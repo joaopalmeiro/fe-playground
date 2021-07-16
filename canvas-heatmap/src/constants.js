@@ -11,4 +11,5 @@ export const defaultMargin = {
   left: 0
 }; // px
 
-export const cellPadding = 0;
+export const cellPadding = 0; // px
+export const opacity = 1;

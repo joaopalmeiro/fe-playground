@@ -24,3 +24,19 @@ export const genSquareMatrixData = (n) => {
 };
 
 export const getUniqueValues = (data, accessor) => [...new Set(data.map(accessor))];
+
+// Source: https://github.com/plouc/nivo/blob/master/packages/core/src/lib/interactivity/index.js
+export const getRelativeCursor = (el, event) => {
+  // More info: https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/clientX
+  // Viewport
+  const { clientX, clientY } = event;
+
+  // More info: https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
+  const bounds = el.getBoundingClientRect();
+
+  return [clientX - bounds.left, clientY - bounds.top];
+};
+
+// Source: https://github.com/plouc/nivo/blob/master/packages/core/src/lib/interactivity/detect.js
+export const isCursorInRect = (x, y, width, height, cursorX, cursorY) =>
+  x <= cursorX && cursorX <= x + width && y <= cursorY && cursorY <= y + height;

@@ -11,6 +11,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## References
 
+- [nivo](https://nivo.rocks/) library.
 - Lucas Miranda's [Canvas with React.js](https://medium.com/@pdx.lucasm/canvas-with-react-js-32e133c05258) blog post.
 
 ## Notes
@@ -35,6 +36,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   - Use to correct the resolution in a `<canvas>`.
 - [Setting Default Values with JavaScript’s Destructuring](https://wesbos.com/destructuring-default-values): default/fallback values and renaming (e.g., `const { middle: middleName = 'Super Rad' } = person;`).
 - [Warning for 'exhaustive-deps' keeps asking for the full 'props' object instead of allowing single 'props' properties as dependencies](https://github.com/facebook/react/issues/16265) (open) issue.
+- [gitmoji](https://gitmoji.dev/):
+  - Emojis for commit messages.
+  - `yarn add --dev gitmoji-cli`.
+  - [gitmoji-cli](https://github.com/carloscuesta/gitmoji-cli):
+    - Print all available options: `gitmoji -l` (or `yarn emojis`).
+- [CanvasRenderingContext2D.save()](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/save).
 
 **Canvas component snippet**:
 
