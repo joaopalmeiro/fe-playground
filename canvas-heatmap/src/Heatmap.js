@@ -10,7 +10,9 @@ import {
   chartDimensions,
   hoverOpacity,
   hoverOthersOpacity,
-  backgroundColor
+  backgroundColor,
+  pixelRatio,
+  forceSquaredCells
 } from './constants';
 import { useDimensions } from './hooks';
 import { getUniqueValues, getRelativeCursor, isCursorInRect } from './utils';
@@ -80,8 +82,24 @@ export default function Heatmap({ data }) {
   const rows = yUniqueValues.length;
   // console.log(`Number of cells: ${rows * columns}`);
 
-  const cellWidth = Math.max((innerWidth - cellPadding * (columns + 1)) / columns, 0);
-  const cellHeight = Math.max((innerHeight - cellPadding * (rows + 1)) / rows, 0);
+  // Another possibility is to set a default cell size and get the chart size from there
+  let cellWidth = Math.max((innerWidth - cellPadding * (columns + 1)) / columns, 0);
+  let cellHeight = Math.max((innerHeight - cellPadding * (rows + 1)) / rows, 0);
+
+  // For squared cells
+  // Source: https://github.com/plouc/nivo/blob/master/packages/heatmap/src/hooks.js#L108
+  let offsetX = 0;
+  let offsetY = 0;
+  if (forceSquaredCells === true) {
+    const cellSize = Math.min(cellWidth, cellHeight);
+
+    cellWidth = cellSize;
+    cellHeight = cellSize;
+
+    // Another possibility is to ignore offsets and just use equal (cell) length and width
+    offsetX = (innerWidth - ((cellWidth + cellPadding) * columns + cellPadding)) / 2;
+    offsetY = (innerHeight - ((cellHeight + cellPadding) * rows + cellPadding)) / 2;
+  }
 
   // Scales
   const xScale = scaleOrdinal(
@@ -106,13 +124,18 @@ export default function Heatmap({ data }) {
   };
 
   useEffect(() => {
+    canvasEl.current.width = outerWidth * pixelRatio;
+    canvasEl.current.height = outerHeight * pixelRatio;
+
     const ctx = canvasEl.current.getContext('2d');
+
+    ctx.scale(pixelRatio, pixelRatio);
 
     // Required for dynamic opacity to work
     ctx.fillStyle = backgroundColor;
     ctx.fillRect(0, 0, outerWidth, outerHeight);
 
-    ctx.translate(margin.left, margin.top);
+    ctx.translate(margin.left + offsetX, margin.top + offsetY);
 
     // console.log(currentCell);
     data.forEach((instance) =>
@@ -134,12 +157,13 @@ export default function Heatmap({ data }) {
     data,
     margin.left,
     margin.top,
+    offsetX,
+    offsetY,
     outerHeight,
     outerWidth,
     xScale,
     yScale
   ]);
-  // `margin.left, margin.top` or `margin`
 
   // Event handling
   const handleMouseHover = useCallback(
@@ -148,8 +172,8 @@ export default function Heatmap({ data }) {
 
       const cell = data.find((instance) =>
         isCursorInRect(
-          xScale(xAccessor(instance)) + margin.left - cellWidth / 2,
-          yScale(yAccessor(instance)) + margin.top - cellHeight / 2,
+          xScale(xAccessor(instance)) + margin.left + offsetX - cellWidth / 2,
+          yScale(yAccessor(instance)) + margin.top + offsetY - cellHeight / 2,
           cellWidth,
           cellHeight,
           x,
@@ -160,7 +184,7 @@ export default function Heatmap({ data }) {
       setCurrentCell(cell);
       show();
     },
-    [cellHeight, cellWidth, data, margin.left, margin.top, xScale, yScale]
+    [cellHeight, cellWidth, data, margin.left, margin.top, offsetX, offsetY, xScale, yScale]
   );
 
   const handleMouseLeave = useCallback(() => {
@@ -172,7 +196,7 @@ export default function Heatmap({ data }) {
   return (
     <>
       <Tippy
-        content={JSON.stringify(currentCell)}
+        content={currentCell ? JSON.stringify(currentCell) : ''}
         visible={visible}
         reference={canvasEl}
         offset={getTooltipOffset(currentCell)}
@@ -180,8 +204,12 @@ export default function Heatmap({ data }) {
 
       <canvas
         ref={canvasEl}
-        width={outerWidth}
-        height={outerHeight}
+        width={outerWidth * pixelRatio}
+        height={outerHeight * pixelRatio}
+        style={{
+          width: outerWidth,
+          height: outerHeight
+        }}
         onMouseEnter={handleMouseHover}
         onMouseMove={handleMouseHover}
         onMouseLeave={handleMouseLeave}

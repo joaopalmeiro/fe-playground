@@ -12,8 +12,14 @@ export const defaultMargin = {
 }; // px
 
 export const cellPadding = 0; // px
+// export const cellPadding = 0.5
 
 export const hoverOpacity = 1;
 export const hoverOthersOpacity = 0.35;
 
 export const backgroundColor = 'white';
+
+export const pixelRatio = window.devicePixelRatio || 1;
+// export const pixelRatio = 5;
+
+export const forceSquaredCells = true;
