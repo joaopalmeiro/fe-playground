@@ -8,3 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 - Development: `yarn start`.
 - Deployment: `yarn build`.
+
+## Notes
+
+- [Konva](https://konvajs.org/): Canvas library.
