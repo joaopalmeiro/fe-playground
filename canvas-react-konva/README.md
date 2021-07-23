@@ -29,6 +29,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [validator.js](https://github.com/validatorjs/validator.js) package.
 - [Create-React-App build - “Uncaught SyntaxError: Unexpected token <”](https://stackoverflow.com/questions/54340240/create-react-app-build-uncaught-syntaxerror-unexpected-token) and [Using `“homepage”` in package.json, without messing up paths for localhost](https://stackoverflow.com/questions/43011207/using-homepage-in-package-json-without-messing-up-paths-for-localhost) threads.
   - Easy solution: don't specify `homepage` in the `package.json` file.
+- [Auth0](https://auth0.com/) and [@auth0/auth0-react](https://github.com/auth0/auth0-react/) ([tutorial](https://youtu.be/MqczHS3Z2bc)).
+- [react-json-pretty](https://www.npmjs.com/package/react-json-pretty) package.
 - [Konva](https://konvajs.org/):
   - Canvas library.
   - [react-konva](https://konvajs.org/docs/react/Intro.html):
