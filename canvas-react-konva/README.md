@@ -30,6 +30,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [Create-React-App build - “Uncaught SyntaxError: Unexpected token <”](https://stackoverflow.com/questions/54340240/create-react-app-build-uncaught-syntaxerror-unexpected-token) and [Using `“homepage”` in package.json, without messing up paths for localhost](https://stackoverflow.com/questions/43011207/using-homepage-in-package-json-without-messing-up-paths-for-localhost) threads.
   - Easy solution: don't specify `homepage` in the `package.json` file.
 - [Auth0](https://auth0.com/) and [@auth0/auth0-react](https://github.com/auth0/auth0-react/) ([tutorial](https://youtu.be/MqczHS3Z2bc)).
+- [Userfront](https://userfront.com/) has a ready-to-use [login form](https://userfront.com/guide/toolkit/automatic-login-form-react.html) in React (decoupled from the [signup form](https://userfront.com/guide/toolkit/automatic-signup-form-react.html)). When a user logs in, they are [redirected](https://userfront.com/guide/toolkit/automatic-login-form-react.html#redirection) to a path whose default value can be changed in the UI. [Example](https://userfront.com/examples/react.html).
 - [react-json-pretty](https://www.npmjs.com/package/react-json-pretty) package.
 - [Konva](https://konvajs.org/):
   - Canvas library.
