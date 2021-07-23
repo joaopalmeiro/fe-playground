@@ -1,13 +1,13 @@
+import Heatmap from './Heatmap';
+import { genSquareMatrixData } from './utils';
+
 function App() {
-  return (
-    <div style={{ textAlign: 'center' }}>
-      <header>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
-    </div>
-  );
+  const data = genSquareMatrixData(150);
+
+  // console.log(process.env);
+  // console.log(process.env.PUBLIC_URL);
+
+  return <Heatmap data={data} />;
 }
 
 export default App;

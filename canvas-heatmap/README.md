@@ -34,7 +34,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   - [Syntax highlighting documentation](https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks#syntax-highlighting).
   - [Highlighting React Code in GitHub Flavored Markdown](https://www.pluralsight.com/guides/highlight-react-in-github-markdown): `javascript` or `jsx`.
 - [Window.devicePixelRatio](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio):
-  - `(...) ratio of pixel sizes: the size of one _CSS pixel_ to the size of one _physical pixel_.`
+  - `(...) ratio of pixel sizes: the size of one CSS pixel to the size of one physical pixel.`
   - Use to correct the resolution in a `<canvas>`.
 - [Setting Default Values with JavaScript’s Destructuring](https://wesbos.com/destructuring-default-values): default/fallback values and renaming (e.g., `const { middle: middleName = 'Super Rad' } = person;`).
 - [Warning for 'exhaustive-deps' keeps asking for the full 'props' object instead of allowing single 'props' properties as dependencies](https://github.com/facebook/react/issues/16265) (open) issue.

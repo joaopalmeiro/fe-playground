@@ -27,6 +27,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   - [Script not sorting in 1.49.0](https://github.com/keithamus/sort-package-json/issues/220) (open) issue.
   - [Sorting `scripts` only by pre/post criteria](https://github.com/keithamus/sort-package-json/releases/tag/v1.49.0) from v1.49.0 ([discussion](https://github.com/keithamus/sort-package-json/pull/206)). Alternative: `yarn add -D sort-package-json@1.48`.
 - [validator.js](https://github.com/validatorjs/validator.js) package.
+- [Create-React-App build - “Uncaught SyntaxError: Unexpected token <”](https://stackoverflow.com/questions/54340240/create-react-app-build-uncaught-syntaxerror-unexpected-token) and [Using `“homepage”` in package.json, without messing up paths for localhost](https://stackoverflow.com/questions/43011207/using-homepage-in-package-json-without-messing-up-paths-for-localhost) threads.
+  - Easy solution: don't specify `homepage` in the `package.json` file.
 - [Konva](https://konvajs.org/):
   - Canvas library.
   - [react-konva](https://konvajs.org/docs/react/Intro.html):
