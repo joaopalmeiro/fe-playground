@@ -27,6 +27,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   - [Script not sorting in 1.49.0](https://github.com/keithamus/sort-package-json/issues/220) (open) issue.
   - [Sorting `scripts` only by pre/post criteria](https://github.com/keithamus/sort-package-json/releases/tag/v1.49.0) from v1.49.0 ([discussion](https://github.com/keithamus/sort-package-json/pull/206)). Alternative: `yarn add -D sort-package-json@1.48`.
 - [validator.js](https://github.com/validatorjs/validator.js) package.
+- Events ([source](https://stackoverflow.com/a/10086501)):
+  - `target`: the element that triggered the event.
+  - `currentTarget`: the element that the event listener is attached to.
 - [Create-React-App build - “Uncaught SyntaxError: Unexpected token <”](https://stackoverflow.com/questions/54340240/create-react-app-build-uncaught-syntaxerror-unexpected-token) and [Using `“homepage”` in package.json, without messing up paths for localhost](https://stackoverflow.com/questions/43011207/using-homepage-in-package-json-without-messing-up-paths-for-localhost) threads.
   - Easy solution: don't specify `homepage` in the `package.json` file.
 - [Auth0](https://auth0.com/) and [@auth0/auth0-react](https://github.com/auth0/auth0-react/) ([tutorial](https://youtu.be/MqczHS3Z2bc)).
@@ -34,11 +37,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [react-json-pretty](https://www.npmjs.com/package/react-json-pretty) package.
 - [Konva](https://konvajs.org/):
   - Canvas library.
+  - [API documentation](https://konvajs.org/api/Konva.html).
   - [react-konva](https://konvajs.org/docs/react/Intro.html):
     - `npm install react-konva konva`.
     - [Repo](https://github.com/konvajs/react-konva).
     - [react-konva-utils](https://www.npmjs.com/package/react-konva-utils).
     - [@react-spring/konva](https://www.npmjs.com/package/@react-spring/konva): it is possible to combine react-konva and [react-spring](https://react-spring.io/) ([example](https://konvajs.org/docs/react/Complex_Animations.html)).
+    - [getPointerPosition() of stage in React-Konva](https://stackoverflow.com/a/50809160).
   - Stage > Layer(s) > Groups and/or Shapes.
   - Stage: `<div>` wrapper.
   - Layer: 2D `<canvas>` element.

@@ -2,6 +2,7 @@ import Heatmap from './Heatmap';
 import { genSquareMatrixData } from './utils';
 
 function App() {
+  // const data = genSquareMatrixData(15);
   const data = genSquareMatrixData(150);
 
   // console.log(process.env);

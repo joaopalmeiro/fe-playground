@@ -16,3 +16,5 @@ export const genSquareMatrixData = (n) => {
 
   return instances;
 };
+
+export const getUniqueValues = (data, accessor) => [...new Set(data.map(accessor))];
