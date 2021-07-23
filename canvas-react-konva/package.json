@@ -2,24 +2,32 @@
   "name": "canvas-react-konva",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "konva": "^8.1.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-konva": "^17.0.2-5",
-    "react-scripts": "4.0.3"
+  "description": "Heatmap implemented in Canvas via Konva for learning purposes.",
+  "homepage": "https://github.com/joaopalmeiro/fe-playground#readme",
+  "bugs": {
+    "url": "https://github.com/joaopalmeiro/fe-playground/issues",
+    "email": "jm.palmeiro@campus.fct.unl.pt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joaopalmeiro/fe-playground.git",
+    "directory": "canvas-react-konva"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "João Palmeiro",
+    "email": "jm.palmeiro@campus.fct.unl.pt",
+    "url": "https://joaopalmeiro.github.io/"
   },
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "plugin:prettier/recommended"
-    ]
+    "eject": "react-scripts eject",
+    "lint": "npm-run-all lint:*",
+    "lint:package": "npmPkgJsonLint .",
+    "lint:sort": "sort-package-json --check",
+    "sort": "sort-package-json",
+    "start": "react-scripts start",
+    "test": "react-scripts test"
   },
   "browserslist": {
     "production": [
@@ -33,9 +41,25 @@
       "last 1 safari version"
     ]
   },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "plugin:prettier/recommended"
+    ]
+  },
+  "dependencies": {
+    "konva": "^8.1.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-konva": "^17.0.2-5",
+    "react-scripts": "4.0.3"
+  },
   "devDependencies": {
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
-    "prettier": "^2.3.2"
+    "npm-package-json-lint": "^5.2.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.3.2",
+    "sort-package-json": "1.48"
   }
 }

@@ -2,6 +2,8 @@
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
+Heatmap implemented in Canvas via [Konva](https://konvajs.org/) for learning purposes.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Usage
@@ -11,6 +13,20 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Notes
 
+- [npm-package-json-lint](https://npmpackagejsonlint.org/):
+  - A linter for `package.json` files.
+  - It does not have any rules enabled by default.
+  - `yarn add -D npm-package-json-lint`.
+  - `npmPkgJsonLint .`.
+  - [Rules](https://npmpackagejsonlint.org/docs/en/rules).
+  - [`package.json` documentation](https://docs.npmjs.com/cli/v7/configuring-npm/package-json) ([Yarn 1](https://classic.yarnpkg.com/en/docs/package-json/)).
+  - [Default `prefer-property-order`](https://npmpackagejsonlint.org/docs/en/rules/package-json-properties/prefer-property-order).
+- [sort-package-json](https://github.com/keithamus/sort-package-json):
+  - `yarn add -D sort-package-json`.
+  - [Default ordering](https://github.com/keithamus/sort-package-json/blob/master/defaultRules.md).
+  - [Script not sorting in 1.49.0](https://github.com/keithamus/sort-package-json/issues/220) (open) issue.
+  - [Sorting `scripts` only by pre/post criteria](https://github.com/keithamus/sort-package-json/releases/tag/v1.49.0) from v1.49.0 ([discussion](https://github.com/keithamus/sort-package-json/pull/206)). Alternative: `yarn add -D sort-package-json@1.48`.
+- [validator.js](https://github.com/validatorjs/validator.js) package.
 - [Konva](https://konvajs.org/):
   - Canvas library.
   - [react-konva](https://konvajs.org/docs/react/Intro.html):

@@ -1,0 +1,54 @@
+{
+  "rules": {
+    "require-author": "error",
+    "require-bugs": "error",
+    "require-dependencies": "error",
+    "require-description": "error",
+    "require-devDependencies": "error",
+    "require-homepage": "error",
+    "require-license": "error",
+    "require-name": "error",
+    "require-private": "error",
+    "require-repository-directory": "error",
+    "require-repository": "error",
+    "require-scripts": "error",
+    "require-version": "error",
+
+    "dependencies-type": "error",
+    "description-type": "error",
+    "devDependencies-type": "error",
+    "homepage-type": "error",
+    "license-type": "error",
+    "name-type": "error",
+    "private-type": "error",
+    "repository-type": "error",
+    "scripts-type": "error",
+    "version-type": "error",
+
+    "valid-values-author": ["error", ["João Palmeiro"]],
+    "valid-values-license": ["error", ["MIT"]],
+    "valid-values-private": ["error", [true]],
+
+    "no-repeated-dependencies": "error",
+    "prefer-alphabetical-dependencies": "error",
+    "prefer-alphabetical-devDependencies": "error",
+
+    "prefer-alphabetical-scripts": "error",
+    "prefer-scripts": ["error", ["start", "build", "lint"]],
+
+    "description-format": [
+      "error",
+      {
+        "requireCapitalFirstLetter": true,
+        "requireEndingPeriod": true
+      }
+    ],
+    "name-format": "error",
+    "version-format": "error",
+
+    "prefer-property-order": "off",
+    "no-duplicate-properties": "error",
+
+    "prefer-no-engineStrict": "error"
+  }
+}
