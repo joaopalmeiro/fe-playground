@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { Stage, Layer, Rect } from 'react-konva';
 // import Konva from 'konva';
 import { scaleBand, scaleSequential } from 'd3-scale';
 import { interpolateYlOrRd } from 'd3-scale-chromatic';
 import { extent } from 'd3-array';
+import Tippy from '@tippyjs/react';
 
 import { chartDimensions, cellPadding } from './constants';
 import { getUniqueValues } from './utils';
@@ -14,6 +15,13 @@ const yAccessor = (d) => d.y;
 const colorAccessor = (d) => d.value;
 
 export default function Heatmap({ data }) {
+  const canvasEl = useRef(null);
+
+  // Tooltip
+  const [visible, setVisible] = useState(false);
+  const show = () => setVisible(true);
+  const hide = () => setVisible(false);
+
   // console.log(data);
 
   const xUniqueValues = getUniqueValues(data, xAccessor);
@@ -36,37 +44,55 @@ export default function Heatmap({ data }) {
 
   // console.log(`heatmap-rect-${xAccessor(data[0])}-${yAccessor(data[0])}`);
 
-  const handleMouseHover = (e) => {
+  const handleMouseHover = useCallback((e) => {
     // console.log(e);
-    console.log(e.target);
+    // console.log(e.target);
+    // console.log(e.target.attrs);
     // console.log(e.currentTarget);
 
     // Stage.
     // More info: https://stackoverflow.com/a/50809160
     // console.log(e.target.getStage());
     // console.log(e.target.getStage().getPointerPosition());
-  };
+
+    show();
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    hide();
+  }, []);
 
   return (
-    // More info: https://konvajs.org/api/Konva.Stage.html
-    <Stage width={chartDimensions.width} height={chartDimensions.height} draggable={false}>
-      <Layer>
-        {/* Example: https://konvajs.org/docs/react/index.html */}
-        {data.map((d) => (
-          // More info: https://konvajs.org/api/Konva.Rect.html
-          // It is possible to attach any events that Konva supports to Canvas nodes.
-          <Rect
-            key={`heatmap-rect-${xAccessor(d)}-${yAccessor(d)}`}
-            x={xScale(xAccessor(d))}
-            y={yScale(yAccessor(d))}
-            width={cellWidth}
-            height={cellHeight}
-            // fill={Konva.Util.getRandomColor()}
-            fill={colorScale(colorAccessor(d))}
-            // onMouseEnter={handleMouseHover}
-          />
-        ))}
-      </Layer>
-    </Stage>
+    <>
+      <Tippy content={'Tooltip'} visible={visible} reference={canvasEl} />
+
+      {/* More info: https://konvajs.org/api/Konva.Stage.html */}
+      <Stage
+        width={chartDimensions.width}
+        height={chartDimensions.height}
+        draggable={false}
+        ref={canvasEl}
+      >
+        <Layer>
+          {/* Example: https://konvajs.org/docs/react/index.html */}
+          {data.map((d) => (
+            // More info: https://konvajs.org/api/Konva.Rect.html
+            // It is possible to attach any events that Konva supports to Canvas nodes.
+            <Rect
+              key={`heatmap-rect-${xAccessor(d)}-${yAccessor(d)}`}
+              x={xScale(xAccessor(d))}
+              y={yScale(yAccessor(d))}
+              width={cellWidth}
+              height={cellHeight}
+              // fill={Konva.Util.getRandomColor()}
+              fill={colorScale(colorAccessor(d))}
+              onMouseEnter={handleMouseHover}
+              onMouseMove={handleMouseHover}
+              onMouseLeave={handleMouseLeave}
+            />
+          ))}
+        </Layer>
+      </Stage>
+    </>
   );
 }
