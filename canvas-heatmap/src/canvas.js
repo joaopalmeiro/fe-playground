@@ -62,6 +62,7 @@ export const axisCanvas = (ctx, position, scale, width, height) => {
     ...text
   }));
   // console.log(ticks);
+  // console.log(ticks[0]);
 
   ctx.save();
   ctx.translate(x, y);
@@ -85,9 +86,27 @@ export const axisCanvas = (ctx, position, scale, width, height) => {
   ctx.lineTo(isXAxis ? length : 0, isXAxis ? 0 : length);
   ctx.stroke();
 
-  // Tick lines
+  // Tick lines and labels
   // https://github.com/plouc/nivo/blob/v0.73.1/packages/core/src/theming/defaultTheme.js#L21
-  // TODO
+  ticks.forEach((tick) => {
+    ctx.lineWidth = 1;
+    ctx.lineCap = 'square';
+    ctx.strokeStyle = 'black';
+
+    ctx.beginPath();
+    ctx.moveTo(tick.x, tick.y);
+    ctx.lineTo(tick.x + tick.lineX, tick.y + tick.lineY);
+    ctx.stroke();
+
+    ctx.save();
+    ctx.translate(tick.x + tick.textX, tick.y + tick.textY);
+    ctx.fillStyle = 'black';
+    // String function
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/String
+    ctx.fillText(String(tick.value), 0, 0);
+
+    ctx.restore();
+  });
 
   ctx.restore();
 };
