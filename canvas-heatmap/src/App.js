@@ -9,7 +9,13 @@ function App() {
   return (
     <div>
       {/* <Heatmap data={data} /> */}
-      <HeatmapWithAxis data={data} />
+      <HeatmapWithAxis
+        data={data}
+        partialMargin={{
+          top: 50,
+          left: 50
+        }}
+      />
     </div>
   );
 }

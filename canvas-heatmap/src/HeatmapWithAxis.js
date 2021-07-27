@@ -58,7 +58,7 @@ const getOpacity = (cell, currentCell, hoverFn) => {
   return hoverOpacity;
 };
 
-export default function HeatmapWithAxis({ data }) {
+export default function HeatmapWithAxis({ data, partialMargin }) {
   // https://reactjs.org/docs/hooks-reference.html#useref
   const canvasEl = useRef(null); // useRef(initialValue);
 
@@ -71,7 +71,8 @@ export default function HeatmapWithAxis({ data }) {
 
   const { margin, innerWidth, innerHeight, outerWidth, outerHeight } = useDimensions(
     chartDimensions.width,
-    chartDimensions.height
+    chartDimensions.height,
+    partialMargin
   );
 
   const xUniqueValues = getUniqueValues(data, xAccessor);
