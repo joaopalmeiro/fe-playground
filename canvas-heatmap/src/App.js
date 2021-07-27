@@ -1,4 +1,5 @@
 import Heatmap from './Heatmap';
+import HeatmapWithAxis from './HeatmapWithAxis';
 import { genSquareMatrixData } from './utils';
 
 function App() {
@@ -7,7 +8,8 @@ function App() {
 
   return (
     <div>
-      <Heatmap data={data} />
+      {/* <Heatmap data={data} /> */}
+      <HeatmapWithAxis data={data} />
     </div>
   );
 }
