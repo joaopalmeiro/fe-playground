@@ -1,8 +1,11 @@
+import { textPropsByEngine } from '@nivo/core';
 import React from 'react';
 
 const tickSize = 5;
 const tickPadding = 5;
-const tickRotation = 0;
+// Tick rotation: https://github.com/plouc/nivo/blob/v0.73.1/packages/axes/src/compute.ts#L205
+
+const textProps = textPropsByEngine['canvas'];
 
 function Axis({ ctx, position, scale, width, height }) {
   const isXAxis = position === 'top' || position === 'bottom';
@@ -22,14 +25,22 @@ function Axis({ ctx, position, scale, width, height }) {
   const text = { textX: 0, textY: 0 };
 
   // https://github.com/plouc/nivo/blob/v0.73.1/packages/core/src/lib/bridge.js
-  let textAlign = 'center';
-  let textBaseline = 'middle';
+  let textAlign = textProps.align.center;
+  let textBaseline = textProps.baseline.center;
 
   let translate;
 
   if (isXAxis) {
-    // TODO
+    // X-axis
+
+    // Nullish coalescing operator (`??`)
+    // `null` or `undefined`
+    translate = (d) => ({ x: scale(d) ?? 0, y: 0 });
+
+    line.lineY = tickSize * (ticksPosition === 'after' ? 1 : -1);
+    text.textY = (tickSize + tickPadding) * (ticksPosition === 'after' ? 1 : -1);
   } else {
+    // Y-Axis
     // TODO
   }
 
