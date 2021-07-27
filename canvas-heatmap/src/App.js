@@ -6,14 +6,19 @@ function App() {
   const data = genSquareMatrixData(150);
   // console.table(data);
 
+  const marginValue = 50;
+  const sizeValue = 1000;
+
   return (
     <div>
       {/* <Heatmap data={data} /> */}
       <HeatmapWithAxis
         data={data}
+        fullWidth={sizeValue}
+        fullHeight={sizeValue}
         partialMargin={{
-          top: 50,
-          left: 50
+          top: marginValue,
+          left: marginValue
         }}
       />
     </div>

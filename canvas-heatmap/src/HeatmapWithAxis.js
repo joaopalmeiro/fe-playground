@@ -6,7 +6,6 @@ import React, { useRef, useEffect, useState, useCallback } from 'react';
 
 import {
   cellPadding,
-  chartDimensions,
   hoverOpacity,
   hoverOthersOpacity,
   backgroundColor,
@@ -58,7 +57,7 @@ const getOpacity = (cell, currentCell, hoverFn) => {
   return hoverOpacity;
 };
 
-export default function HeatmapWithAxis({ data, partialMargin }) {
+export default function HeatmapWithAxis({ data, fullWidth, fullHeight, partialMargin }) {
   // https://reactjs.org/docs/hooks-reference.html#useref
   const canvasEl = useRef(null); // useRef(initialValue);
 
@@ -70,8 +69,8 @@ export default function HeatmapWithAxis({ data, partialMargin }) {
   const [currentCell, setCurrentCell] = useState(null);
 
   const { margin, innerWidth, innerHeight, outerWidth, outerHeight } = useDimensions(
-    chartDimensions.width,
-    chartDimensions.height,
+    fullWidth,
+    fullHeight,
     partialMargin
   );
 
@@ -100,6 +99,7 @@ export default function HeatmapWithAxis({ data, partialMargin }) {
     offsetX = (innerWidth - ((cellWidth + cellPadding) * columns + cellPadding)) / 2;
     offsetY = (innerHeight - ((cellHeight + cellPadding) * rows + cellPadding)) / 2;
   }
+  // console.log(offsetX, offsetY);
 
   // Scales
   const xScale = scaleOrdinal(
@@ -109,6 +109,10 @@ export default function HeatmapWithAxis({ data, partialMargin }) {
   const yScale = scaleOrdinal(
     yUniqueValues.map((_, idx) => computeY(idx, cellHeight, cellPadding))
   ).domain(yUniqueValues);
+
+  // console.log(xScale.domain());
+  // console.log(yScale.domain());
+  // console.log('bandwidth' in xScale);
 
   // More info:
   // - https://github.com/d3/d3-scale/blob/main/src/sequential.js
@@ -136,6 +140,9 @@ export default function HeatmapWithAxis({ data, partialMargin }) {
     ctx.fillRect(0, 0, outerWidth, outerHeight);
 
     ctx.translate(margin.left + offsetX, margin.top + offsetY);
+
+    // Axes
+    // TODO
 
     // console.log(currentCell);
     data.forEach((instance) =>

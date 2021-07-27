@@ -44,6 +44,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   - [gitmoji-cli](https://github.com/carloscuesta/gitmoji-cli):
     - Print all available options: `gitmoji -l` (or `yarn emojis`).
 - [CanvasRenderingContext2D.save()](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/save).
+- [textPropsByEngine](https://github.com/plouc/nivo/blob/v0.73.1/packages/core/src/lib/bridge.js).
 
 **Canvas component snippet**:
 
