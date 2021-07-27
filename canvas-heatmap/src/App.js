@@ -1,4 +1,4 @@
-import Heatmap from './Heatmap';
+// import Heatmap from './Heatmap';
 import HeatmapWithAxis from './HeatmapWithAxis';
 import { genSquareMatrixData } from './utils';
 

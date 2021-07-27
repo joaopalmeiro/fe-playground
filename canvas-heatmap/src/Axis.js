@@ -29,6 +29,8 @@ function Axis({ ctx, position, scale, width, height }) {
 
   if (isXAxis) {
     // TODO
+  } else {
+    // TODO
   }
 
   return <div></div>;
