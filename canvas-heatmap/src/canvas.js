@@ -1,13 +1,34 @@
 import { textPropsByEngine } from '@nivo/core';
 
+import { everyNth } from './utils';
+
 const tickSize = 5;
-const tickPadding = 5;
+// const tickPadding = 5;
+const tickPadding = 2.5;
 // Tick rotation: https://github.com/plouc/nivo/blob/v0.73.1/packages/axes/src/compute.ts#L205
 
 const textProps = textPropsByEngine['canvas'];
 
 const fontSize = 11; // Default (https://nivo.rocks/guides/theming)
 const fontFamily = 'Arial';
+
+const domainLineWidth = 1;
+// const domainLineWidth = 10;
+
+const computeDomainLineOffset = (position) => {
+  switch (position) {
+    case 'top':
+      return { x: 0, y: -domainLineWidth / 2 };
+    case 'bottom':
+      return { x: 0, y: domainLineWidth / 2 };
+    case 'left':
+      return { x: -domainLineWidth / 2, y: 0 };
+    case 'right':
+      return { x: domainLineWidth / 2, y: 0 };
+    default:
+      return { x: 0, y: 0 };
+  }
+};
 
 export const axisCanvas = (ctx, position, scale, width, height) => {
   const isXAxis = position === 'top' || position === 'bottom';
@@ -53,7 +74,11 @@ export const axisCanvas = (ctx, position, scale, width, height) => {
     textAlign = ticksPosition === 'after' ? textProps.align.left : textProps.align.right;
   }
 
-  const ticks = values.map((value) => ({
+  // const valuesToPlot = values;
+  // const valuesToPlot = everyNth(values, 10);
+  const valuesToPlot = everyNth(values, 10).concat(values[0]);
+
+  const ticks = valuesToPlot.map((value) => ({
     // https://flaviocopes.com/how-to-check-value-is-number-javascript/
     key: typeof value === 'number' || typeof value === 'string' ? value : `${value}`,
     value,
@@ -65,7 +90,12 @@ export const axisCanvas = (ctx, position, scale, width, height) => {
   // console.log(ticks[0]);
 
   ctx.save();
-  ctx.translate(x, y);
+
+  // ctx.translate(x, y);
+  const { x: xDomainLineOffset, y: yDomainLineOffset } = computeDomainLineOffset(position);
+  // console.log(position, xDomainLineOffset, yDomainLineOffset);
+
+  ctx.translate(x + xDomainLineOffset, y + yDomainLineOffset);
 
   ctx.textAlign = textAlign;
   ctx.textBaseline = textBaseline;
@@ -73,11 +103,11 @@ export const axisCanvas = (ctx, position, scale, width, height) => {
 
   // Domain line
   // https://github.com/plouc/nivo/blob/v0.73.1/packages/core/src/theming/defaultTheme.js#L18
-  ctx.lineWidth = 1;
-  // ctx.lineWidth = 10;
+  ctx.lineWidth = domainLineWidth;
   // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap
-  // ctx.lineCap = 'butt';
-  ctx.lineCap = 'square';
+  ctx.lineCap = 'butt';
+  // It make the lines slightly longer
+  // ctx.lineCap = 'square';
   ctx.strokeStyle = 'black';
   // ctx.strokeStyle = 'transparent';
 

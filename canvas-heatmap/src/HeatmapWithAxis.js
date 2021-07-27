@@ -120,9 +120,12 @@ export default function HeatmapWithAxis({ data, fullWidth, fullHeight, partialMa
   // - https://github.com/d3/d3-scale/blob/main/src/linear.js#L6
   const colorScale = scaleSequential(extent(data, colorAccessor), interpolateYlOrRd).nice();
 
-  const getTooltipOffset = (currentCell) => {
+  const getTooltipOffset = (currentCell, marginTop, marginLeft) => {
     if (currentCell) {
-      return [xScale(xAccessor(currentCell)), yScale(yAccessor(currentCell))];
+      return [
+        xScale(xAccessor(currentCell)) + marginLeft,
+        yScale(yAccessor(currentCell)) + marginTop
+      ];
     }
 
     return [0, 10]; // Default
@@ -146,6 +149,13 @@ export default function HeatmapWithAxis({ data, fullWidth, fullHeight, partialMa
     // innerWidth -> innerWidth - offsetX * 2
     // innerHeight -> innerHeight - offsetY * 2
     axisCanvas(ctx, 'top', xScale, innerWidth - offsetX * 2, innerHeight - offsetY * 2);
+    // axisCanvas(ctx, 'bottom', xScale, innerWidth - offsetX * 2, innerHeight - offsetY * 2);
+    // axisCanvas(ctx, 'right', yScale, innerWidth - offsetX * 2, innerHeight - offsetY * 2);
+    axisCanvas(ctx, 'left', yScale, innerWidth - offsetX * 2, innerHeight - offsetY * 2);
+
+    // "Reset"
+    // ctx.textAlign = 'center';
+    // ctx.textBaseline = 'middle';
 
     // console.log(currentCell);
     data.forEach((instance) =>
@@ -211,7 +221,7 @@ export default function HeatmapWithAxis({ data, fullWidth, fullHeight, partialMa
         content={currentCell ? JSON.stringify(currentCell) : ''}
         visible={visible}
         reference={canvasEl}
-        offset={getTooltipOffset(currentCell)}
+        offset={getTooltipOffset(currentCell, margin.top, margin.left)}
       />
 
       <canvas

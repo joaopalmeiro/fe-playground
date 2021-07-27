@@ -18,7 +18,9 @@ function App() {
         fullHeight={sizeValue}
         partialMargin={{
           top: marginValue,
-          left: marginValue
+          left: marginValue,
+          right: marginValue,
+          bottom: marginValue
         }}
       />
     </div>
