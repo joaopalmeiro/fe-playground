@@ -39,10 +39,27 @@ function Axis({ ctx, position, scale, width, height }) {
 
     line.lineY = tickSize * (ticksPosition === 'after' ? 1 : -1);
     text.textY = (tickSize + tickPadding) * (ticksPosition === 'after' ? 1 : -1);
+
+    if (ticksPosition === 'after') {
+      textBaseline = textProps.baseline.top;
+    } else {
+      textBaseline = textProps.baseline.bottom;
+    }
   } else {
     // Y-Axis
-    // TODO
+    translate = (d) => ({ x: 0, y: scale(d) ?? 0 });
+
+    line.lineX = tickSize * (ticksPosition === 'after' ? 1 : -1);
+    text.textX = (tickSize + tickPadding) * (ticksPosition === 'after' ? 1 : -1);
+
+    if (ticksPosition === 'after') {
+      textAlign = textProps.align.left;
+    } else {
+      textAlign = textProps.align.right;
+    }
   }
+
+  // TODO
 
   return <div></div>;
 }
