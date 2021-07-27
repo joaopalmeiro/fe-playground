@@ -1,5 +1,4 @@
 import { textPropsByEngine } from '@nivo/core';
-import React from 'react';
 
 const tickSize = 5;
 const tickPadding = 5;
@@ -7,7 +6,10 @@ const tickPadding = 5;
 
 const textProps = textPropsByEngine['canvas'];
 
-function Axis({ ctx, position, scale, width, height }) {
+const fontSize = 11; // Default (https://nivo.rocks/guides/theming)
+const fontFamily = 'Arial';
+
+export const axisCanvas = (ctx, position, scale, width, height) => {
   const isXAxis = position === 'top' || position === 'bottom';
   const ticksPosition = position === 'top' || position === 'left' ? 'before' : 'after';
 
@@ -59,10 +61,33 @@ function Axis({ ctx, position, scale, width, height }) {
     ...line,
     ...text
   }));
+  // console.log(ticks);
 
-  console.log(ticks);
+  ctx.save();
+  ctx.translate(x, y);
 
-  return <div></div>;
-}
+  ctx.textAlign = textAlign;
+  ctx.textBaseline = textBaseline;
+  ctx.font = `${fontSize}px ${fontFamily}`;
 
-export default Axis;
+  // Domain line
+  // https://github.com/plouc/nivo/blob/v0.73.1/packages/core/src/theming/defaultTheme.js#L18
+  ctx.lineWidth = 1;
+  // ctx.lineWidth = 10;
+  // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap
+  // ctx.lineCap = 'butt';
+  ctx.lineCap = 'square';
+  ctx.strokeStyle = 'black';
+  // ctx.strokeStyle = 'transparent';
+
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(isXAxis ? length : 0, isXAxis ? 0 : length);
+  ctx.stroke();
+
+  // Tick lines
+  // https://github.com/plouc/nivo/blob/v0.73.1/packages/core/src/theming/defaultTheme.js#L21
+  // TODO
+
+  ctx.restore();
+};

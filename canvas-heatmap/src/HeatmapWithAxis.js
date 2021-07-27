@@ -4,6 +4,7 @@ import { scaleOrdinal, scaleSequential } from 'd3-scale';
 import { interpolateYlOrRd } from 'd3-scale-chromatic';
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 
+import { axisCanvas } from './canvas';
 import {
   cellPadding,
   hoverOpacity,
@@ -142,7 +143,9 @@ export default function HeatmapWithAxis({ data, fullWidth, fullHeight, partialMa
     ctx.translate(margin.left + offsetX, margin.top + offsetY);
 
     // Axes
-    // TODO
+    // innerWidth -> innerWidth - offsetX * 2
+    // innerHeight -> innerHeight - offsetY * 2
+    axisCanvas(ctx, 'top', xScale, innerWidth - offsetX * 2, innerHeight - offsetY * 2);
 
     // console.log(currentCell);
     data.forEach((instance) =>
@@ -162,6 +165,8 @@ export default function HeatmapWithAxis({ data, fullWidth, fullHeight, partialMa
     colorScale,
     currentCell,
     data,
+    innerHeight,
+    innerWidth,
     margin.left,
     margin.top,
     offsetX,
