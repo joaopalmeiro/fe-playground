@@ -40,11 +40,7 @@ function Axis({ ctx, position, scale, width, height }) {
     line.lineY = tickSize * (ticksPosition === 'after' ? 1 : -1);
     text.textY = (tickSize + tickPadding) * (ticksPosition === 'after' ? 1 : -1);
 
-    if (ticksPosition === 'after') {
-      textBaseline = textProps.baseline.top;
-    } else {
-      textBaseline = textProps.baseline.bottom;
-    }
+    textBaseline = ticksPosition === 'after' ? textProps.baseline.top : textProps.baseline.bottom;
   } else {
     // Y-Axis
     translate = (d) => ({ x: 0, y: scale(d) ?? 0 });
@@ -52,14 +48,19 @@ function Axis({ ctx, position, scale, width, height }) {
     line.lineX = tickSize * (ticksPosition === 'after' ? 1 : -1);
     text.textX = (tickSize + tickPadding) * (ticksPosition === 'after' ? 1 : -1);
 
-    if (ticksPosition === 'after') {
-      textAlign = textProps.align.left;
-    } else {
-      textAlign = textProps.align.right;
-    }
+    textAlign = ticksPosition === 'after' ? textProps.align.left : textProps.align.right;
   }
 
-  // TODO
+  const ticks = values.map((value) => ({
+    // https://flaviocopes.com/how-to-check-value-is-number-javascript/
+    key: typeof value === 'number' || typeof value === 'string' ? value : `${value}`,
+    value,
+    ...translate(value),
+    ...line,
+    ...text
+  }));
+
+  console.log(ticks);
 
   return <div></div>;
 }
