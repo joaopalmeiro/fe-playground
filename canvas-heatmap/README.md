@@ -45,6 +45,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     - Print all available options: `gitmoji -l` (or `yarn emojis`).
 - [CanvasRenderingContext2D.save()](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/save).
 - [textPropsByEngine](https://github.com/plouc/nivo/blob/v0.73.1/packages/core/src/lib/bridge.js).
+- [Slides](https://github.com/maaslalani/slides):
+  - To create slide decks and show them in the terminal.
+  - `brew install slides`.
+  - `slides presentation.md`.
+- [Canvas scatterplot with quadtree](https://bl.ocks.org/veltman/1b43f61887e89c371f1c8c73341540a3).
 
 **Canvas component snippet**:
 
