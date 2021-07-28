@@ -3,6 +3,7 @@ import { extent } from 'd3-array';
 import { scaleOrdinal, scaleSequential } from 'd3-scale';
 import { interpolateYlOrRd } from 'd3-scale-chromatic';
 import React, { useRef, useEffect, useState, useCallback } from 'react';
+// import 'tippy.js/dist/tippy.css';
 
 import { axisCanvas } from './canvas';
 import {
@@ -120,11 +121,14 @@ export default function HeatmapWithAxis({ data, fullWidth, fullHeight, partialMa
   // - https://github.com/d3/d3-scale/blob/main/src/linear.js#L6
   const colorScale = scaleSequential(extent(data, colorAccessor), interpolateYlOrRd).nice();
 
-  const getTooltipOffset = (currentCell, marginTop, marginLeft) => {
+  const getTooltipOffset = (currentCell) => {
     if (currentCell) {
+      // console.log(window.pageXOffset, window.pageYOffset);
+      // console.log(offsetX, offsetY);
+
       return [
-        xScale(xAccessor(currentCell)) + marginLeft,
-        yScale(yAccessor(currentCell)) + marginTop
+        xScale(xAccessor(currentCell)) + margin.left + offsetX,
+        yScale(yAccessor(currentCell)) + margin.top + offsetY - window.pageYOffset
       ];
     }
 
@@ -191,6 +195,7 @@ export default function HeatmapWithAxis({ data, fullWidth, fullHeight, partialMa
   const handleMouseHover = useCallback(
     (event) => {
       const [x, y] = getRelativeCursor(canvasEl.current, event);
+      // console.log(x, y);
 
       const cell = data.find((instance) =>
         isCursorInRect(
@@ -221,7 +226,7 @@ export default function HeatmapWithAxis({ data, fullWidth, fullHeight, partialMa
         content={currentCell ? JSON.stringify(currentCell) : ''}
         visible={visible}
         reference={canvasEl}
-        offset={getTooltipOffset(currentCell, margin.top, margin.left)}
+        offset={getTooltipOffset(currentCell)}
       />
 
       <canvas
