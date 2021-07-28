@@ -41,6 +41,8 @@ Very performant for many _elements_, especially if there is interaction/animatio
 
 If the number of elements is greater than 2k-3k or greater than 1k and they are animated, go to **Canvas**
 
+<!-- By Shirley Wu -->
+
 ---
 
 ## Canvas II
