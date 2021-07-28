@@ -1,12 +1,14 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Stage, Layer, Rect } from 'react-konva';
 import { scaleBand, scaleSequential } from 'd3-scale';
 import { interpolateYlOrRd } from 'd3-scale-chromatic';
 import { extent } from 'd3-array';
+import { Html } from 'react-konva-utils';
 
 import { cellPadding } from './constants';
 import { getUniqueValues } from './utils';
 import { useDimensions } from './hooks';
+import SvgWrapper from './SvgWrapper';
 
 // Accessors
 const xAccessor = (d) => d.x;
@@ -14,8 +16,6 @@ const yAccessor = (d) => d.y;
 const colorAccessor = (d) => d.value;
 
 export default function HeatmapWithAxis({ data, fullWidth, fullHeight, partialMargin }) {
-  const canvasEl = useRef(null);
-
   const { margin, innerWidth, innerHeight, outerWidth, outerHeight } = useDimensions(
     fullWidth,
     fullHeight,
@@ -40,10 +40,24 @@ export default function HeatmapWithAxis({ data, fullWidth, fullHeight, partialMa
 
   const colorScale = scaleSequential(extent(data, colorAccessor), interpolateYlOrRd).nice();
 
+  // SVG and Canvas as "layers":
+  // - https://bl.ocks.org/veltman/1b43f61887e89c371f1c8c73341540a3
+
+  // To add DOM elements inside Konva stage:
+  // - https://konvajs.org/docs/react/DOM_Portal.html
+  // - https://github.com/konvajs/react-konva-utils
+
+  // More info:
+  // - https://konvajs.org/api/Konva.Stage.html
+  // - https://konvajs.org/docs/sandbox/SVG_On_Canvas.html
   return (
-    // More info: https://konvajs.org/api/Konva.Stage.html
-    <Stage width={outerWidth} height={outerHeight} draggable={false} ref={canvasEl}>
+    <Stage width={outerWidth} height={outerHeight} draggable={false}>
       <Layer x={margin.left} y={margin.top}>
+        {/* Konva stage can only contain Konva layers */}
+        <Html>
+          <SvgWrapper width={outerWidth} height={outerHeight} margin={margin}></SvgWrapper>
+        </Html>
+
         {/* Example: https://konvajs.org/docs/react/index.html */}
         {data.map((d) => (
           // More info: https://konvajs.org/api/Konva.Rect.html

@@ -59,6 +59,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     - **total** (2 packages) has 2 dependencies for a weight of 245.54KB (72.98KB gzipped).
   - API: `https://bundlephobia.com/api/size?package=react-konva@17.0.2-5`.
   - The download time computation uses the "Minified + Gzipped" value (more info [here](https://github.com/pastelsky/bundlephobia/blob/bundlephobia/pages/package/%5B...packageString%5D/ResultPage.js#L371) and [here](https://github.com/pastelsky/bundlephobia/blob/bundlephobia/utils/index.js#L46)).
+- `children` prop (more info [here](https://reactjs.org/docs/composition-vs-inheritance.html#containment)): use this special prop to pass children elements directly into (React) component output.
+- [d3-quadtree](https://github.com/d3/d3-quadtree) package.
 
 ### Download Time Computation (bundlephobia)
 
