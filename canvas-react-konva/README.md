@@ -61,6 +61,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   - The download time computation uses the "Minified + Gzipped" value (more info [here](https://github.com/pastelsky/bundlephobia/blob/bundlephobia/pages/package/%5B...packageString%5D/ResultPage.js#L371) and [here](https://github.com/pastelsky/bundlephobia/blob/bundlephobia/utils/index.js#L46)).
 - `children` prop (more info [here](https://reactjs.org/docs/composition-vs-inheritance.html#containment)): use this special prop to pass children elements directly into (React) component output.
 - [d3-quadtree](https://github.com/d3/d3-quadtree) package.
+- [Default CSS Values for HTML Elements](https://www.w3schools.com/cssref/css_default_values.asp).
+- [CSS Font Fallbacks](https://www.w3schools.com/cssref/css_fonts_fallbacks.asp): `Arial, Helvetica, sans-serif`.
 
 ### Download Time Computation (bundlephobia)
 
