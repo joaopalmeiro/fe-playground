@@ -56,7 +56,8 @@ export default function HeatmapWithAxis({ data, fullWidth, fullHeight, partialMa
   // - https://konvajs.org/docs/sandbox/SVG_On_Canvas.html
   return (
     <Stage width={outerWidth} height={outerHeight} draggable={false}>
-      <Layer>
+      {/* More info: https://konvajs.org/docs/performance/Listening_False.html */}
+      <Layer listening={true}>
         {/* Konva stage can only contain Konva layers. */}
         {/* All DOM elements are placed over the Canvas content. */}
         <Html>
@@ -77,6 +78,9 @@ export default function HeatmapWithAxis({ data, fullWidth, fullHeight, partialMa
               width={cellWidth}
               height={cellHeight}
               fill={colorScale(colorAccessor(d))}
+              // More info: https://konvajs.org/docs/performance/Disable_Perfect_Draw.html
+              // Particularly useful if there is a stroke too.
+              perfectDrawEnabled={false}
             />
           ))}
         </Group>
