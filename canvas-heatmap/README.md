@@ -50,6 +50,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   - `brew install slides`.
   - `slides presentation.md`.
 - [Canvas scatterplot with quadtree](https://bl.ocks.org/veltman/1b43f61887e89c371f1c8c73341540a3).
+- [Profiler API](https://reactjs.org/docs/profiler.html).
 
 **Canvas component snippet**:
 
