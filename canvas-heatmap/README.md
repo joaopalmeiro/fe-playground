@@ -54,7 +54,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [Before You memo()](https://overreacted.io/before-you-memo/) blog post:
   - Before applying memoization, try to _move state down_ (create a new component and use it in a wrapper component) or _lift content up_ (`children` prop). In other words, try to separate the parts that change from the parts that don’t change.
 
-**Canvas component snippet**:
+### Canvas component snippet
 
 ```jsx
 import React, { useRef, useEffect } from 'react';
