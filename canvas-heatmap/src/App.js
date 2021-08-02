@@ -1,6 +1,7 @@
 import { Profiler } from 'react';
 
-import Heatmap from './Heatmap';
+// import Heatmap from './Heatmap';
+import HeatmapBasic from './HeatmapBasic';
 // import HeatmapWithAxis from './HeatmapWithAxis';
 import { genSquareMatrixData } from './utils';
 
@@ -28,7 +29,7 @@ function App() {
       {/* <Heatmap data={data} /> */}
       {/* More info: https://reactjs.org/docs/profiler.html */}
       <Profiler id="Heatmap" onRender={onRenderCallback}>
-        <Heatmap data={data} />
+        <HeatmapBasic data={data} />
       </Profiler>
       {/* <HeatmapWithAxis
         data={data}
