@@ -1,10 +1,10 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { Stage, Layer, Rect } from 'react-konva';
-// import Konva from 'konva';
+import Tippy from '@tippyjs/react';
+import { extent } from 'd3-array';
 import { scaleBand, scaleSequential } from 'd3-scale';
 import { interpolateYlOrRd } from 'd3-scale-chromatic';
-import { extent } from 'd3-array';
-import Tippy from '@tippyjs/react';
+// import Konva from 'konva';
+import React, { useState, useRef, useCallback } from 'react';
+import { Stage, Layer, Rect } from 'react-konva';
 
 import { chartDimensions, cellPadding } from './constants';
 import { getUniqueValues } from './utils';

@@ -1,15 +1,15 @@
-import React from 'react';
-import { Stage, Layer, Rect, Group } from 'react-konva';
+import { AxisLeft, AxisTop } from '@visx/axis';
+import { extent } from 'd3-array';
 import { scaleBand, scaleSequential } from 'd3-scale';
 import { interpolateYlOrRd } from 'd3-scale-chromatic';
-import { extent } from 'd3-array';
+import React from 'react';
+import { Stage, Layer, Rect, Group } from 'react-konva';
 import { Html } from 'react-konva-utils';
-import { AxisLeft, AxisTop } from '@visx/axis';
 
 import { cellPadding } from './constants';
-import { getUniqueValues } from './utils';
 import { useDimensions } from './hooks';
 import SvgWrapper from './SvgWrapper';
+import { getUniqueValues } from './utils';
 
 import './style.css';
 
