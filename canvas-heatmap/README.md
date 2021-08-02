@@ -51,6 +51,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   - `slides presentation.md`.
 - [Canvas scatterplot with quadtree](https://bl.ocks.org/veltman/1b43f61887e89c371f1c8c73341540a3).
 - [Profiler API](https://reactjs.org/docs/profiler.html).
+- [Before You memo()](https://overreacted.io/before-you-memo/) blog post:
+  - Before applying memoization, try to _move state down_ (create a new component and use it in a wrapper component) or _lift content up_ (`children` prop). In other words, try to separate the parts that change from the parts that don’t change.
 
 **Canvas component snippet**:
 

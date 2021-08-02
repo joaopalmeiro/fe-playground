@@ -33,6 +33,9 @@ const renderRect = (ctx, x, y, width, height, color) => {
 };
 
 export default function HeatmapBasic({ data }) {
+  // const now = performance.now();
+  // while (performance.now() - now < 3000) {}
+
   const canvasEl = useRef(null);
 
   // Dimensions
@@ -70,7 +73,7 @@ export default function HeatmapBasic({ data }) {
     // const now = performance.now();
     // while (performance.now() - now < 3000) {}
 
-    const t0 = performance.now();
+    // const t0 = performance.now();
 
     canvasEl.current.width = outerWidth * pixelRatio;
     canvasEl.current.height = outerHeight * pixelRatio;
@@ -95,8 +98,8 @@ export default function HeatmapBasic({ data }) {
       )
     );
 
-    const t1 = performance.now();
-    console.log(`${t1 - t0} milliseconds`);
+    // const t1 = performance.now();
+    // console.log(`${t1 - t0} milliseconds`);
   }, [
     cellHeight,
     cellWidth,
