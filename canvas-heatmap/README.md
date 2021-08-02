@@ -79,3 +79,7 @@ const Canvas = (props) => {
 
 export default Canvas;
 ```
+
+### Intermediate React, v3 (by Brian Holt/Frontend Masters)
+
+- `useEffect`: to schedule something to happen after the first render. It is possible to tell how often it should be called thereafter.
