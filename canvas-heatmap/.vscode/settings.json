@@ -32,5 +32,6 @@
   },
   // More info: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
   "eslint.probe": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
-  "editor.fontFamily": "'Fira Code', monospace"
+  "editor.fontFamily": "'Fira Code', monospace",
+  "editor.fontLigatures": false
 }
