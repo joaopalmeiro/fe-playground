@@ -53,6 +53,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [Profiler API](https://reactjs.org/docs/profiler.html).
 - [Before You memo()](https://overreacted.io/before-you-memo/) blog post:
   - Before applying memoization, try to _move state down_ (create a new component and use it in a wrapper component) or _lift content up_ (`children` prop). In other words, try to separate the parts that change from the parts that don’t change.
+- Like [d3-array](https://github.com/d3/d3-array), [Lodash](https://lodash.com/docs/4.17.15#range) also has a `range()` utility function.
 
 ### Canvas component snippet
 
