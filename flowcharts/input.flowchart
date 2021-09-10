@@ -1,0 +1,4 @@
+st=>start: Start
+e=>end: End
+
+st(right)->e
