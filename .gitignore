@@ -114,5 +114,9 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Custom
 formatter.js
 visx-sm-line/src/toogle.css
+flowcharts/fm.flowchart
+flowcharts/fm.flowchart.svg
