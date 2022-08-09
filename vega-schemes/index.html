@@ -1,0 +1,66 @@
+<!-- https://vega.github.io/vega-lite/usage/embed.html -->
+<!-- https://vega.github.io/vega/docs/schemes/ -->
+<!-- https://github.com/vega/vega/tree/main/packages/vega-scale#scheme -->
+<!-- https://github.com/vega/vega/blob/main/packages/vega-scale/src/schemes.js#L22 -->
+<!-- https://vega.github.io/vega-lite/examples/bar_grouped.html -->
+<!-- https://vega.github.io/vega/docs/schemes/#category20b -->
+<!-- https://xdgov.github.io/data-design-standards/ -->
+<!-- https://github.com/XDgov/data-design-standards -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vega | Registering Additional Color Schemes</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.4.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+  </head>
+  <body>
+    <div id="vis"></div>
+
+    <script type="text/javascript">
+      var yourVlSpec = {
+        $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+        data: {
+          values: [
+            { category: 'A', group: 'x', value: 0.1 },
+            { category: 'A', group: 'y', value: 0.6 },
+            { category: 'A', group: 'z', value: 0.9 },
+            { category: 'B', group: 'x', value: 0.7 },
+            { category: 'B', group: 'y', value: 0.2 },
+            { category: 'B', group: 'z', value: 1.1 },
+            { category: 'C', group: 'x', value: 0.6 },
+            { category: 'C', group: 'y', value: 0.1 },
+            { category: 'C', group: 'z', value: 0.2 },
+          ],
+        },
+        mark: 'bar',
+        encoding: {
+          x: { field: 'category' },
+          y: { field: 'value', type: 'quantitative' },
+          xOffset: { field: 'group' },
+          color: { field: 'group', scale: { scheme: 'dvs' } },
+        },
+      };
+
+      // Source:
+      // https://xdgov.github.io/data-design-standards/components/colors#palette
+      // https://github.com/XDgov/data-design-standards/blob/master/_components/colors.md
+      // Qualitative/Categorical color scheme
+      // `dvs` -> Data Visualization Standards (DVS)
+      vega.scheme('dvs', [
+        '#26C6DA',
+        '#112E51',
+        '#FF7043',
+        '#78909C',
+        '#2E78D2',
+        '#006C7A',
+        '#FFBEA9',
+      ]);
+      console.log(vega.scheme('dvs'));
+
+      vegaEmbed('#vis', yourVlSpec, { renderer: 'svg' });
+    </script>
+  </body>
+</html>
