@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "htmlhint": "1.1.4"
+  },
+  "scripts": {
+    "lint": "htmlhint index.html"
+  }
+}
