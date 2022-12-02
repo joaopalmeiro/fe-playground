@@ -1,0 +1,7 @@
+{
+  "name": "try-terraformer-arcgis",
+  "version": "1.0.0",
+  "dependencies": {
+    "@terraformer/arcgis": "2.1.2"
+  }
+}
