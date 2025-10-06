@@ -1,0 +1,33 @@
+{
+  "name": "skia-canvas-example",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "author": {
+    "name": "João Palmeiro",
+    "email": "joaopalmeiro@proton.me",
+    "url": "https://github.com/joaopalmeiro"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "format": "run-s format:pkgJson format:code",
+    "format:code": "biome check --write",
+    "format:pkgJson": "sort-package-json",
+    "lint": "run-s lint:pkgJson lint:code",
+    "lint:code": "biome lint",
+    "lint:pkgJson": "sort-package-json --check"
+  },
+  "dependencies": {
+    "skia-canvas": "3.0.8"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.0",
+    "npm-run-all2": "7.0.1",
+    "sort-package-json": "2.10.1",
+    "tsx": "4.19.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
