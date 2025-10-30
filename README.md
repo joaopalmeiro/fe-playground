@@ -15,6 +15,11 @@ Some Front-End experiments with JavaScript-based technologies.
 - https://mdxjs.com/.
 - https://github.com/matsuyoshi30/harbor/.
 - https://github.com/athul/archie.
+- https://react.dev/learn/referencing-values-with-refs#differences-between-refs-and-state
+  - refs:
+    - "Doesn't trigger re-render when you change it."
+  - state:
+    - "Triggers re-render when you change it."
 
 ## Gradients
 
