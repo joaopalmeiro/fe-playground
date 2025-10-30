@@ -20,6 +20,8 @@ Some Front-End experiments with JavaScript-based technologies.
     - "Doesn't trigger re-render when you change it."
   - state:
     - "Triggers re-render when you change it."
+- https://react.dev/learn/you-might-not-need-an-effect
+  - "When something can be calculated from the existing props or state, don't put it in state. Instead, calculate it during rendering. This makes your code faster (you avoid the extra "cascading" updates), simpler (you remove some code), and less error-prone (you avoid bugs caused by different state variables getting out of sync with each other).
 
 ## Gradients
 
