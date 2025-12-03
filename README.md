@@ -22,6 +22,11 @@ Some Front-End experiments with JavaScript-based technologies.
     - "Triggers re-render when you change it."
 - https://react.dev/learn/you-might-not-need-an-effect
   - "When something can be calculated from the existing props or state, don't put it in state. Instead, calculate it during rendering. This makes your code faster (you avoid the extra "cascading" updates), simpler (you remove some code), and less error-prone (you avoid bugs caused by different state variables getting out of sync with each other).
+- https://www.bstefanski.com/blog/can-svg-symbols-affect-web-performance
+  - https://news.ycombinator.com/item?id=15024190: "SVG has the opposite performance profile of Canvas. SVG hits a performance ceiling as number of elements increases. Canvas, since it's rasterized image can handle a rasterized representation of millions of SVG elements."
+  - https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/symbol
+  - https://www.react-graph-gallery.com/example/scatterplot-basic-canvas
+  - https://www.react-graph-gallery.com/scatter-plot
 
 ## Gradients
 
