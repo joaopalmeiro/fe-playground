@@ -27,6 +27,10 @@ Some Front-End experiments with JavaScript-based technologies.
   - https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/symbol
   - https://www.react-graph-gallery.com/example/scatterplot-basic-canvas
   - https://www.react-graph-gallery.com/scatter-plot
+- `"version": "0.0.0-PLACEHOLDER"`
+  - https://github.com/angular/angular/blob/d609cf6e0908b7e3c39bc21dd1c6e1457591e3d6/packages/core/package.json
+  - https://semantic-release.org/support/faq/#it-can-lead-to-confusion: "To make it clear to contributors that the version is not kept up to date, we recommend using a value like `0.0.0-development` or `0.0.0-semantically-released`."
+  - https://github.com/apache/superset/blob/a05a0999877f6f3aa73c447f722e1e9630b98910/superset-frontend/package.json: `"version": "0.0.0-dev"`
 
 ## Gradients
 
