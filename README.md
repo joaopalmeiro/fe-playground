@@ -31,6 +31,8 @@ Some Front-End experiments with JavaScript-based technologies.
   - https://github.com/angular/angular/blob/d609cf6e0908b7e3c39bc21dd1c6e1457591e3d6/packages/core/package.json
   - https://semantic-release.org/support/faq/#it-can-lead-to-confusion: "To make it clear to contributors that the version is not kept up to date, we recommend using a value like `0.0.0-development` or `0.0.0-semantically-released`."
   - https://github.com/apache/superset/blob/a05a0999877f6f3aa73c447f722e1e9630b98910/superset-frontend/package.json: `"version": "0.0.0-dev"`
+- https://tanstack.com/table/latest/docs/framework/react/guide/virtualization#when-to-use-virtualization
+  - "Use virtualization when your table has a very large number of rows, columns, or both. Virtualization keeps the DOM small by only rendering the items that are visible in the scroll viewport plus a small overscan buffer. Virtualization is not a replacement for server-side pagination, filtering, or sorting. If the data is virtualized on the client, the data still needs to exist on the client. If your dataset is too large to load into the browser, use server-side data operations or infinite scrolling. For small tables, normal rendering is simpler and usually preferable."
 
 ## Gradients
 
