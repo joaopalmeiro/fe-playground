@@ -27,3 +27,11 @@ npm run format
 ```bash
 npm run lint
 ```
+
+```bash
+npm run test:reference
+```
+
+```bash
+npm run test
+```

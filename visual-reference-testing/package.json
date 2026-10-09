@@ -24,7 +24,9 @@
     "lint:prek": "prek validate-config prek.toml",
     "lint:types": "tsc -b",
     "prepare": "prek install --prepare-hooks",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest run tests/custom.test.tsx --update=none",
+    "test:reference": "vitest run tests/reference.test.tsx"
   },
   "dependencies": {
     "react": "19.2.4",
@@ -33,15 +35,19 @@
   "devDependencies": {
     "@j178/prek": "0.3.8",
     "@tailwindcss/vite": "4.2.2",
+    "@types/node": "24.13.6",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "5.1.4",
+    "@vitest/browser-playwright": "5.0.3",
     "npm-run-all2": "8.0.4",
     "oxfmt": "0.35.0",
     "oxlint": "1.50.0",
+    "playwright": "1.63.0",
     "tailwindcss": "4.2.2",
     "typescript": "5.9.3",
     "vite": "7.3.1",
-    "vitest": "5.0.3"
+    "vitest": "5.0.3",
+    "vitest-browser-react": "2.3.0"
   }
 }

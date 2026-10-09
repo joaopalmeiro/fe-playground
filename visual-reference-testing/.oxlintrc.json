@@ -12,8 +12,9 @@
   },
   "rules": {
     "func-style": ["error", "declaration"],
-    "react/react-in-jsx-scope": "off",
+    "oxc/no-async-await": "off",
     "react/jsx-filename-extension": ["error", { "extensions": ["tsx"] }],
+    "react/react-in-jsx-scope": "off",
     "sort-imports": "off"
   },
   "env": {
