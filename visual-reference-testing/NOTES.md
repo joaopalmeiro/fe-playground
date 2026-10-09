@@ -8,6 +8,13 @@
 - https://vitest.dev/config/browser/expect#browser-expect-tomatchscreenshot
 - https://vitest.dev/api/browser/assertions#options
 - https://vitest.dev/config/browser/expect#browser-expect-tomatchscreenshot-resolvescreenshotpath
+- https://stylexui.dev/components/button
+- https://base-ui.com/react/components/button
+- https://www.radix-ui.com/themes/docs/components/button
+- https://ui.shadcn.com/docs/components/base/button
+- https://daisyui.com/components/button/
+- https://tailwindcss.com/docs/background-color#basic-example
+- https://github.com/vitest-dev/vitest/discussions/8310
 
 ## Commands
 
