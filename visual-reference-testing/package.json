@@ -1,0 +1,47 @@
+{
+  "name": "visual-reference-testing",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "author": {
+    "name": "João Palmeiro",
+    "email": "joaopalmeiro@proton.me",
+    "url": "https://joao.town/"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "run-s lint:types build:app",
+    "build:app": "vite build",
+    "check:oxlint": "oxlint --print-config",
+    "check:ts": "run-s check:tsRoot check:tsApp check:tsNode",
+    "check:tsApp": "tsc --project tsconfig.app.json --showConfig",
+    "check:tsNode": "tsc --project tsconfig.node.json --showConfig",
+    "check:tsRoot": "tsc --showConfig",
+    "dev": "vite",
+    "format": "oxfmt",
+    "lint": "run-s lint:prek lint:types lint:code",
+    "lint:code": "oxlint --fix",
+    "lint:prek": "prek validate-config prek.toml",
+    "lint:types": "tsc -b",
+    "prepare": "prek install --prepare-hooks",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@j178/prek": "0.3.8",
+    "@tailwindcss/vite": "4.2.2",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "5.1.4",
+    "npm-run-all2": "8.0.4",
+    "oxfmt": "0.35.0",
+    "oxlint": "1.50.0",
+    "tailwindcss": "4.2.2",
+    "typescript": "5.9.3",
+    "vite": "7.3.1",
+    "vitest": "5.0.3"
+  }
+}
