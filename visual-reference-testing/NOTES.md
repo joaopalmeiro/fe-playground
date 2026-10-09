@@ -15,6 +15,7 @@
 - https://daisyui.com/components/button/
 - https://tailwindcss.com/docs/background-color#basic-example
 - https://github.com/vitest-dev/vitest/discussions/8310
+  - https://vitest.dev/config/setupfiles
 
 ## Commands
 

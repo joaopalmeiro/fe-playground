@@ -1,11 +1,12 @@
 import { resolve } from "node:path";
 
+import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { playwright } from "@vitest/browser-playwright";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
   test: {
     browser: {
       enabled: true,
@@ -24,5 +25,6 @@ export default defineConfig({
       provider: playwright(),
     },
     include: ["tests/**/*.test.tsx"],
+    setupFiles: ["tests/setup.ts"],
   },
 });
