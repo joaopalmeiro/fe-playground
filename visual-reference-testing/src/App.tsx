@@ -2,6 +2,7 @@ import type { JSX } from "react";
 
 import ButtonA from "./components/ButtonA";
 import ButtonB from "./components/ButtonB";
+import ButtonC from "./components/ButtonC";
 
 function App(): JSX.Element {
   return (
@@ -9,6 +10,7 @@ function App(): JSX.Element {
       <div className="flex gap-2">
         <ButtonA />
         <ButtonB />
+        <ButtonC />
       </div>
     </main>
   );
