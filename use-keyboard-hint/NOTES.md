@@ -12,6 +12,8 @@
 - https://developer.mozilla.org/en-US/docs/Web/API/Popover_API/Using_interest_invokers
 - https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:popover-open
 - https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/showPopover
+- https://react.dev/reference/react/useRef
+  - "Changing a ref does not trigger a re-render. This means refs are perfect for storing information that doesn’t affect the visual output of your component. For example, if you need to store an interval ID and retrieve it later, you can put it in a ref."
 
 ## Commands
 
