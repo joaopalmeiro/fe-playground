@@ -1,0 +1,49 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["eslint", "typescript", "unicorn", "react", "react-perf", "oxc", "jsx-a11y", "promise", "import"],
+  "categories": {
+    "correctness": "error",
+    "nursery": "error",
+    "pedantic": "error",
+    "perf": "error",
+    "restriction": "error",
+    "style": "error",
+    "suspicious": "error"
+  },
+  "rules": {
+    "func-style": ["error", "declaration"],
+    "import/no-default-export": "off",
+    "react/jsx-filename-extension": ["error", { "extensions": ["tsx"] }],
+    "react/jsx-no-literals": "off",
+    "react/react-in-jsx-scope": "off",
+    "sort-imports": "off"
+  },
+  "env": {
+    "browser": true
+  },
+  "settings": {
+    "react": {
+      "version": "19.2.4"
+    }
+  },
+  "overrides": [
+    {
+      "files": ["src/**/*.tsx"],
+      "rules": {
+        "unicorn/filename-case": ["error", { "case": "pascalCase" }]
+      }
+    },
+    {
+      "files": ["src/main.tsx"],
+      "rules": {
+        "import/no-unassigned-import": ["error", { "allow": ["**/*.css"] }],
+        "typescript/no-non-null-assertion": "off",
+        "unicorn/filename-case": ["error", { "case": "kebabCase" }],
+        "unicorn/prefer-query-selector": "off"
+      }
+    }
+  ],
+  "options": {
+    "reportUnusedDisableDirectives": "error"
+  }
+}
