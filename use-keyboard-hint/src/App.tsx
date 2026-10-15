@@ -1,9 +1,11 @@
 import type { JSX } from "react";
 
+import ExampleToolbar from "./components/ExampleToolbar";
+
 function App(): JSX.Element {
   return (
-    <main>
-      <h1>Start here</h1>
+    <main className="p-2">
+      <ExampleToolbar />
     </main>
   );
 }
