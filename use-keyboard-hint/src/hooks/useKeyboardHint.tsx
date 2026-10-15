@@ -84,7 +84,7 @@ export function useKeyboardHint({
       ref={hintRef}
       popover="manual"
       aria-hidden="true"
-      className="pointer-events-none inset-auto top-[anchor(bottom)] left-[anchor(left)] m-0 mt-2 items-center gap-1 border border-neutral-950 bg-white px-2 py-1 text-xs whitespace-nowrap text-neutral-700 [position-anchor:--keyboard-hint] open:flex"
+      className="pointer-events-none inset-auto top-[anchor(bottom)] left-[anchor(left)] mt-2 items-center gap-1 border border-neutral-950 bg-white px-2 py-1 text-xs whitespace-nowrap text-neutral-700 [position-anchor:--keyboard-hint] open:flex"
     >
       {ARROWS[orientation].map((arrow) => (
         <kbd key={arrow} className="border border-neutral-300 px-1 font-sans text-neutral-950">
