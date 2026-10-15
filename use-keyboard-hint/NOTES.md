@@ -2,6 +2,8 @@
 
 - https://astryx.atmeta.com/components/useKeyboardHint
   - "Shows an ephemeral "← → to navigate" hint anchored to the focused item the first time a roving-tabindex composite (Toolbar, TabList, SegmentedControl, etc.) receives keyboard focus."
+- https://base-ui.com/react/components/toolbar
+  - "Use inputs sparingly: Left and right arrow keys are used to both move the text insertion cursor in an input, and to navigate among controls in horizontal toolbars. When using an input in a horizontal toolbar, use only one and place it as the last element of the toolbar."
 
 ## Snippets
 
