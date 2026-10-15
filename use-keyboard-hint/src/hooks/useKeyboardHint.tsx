@@ -75,7 +75,6 @@ export function useKeyboardHint({
       return;
     }
 
-    // Focus moved within the composite while the hint is showing: follow it.
     if (isOpen()) {
       setAnchor(event.target);
       return;

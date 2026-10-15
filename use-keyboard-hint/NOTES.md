@@ -8,6 +8,7 @@
 - https://astryx.atmeta.com/storybook/?path=/docs/core-toolbar--docs
 - https://developer.mozilla.org/en-US/docs/Web/API/Popover_API/Using
 - https://developer.mozilla.org/en-US/docs/Web/API/Popover_API
+- https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/popover
 
 ## Commands
 
