@@ -4,10 +4,19 @@ import { ToggleGroup } from "@base-ui/react/toggle-group";
 import { Toolbar } from "@base-ui/react/toolbar";
 import type { ComponentProps } from "react";
 
+import { useKeyboardHint } from "../hooks/useKeyboardHint";
+
 // Source: https://base-ui.com/react/components/toolbar
 export default function ExampleToolbar() {
+  const hint = useKeyboardHint();
+
   return (
-    <Toolbar.Root className="flex w-150 items-center gap-px border border-neutral-950 bg-white p-px">
+    <Toolbar.Root
+      className="flex w-150 items-center gap-px border border-neutral-950 bg-white p-px"
+      onFocus={hint.onFocus}
+      onBlur={hint.onBlur}
+      onKeyDown={hint.onKeyDown}
+    >
       <ToggleGroup className="flex gap-px" aria-label="Alignment">
         <Toolbar.Button
           render={<Toggle />}
@@ -84,6 +93,7 @@ export default function ExampleToolbar() {
       >
         Edited 51m ago
       </Toolbar.Link>
+      {hint.hintElement}
     </Toolbar.Root>
   );
 }
