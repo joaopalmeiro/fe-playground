@@ -9,6 +9,9 @@
 - https://developer.mozilla.org/en-US/docs/Web/API/Popover_API/Using
 - https://developer.mozilla.org/en-US/docs/Web/API/Popover_API
 - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/popover
+- https://developer.mozilla.org/en-US/docs/Web/API/Popover_API/Using_interest_invokers
+- https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:popover-open
+- https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/showPopover
 
 ## Commands
 

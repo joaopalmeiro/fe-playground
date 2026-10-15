@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef } from "react";
+import { useRef } from "react";
 import type { FocusEvent, JSX, KeyboardEvent } from "react";
 
 type Orientation = "horizontal" | "vertical";
@@ -22,79 +22,46 @@ const ARROWS: Record<Orientation, readonly string[]> = {
   vertical: ["↑", "↓"],
 };
 
+const ANCHOR_NAME = "--keyboard-hint";
+
 // Based on: https://github.com/facebook/astryx/blob/v0.7.0/packages/core/src/hooks/useKeyboardHint.tsx
 export function useKeyboardHint({
   orientation = "horizontal",
   dismissAfterMs = 3000,
 }: UseKeyboardHintOptions = {}): UseKeyboardHintReturn {
-  const anchorName = `--keyboard-hint${useId()}`;
-
   const hintRef = useRef<HTMLSpanElement>(null);
-  const anchorRef = useRef<HTMLElement | null>(null);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isDismissedRef = useRef(false);
-
-  function setAnchor(element: HTMLElement | null): void {
-    anchorRef.current?.style.removeProperty("anchor-name");
-    element?.style.setProperty("anchor-name", anchorName);
-    anchorRef.current = element;
-  }
 
   function isOpen(): boolean {
     return hintRef.current?.matches(":popover-open") ?? false;
   }
 
-  function clearDismissTimeout(): void {
-    if (timeoutRef.current !== null) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
-  }
-
   function dismiss(): void {
     isDismissedRef.current = true;
-    clearDismissTimeout();
-
     if (isOpen()) {
       hintRef.current?.hidePopover();
     }
-
-    setAnchor(null);
   }
-
-  // Cleanup on unmount:
-  useEffect(
-    () => () => {
-      if (timeoutRef.current !== null) {
-        clearTimeout(timeoutRef.current);
-      }
-    },
-    [],
-  );
 
   function onFocus(event: FocusEvent<HTMLElement>): void {
     if (isDismissedRef.current) {
       return;
     }
 
-    if (isOpen()) {
-      setAnchor(event.target);
-      return;
-    }
+    event.target.style.setProperty("anchor-name", ANCHOR_NAME);
 
     const isKeyboardFocus = event.target.matches(":focus-visible");
     const isEnteringFromOutside = !event.currentTarget.contains(event.relatedTarget);
 
-    if (!isKeyboardFocus || !isEnteringFromOutside) {
-      return;
+    if (isKeyboardFocus && isEnteringFromOutside) {
+      hintRef.current?.showPopover();
+      setTimeout(dismiss, dismissAfterMs);
     }
-
-    setAnchor(event.target);
-    hintRef.current?.showPopover();
-    timeoutRef.current = setTimeout(dismiss, dismissAfterMs);
   }
 
   function onBlur(event: FocusEvent<HTMLElement>): void {
+    event.target.style.removeProperty("anchor-name");
+
     const isLeaving = !event.currentTarget.contains(event.relatedTarget);
 
     if (isOpen() && isLeaving) {
@@ -113,8 +80,7 @@ export function useKeyboardHint({
       ref={hintRef}
       popover="manual"
       aria-hidden="true"
-      style={{ positionAnchor: anchorName }}
-      className="pointer-events-none inset-auto top-[anchor(bottom)] left-[anchor(left)] m-0 mt-2 items-center gap-1 border border-neutral-950 bg-white px-2 py-1 text-xs whitespace-nowrap text-neutral-700 open:flex"
+      className="pointer-events-none inset-auto top-[anchor(bottom)] left-[anchor(left)] m-0 mt-2 items-center gap-1 border border-neutral-950 bg-white px-2 py-1 text-xs whitespace-nowrap text-neutral-700 [position-anchor:--keyboard-hint] open:flex"
     >
       {ARROWS[orientation].map((arrow) => (
         <kbd key={arrow} className="border border-neutral-300 px-1 font-sans text-neutral-950">
