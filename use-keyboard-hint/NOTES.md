@@ -13,7 +13,7 @@
 - https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:popover-open
 - https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/showPopover
 - https://react.dev/reference/react/useRef
-  - "Changing a ref does not trigger a re-render. This means refs are perfect for storing information that doesn’t affect the visual output of your component. For example, if you need to store an interval ID and retrieve it later, you can put it in a ref."
+  - "Changing a ref does not trigger a re-render. This means refs are perfect for storing information that doesn't affect the visual output of your component. For example, if you need to store an interval ID and retrieve it later, you can put it in a ref."
 - https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/anchor-name
 - https://github.com/facebook/astryx/blob/v0.7.0/packages/core/src/Layer/useLayer.tsx
 - https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent/relatedTarget
