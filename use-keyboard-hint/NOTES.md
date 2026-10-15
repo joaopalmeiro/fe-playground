@@ -7,6 +7,7 @@
   - "Use inputs sparingly: Left and right arrow keys are used to both move the text insertion cursor in an input, and to navigate among controls in horizontal toolbars. When using an input in a horizontal toolbar, use only one and place it as the last element of the toolbar."
 - https://astryx.atmeta.com/storybook/?path=/docs/core-toolbar--docs
 - https://developer.mozilla.org/en-US/docs/Web/API/Popover_API/Using
+- https://developer.mozilla.org/en-US/docs/Web/API/Popover_API
 
 ## Commands
 

@@ -44,9 +44,16 @@ export function useKeyboardHint({
     return hintRef.current?.matches(":popover-open") ?? false;
   }
 
+  function clearDismissTimeout(): void {
+    if (timeoutRef.current !== null) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  }
+
   function dismiss(): void {
     isDismissedRef.current = true;
-    window.clearTimeout(timeoutRef.current);
+    clearDismissTimeout();
     if (isOpen()) {
       hintRef.current?.hidePopover();
     }
@@ -54,7 +61,14 @@ export function useKeyboardHint({
   }
 
   // Cleanup on unmount:
-  useEffect(() => () => window.clearTimeout(timeoutRef.current), []);
+  useEffect(
+    () => () => {
+      if (timeoutRef.current !== null) {
+        clearTimeout(timeoutRef.current);
+      }
+    },
+    [],
+  );
 
   function onFocus(event: FocusEvent<HTMLElement>): void {
     if (isDismissedRef.current) {
@@ -75,7 +89,7 @@ export function useKeyboardHint({
 
     setAnchor(event.target);
     hintRef.current?.showPopover();
-    timeoutRef.current = window.setTimeout(dismiss, dismissAfterMs);
+    timeoutRef.current = setTimeout(dismiss, dismissAfterMs);
   }
 
   function onBlur(event: FocusEvent<HTMLElement>): void {
