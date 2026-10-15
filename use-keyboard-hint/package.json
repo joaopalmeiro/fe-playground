@@ -2,6 +2,7 @@
   "name": "use-keyboard-hint",
   "version": "0.0.0",
   "private": true,
+  "description": "An Astryx-based implementation of the useKeyboardHint hook.",
   "license": "MIT",
   "author": {
     "name": "João Palmeiro",

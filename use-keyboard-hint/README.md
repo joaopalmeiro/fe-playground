@@ -1,5 +1,7 @@
 # use-keyboard-hint
 
+An [Astryx](https://astryx.atmeta.com/components/useKeyboardHint)-based implementation of the `useKeyboardHint` hook.
+
 ## Development
 
 ```bash
