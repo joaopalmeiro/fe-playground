@@ -38,6 +38,7 @@ export function useKeyboardHint({
 
   function dismiss(): void {
     isDismissedRef.current = true;
+
     if (isOpen()) {
       hintRef.current?.hidePopover();
     }
