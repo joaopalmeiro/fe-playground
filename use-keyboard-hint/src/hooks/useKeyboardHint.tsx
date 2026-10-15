@@ -17,7 +17,7 @@ interface UseKeyboardHintReturn {
 
 const ARROW_KEYS = new Set(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"]);
 
-const ARROWS: Record<Orientation, ReadonlyArray<string>> = {
+const ARROWS: Record<Orientation, readonly string[]> = {
   horizontal: ["←", "→"],
   vertical: ["↑", "↓"],
 };
@@ -54,9 +54,11 @@ export function useKeyboardHint({
   function dismiss(): void {
     isDismissedRef.current = true;
     clearDismissTimeout();
+
     if (isOpen()) {
       hintRef.current?.hidePopover();
     }
+
     setAnchor(null);
   }
 
@@ -80,8 +82,9 @@ export function useKeyboardHint({
       return;
     }
 
-    const isKeyboardFocus = event.target.matches(":focus-visible"),
-      isEnteringFromOutside = !event.currentTarget.contains(event.relatedTarget);
+    const isKeyboardFocus = event.target.matches(":focus-visible");
+    const isEnteringFromOutside = !event.currentTarget.contains(event.relatedTarget);
+
     if (!isKeyboardFocus || !isEnteringFromOutside) {
       return;
     }
@@ -93,6 +96,7 @@ export function useKeyboardHint({
 
   function onBlur(event: FocusEvent<HTMLElement>): void {
     const isLeaving = !event.currentTarget.contains(event.relatedTarget);
+
     if (isOpen() && isLeaving) {
       dismiss();
     }
