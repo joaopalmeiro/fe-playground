@@ -4,44 +4,36 @@ import type { FocusEvent, JSX, KeyboardEvent } from "react";
 type Orientation = "horizontal" | "vertical";
 
 interface UseKeyboardHintOptions {
-  /** Which arrows to show in the hint. */
   orientation?: Orientation;
-  /** Auto-dismiss delay in milliseconds. */
   dismissAfterMs?: number;
 }
 
 interface UseKeyboardHintReturn {
-  /** Render inside the composite. It manages its own visibility (top layer via `popover="manual"`). */
   hintElement: JSX.Element;
   onFocus: (event: FocusEvent<HTMLElement>) => void;
   onBlur: (event: FocusEvent<HTMLElement>) => void;
   onKeyDown: (event: KeyboardEvent<HTMLElement>) => void;
 }
 
-const ARROWS: Record<Orientation, string[]> = {
-    horizontal: ["←", "→"],
-    vertical: ["↑", "↓"],
-  },
-  ARROW_KEYS = new Set(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"]);
+const ARROW_KEYS = new Set(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"]);
 
-/**
- * Shows an ephemeral "← → to navigate" hint below the focused item the first time
- * a roving-tabindex composite (e.g. a toolbar) receives keyboard focus from outside.
- * Dismissed on the first arrow press, on timeout, or when focus leaves the composite,
- * and never shown again for this instance.
- */
+const ARROWS: Record<Orientation, ReadonlyArray<string>> = {
+  horizontal: ["←", "→"],
+  vertical: ["↑", "↓"],
+};
+
+// Based on: https://github.com/facebook/astryx/blob/v0.7.0/packages/core/src/hooks/useKeyboardHint.tsx
 export function useKeyboardHint({
   orientation = "horizontal",
   dismissAfterMs = 3000,
 }: UseKeyboardHintOptions = {}): UseKeyboardHintReturn {
-  // React 19.2 ids (e.g. `_r_0_`) are valid CSS idents, so they work as anchor names.
-  const anchorName = `--keyboard-hint${useId()}`,
-    hintRef = useRef<HTMLSpanElement>(null),
-    anchorRef = useRef<HTMLElement | null>(null),
-    timeoutRef = useRef<number | undefined>(),
-    isDismissedRef = useRef(false);
+  const anchorName = `--keyboard-hint${useId()}`;
 
-  // The hint is CSS-anchor-positioned to whichever element carries the anchor name.
+  const hintRef = useRef<HTMLSpanElement>(null);
+  const anchorRef = useRef<HTMLElement | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isDismissedRef = useRef(false);
+
   function setAnchor(element: HTMLElement | null): void {
     anchorRef.current?.style.removeProperty("anchor-name");
     element?.style.setProperty("anchor-name", anchorName);
@@ -61,6 +53,7 @@ export function useKeyboardHint({
     setAnchor(null);
   }
 
+  // Cleanup on unmount:
   useEffect(() => () => window.clearTimeout(timeoutRef.current), []);
 
   function onFocus(event: FocusEvent<HTMLElement>): void {
@@ -102,10 +95,9 @@ export function useKeyboardHint({
     <span
       ref={hintRef}
       popover="manual"
-      // Visual-only aid: the toolbar role already conveys arrow-key navigation to screen readers.
       aria-hidden="true"
       style={{ positionAnchor: anchorName }}
-      className="pointer-events-none inset-auto [top:anchor(bottom)] [left:anchor(left)] m-0 mt-2 items-center gap-1 border border-neutral-950 bg-white px-2 py-1 text-xs whitespace-nowrap text-neutral-700 shadow-[0.25rem_0.25rem_0] shadow-black/12 open:flex"
+      className="pointer-events-none inset-auto top-[anchor(bottom)] left-[anchor(left)] m-0 mt-2 items-center gap-1 border border-neutral-950 bg-white px-2 py-1 text-xs whitespace-nowrap text-neutral-700 open:flex"
     >
       {ARROWS[orientation].map((arrow) => (
         <kbd key={arrow} className="border border-neutral-300 px-1 font-sans text-neutral-950">
