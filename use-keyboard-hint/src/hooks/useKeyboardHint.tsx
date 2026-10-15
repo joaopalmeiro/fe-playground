@@ -15,7 +15,10 @@ interface UseKeyboardHintReturn {
   onKeyDown: (event: KeyboardEvent<HTMLElement>) => void;
 }
 
-const ARROW_KEYS = new Set(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"]);
+const NAVIGATION_KEYS: Record<Orientation, readonly string[]> = {
+  horizontal: ["ArrowLeft", "ArrowRight"],
+  vertical: ["ArrowUp", "ArrowDown"],
+};
 
 const ARROWS: Record<Orientation, readonly string[]> = {
   horizontal: ["←", "→"],
@@ -71,7 +74,7 @@ export function useKeyboardHint({
   }
 
   function onKeyDown(event: KeyboardEvent<HTMLElement>): void {
-    if (isOpen() && ARROW_KEYS.has(event.key)) {
+    if (isOpen() && NAVIGATION_KEYS[orientation].includes(event.key)) {
       dismiss();
     }
   }
