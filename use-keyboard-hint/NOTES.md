@@ -45,18 +45,13 @@ rm -rf dist/ node_modules/
  * - /packages/cli/assets/templates/blocks/components/Hooks/useKeyboardHintHookUsage.tsx
  */
 
-import React, { useCallback, useEffect, useRef, type ReactNode } from "react";
 import * as stylex from "@stylexjs/stylex";
-import {
-  colorVars,
-  radiusVars,
-  shadowVars,
-  spacingVars,
-  typeScaleVars,
-} from "../theme/tokens.stylex";
+import React, { useCallback, useEffect, useRef, type ReactNode } from "react";
+
+import { useTranslator } from "../i18n";
 import { Kbd } from "../Kbd";
 import { useLayer } from "../Layer/useLayer";
-import { useTranslator } from "../i18n";
+import { colorVars, radiusVars, shadowVars, spacingVars, typeScaleVars } from "../theme/tokens.stylex";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -123,10 +118,7 @@ export interface UseKeyboardHintReturn {
 
 const ARROW_KEYS = new Set(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"]);
 
-const ARROW_HINT_KEYS: Record<
-  KeyboardHintOrientation,
-  ReadonlyArray<string>
-> = {
+const ARROW_HINT_KEYS: Record<KeyboardHintOrientation, ReadonlyArray<string>> = {
   horizontal: ["left", "right"],
   vertical: ["up", "down"],
   both: ["left", "right", "up", "down"],
@@ -201,14 +193,8 @@ const styles = stylex.create({
  * </div>
  * ```
  */
-export function useKeyboardHint(
-  options: UseKeyboardHintOptions = {},
-): UseKeyboardHintReturn {
-  const {
-    orientation = "horizontal",
-    dismissAfterMs = 3000,
-    isEnabled = true,
-  } = options;
+export function useKeyboardHint(options: UseKeyboardHintOptions = {}): UseKeyboardHintReturn {
+  const { orientation = "horizontal", dismissAfterMs = 3000, isEnabled = true } = options;
 
   const t = useTranslator();
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -290,10 +276,7 @@ export function useKeyboardHint(
       }
       // Only show when focus enters from outside the container
       const container = e.currentTarget as HTMLElement;
-      if (
-        e.relatedTarget instanceof Node &&
-        container.contains(e.relatedTarget)
-      ) {
+      if (e.relatedTarget instanceof Node && container.contains(e.relatedTarget)) {
         return;
       }
       show(target);
@@ -308,10 +291,7 @@ export function useKeyboardHint(
       }
       const container = e.currentTarget as HTMLElement;
       // Only dismiss when focus leaves the container entirely
-      if (
-        e.relatedTarget instanceof Node &&
-        container.contains(e.relatedTarget)
-      ) {
+      if (e.relatedTarget instanceof Node && container.contains(e.relatedTarget)) {
         // Focus moved within — re-anchor to the new target
         if (!dismissedRef.current && e.relatedTarget instanceof HTMLElement) {
           layerAnchorRef.current(e.relatedTarget);
@@ -348,9 +328,7 @@ export function useKeyboardHint(
   const hintElement = layer.render(
     <span aria-hidden="true">
       {arrowContent}
-      <span {...stylex.props(styles.label)}>
-        {t("@astryx.keyboardHint.toNavigate")}
-      </span>
+      <span {...stylex.props(styles.label)}>{t("@astryx.keyboardHint.toNavigate")}</span>
     </span>,
     {
       placement: "below",
@@ -387,20 +365,21 @@ export function useKeyboardHint(
  * - /packages/cli/assets/templates/blocks/components/Toolbar/ (showcase blocks)
  */
 
-import { useCallback, type ReactNode } from "react";
-import type { BaseProps } from "../BaseProps";
-import type { SectionVariant } from "../Section/Section";
-import type { SpacingStep } from "../utils/types";
-import type { ElementSize } from "../SizeContext/SizeContext";
 import * as stylex from "@stylexjs/stylex";
+import { useCallback, type ReactNode } from "react";
+
+import type { BaseProps } from "../BaseProps";
+import { useKeyboardHint } from "../hooks/useKeyboardHint";
+import { useListFocus } from "../hooks/useListFocus";
+import { edgeCompSlot } from "../Layout/edgeCompensation.stylex";
+import type { SectionVariant } from "../Section/Section";
+import { Section } from "../Section/Section";
+import type { ElementSize } from "../SizeContext/SizeContext";
+import { SizeProvider } from "../SizeContext/SizeContext";
 import { spacingVars, sizeVars } from "../theme/tokens.stylex";
 import { mergeProps } from "../utils";
-import { Section } from "../Section/Section";
-import { useListFocus } from "../hooks/useListFocus";
-import { useKeyboardHint } from "../hooks/useKeyboardHint";
-import { SizeProvider } from "../SizeContext/SizeContext";
-import { edgeCompSlot } from "../Layout/edgeCompensation.stylex";
 import { themeProps } from "../utils/themeProps";
+import type { SpacingStep } from "../utils/types";
 
 /**
  * Map SpacingStep values to spacingVars keys.
@@ -698,9 +677,7 @@ export function Toolbar({
               // nested TabList's indicator keeps its own default (hugging the
               // tab) instead of floating down into the toolbar's padding.
               hasBottomDivider &&
-                dynamicStyles.tabIndicatorBottom(
-                  `calc(-1 * (${blockPaddingVarForSize[size]} + 1px))`,
-                ),
+                dynamicStyles.tabIndicatorBottom(`calc(-1 * (${blockPaddingVarForSize[size]} + 1px))`),
             ),
           )}
           {...props}
@@ -717,11 +694,7 @@ export function Toolbar({
               >
                 {startContent}
               </div>
-              <div
-                {...stylex.props(styles.centerSlot, dynamicStyles.gap(gapVar))}
-              >
-                {centerContent}
-              </div>
+              <div {...stylex.props(styles.centerSlot, dynamicStyles.gap(gapVar))}>{centerContent}</div>
               <div
                 {...stylex.props(
                   styles.endSlot,
