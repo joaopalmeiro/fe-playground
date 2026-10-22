@@ -36,27 +36,23 @@ const layout = sankey<NodeDatum, LinkDatum>()
 
 const linkPath = sankeyLinkHorizontal<NodeDatum, LinkDatum>();
 
-function computeLayout(links: SankeyLink[], width: number, height: number): ReturnType<typeof layout> {
-  const ids = [...new Set(links.flatMap((link) => [link.source, link.target]))];
+function SankeyChart({ height, width, series }: SankeyChartProps): JSX.Element {
+  const ids = [...new Set(series.data.links.flatMap((link) => [link.source, link.target]))];
 
   // D3-sankey mutates its input (e.g. replaces link.source ids with node objects), so pass copies.
-  return layout.extent([
+  const { nodes, links } = layout.extent([
     [0, 0],
     [width, height],
   ])({
-    links: links.map(({ source, target, value }) => ({ source, target, value })),
+    links: series.data.links.map(({ source, target, value }) => ({ source, target, value })),
     nodes: ids.map((id) => ({ id })),
   });
-}
-
-function SankeyChart({ height, width, series }: SankeyChartProps): JSX.Element {
-  const { nodes, links } = computeLayout(series.data.links, width, height);
 
   return (
     <svg xmlns="http://www.w3.org/2000/svg" height={height} viewBox={`0 0 ${width} ${height}`} width={width}>
       <g className="stroke-slate-200">
         {links.map((link) => (
-          <path d={linkPath(link) ?? ""} key={link.index} strokeWidth={Math.max(1, link.width ?? 0)} />
+          <path d={linkPath(link) ?? ""} key={link.index} strokeWidth={link.width} />
         ))}
       </g>
 

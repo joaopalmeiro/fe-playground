@@ -16,7 +16,7 @@ const series = {
 function App(): JSX.Element {
   return (
     <main className="p-8">
-      <SankeyChart height={250} series={series} width={600} />
+      <SankeyChart height={300} series={series} width={600} />
     </main>
   );
 }
