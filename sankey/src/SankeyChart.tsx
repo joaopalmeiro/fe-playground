@@ -7,14 +7,14 @@ interface SankeyLink {
   value: number;
 }
 
+interface SankeyData {
+  links: SankeyLink[];
+}
+
 interface SankeyChartProps {
   height: number;
   width: number;
-  series: {
-    data: {
-      links: SankeyLink[];
-    };
-  };
+  data: SankeyData;
 }
 
 interface NodeDatum {
@@ -29,24 +29,21 @@ const NODE_WIDTH = 12;
 const NODE_PADDING = 16;
 const LABEL_OFFSET = 6;
 
-const layout = sankey<NodeDatum, LinkDatum>()
+// Nodes are derived from the links. Links are cloned since d3-sankey mutates them.
+const layout = sankey<SankeyData, NodeDatum, LinkDatum>()
   .nodeId((node) => node.id)
   .nodeWidth(NODE_WIDTH)
-  .nodePadding(NODE_PADDING);
+  .nodePadding(NODE_PADDING)
+  .nodes(({ links }) => Array.from(new Set(links.flatMap((link) => [link.source, link.target])), (id) => ({ id })))
+  .links(({ links }) => structuredClone(links));
 
 const linkPath = sankeyLinkHorizontal<NodeDatum, LinkDatum>();
 
-function SankeyChart({ height, width, series }: SankeyChartProps): JSX.Element {
-  const ids = [...new Set(series.data.links.flatMap((link) => [link.source, link.target]))];
-
-  // D3-sankey mutates its input (e.g. replaces link.source ids with node objects), so pass copies.
+function SankeyChart({ height, width, data }: SankeyChartProps): JSX.Element {
   const { nodes, links } = layout.extent([
     [0, 0],
     [width, height],
-  ])({
-    links: series.data.links.map(({ source, target, value }) => ({ source, target, value })),
-    nodes: ids.map((id) => ({ id })),
-  });
+  ])(data);
 
   return (
     <svg xmlns="http://www.w3.org/2000/svg" height={height} viewBox={`0 0 ${width} ${height}`} width={width}>
