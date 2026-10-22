@@ -1,8 +1,4 @@
-import {
-  sankey,
-  // sankeyLinkHorizontal,
-} from "d3-sankey";
-import type { SankeyLink as D3SankeyLink, SankeyNode } from "d3-sankey";
+import { sankey, sankeyLinkHorizontal } from "d3-sankey";
 import type { JSX } from "react";
 
 interface SankeyLink {
@@ -40,27 +36,7 @@ const layout = sankey<SankeyData, NodeDatum, LinkDatum>()
   .nodes(({ links }) => Array.from(new Set(links.flatMap((link) => [link.source, link.target])), (id) => ({ id })))
   .links(({ links }) => structuredClone(links));
 
-// const linkPath = sankeyLinkHorizontal<NodeDatum, LinkDatum>();
-
-const LINK_NECK = 0.15;
-
-function linkPath(link: D3SankeyLink<NodeDatum, LinkDatum>): string {
-  const source = link.source as SankeyNode<NodeDatum, LinkDatum>;
-  const target = link.target as SankeyNode<NodeDatum, LinkDatum>;
-  const x0 = source.x1 ?? 0;
-  const x1 = target.x0 ?? 0;
-  const y0 = link.y0 ?? 0;
-  const y1 = link.y1 ?? 0;
-  const xm = (x0 + x1) / 2;
-  const half = (link.width ?? 0) / 2;
-
-  const pinch = (half * (1 - LINK_NECK)) / 0.75;
-
-  return (
-    `M${x0},${y0 - half}C${xm},${y0 - half + pinch} ${xm},${y1 - half + pinch} ${x1},${y1 - half}` +
-    `L${x1},${y1 + half}C${xm},${y1 + half - pinch} ${xm},${y0 + half - pinch} ${x0},${y0 + half}Z`
-  );
-}
+const linkPath = sankeyLinkHorizontal<NodeDatum, LinkDatum>();
 
 function SankeyChart({ height, width, data }: SankeyChartProps): JSX.Element {
   const { nodes, links } = layout.extent([
@@ -70,11 +46,9 @@ function SankeyChart({ height, width, data }: SankeyChartProps): JSX.Element {
 
   return (
     <svg xmlns="http://www.w3.org/2000/svg" height={height} viewBox={`0 0 ${width} ${height}`} width={width}>
-      {/* <g className="stroke-slate-200"> */}
-      <g>
+      <g className="stroke-slate-200">
         {links.map((link) => (
-          // <path d={linkPath(link) ?? ""} key={link.index} strokeWidth={link.width} />
-          <path className="fill-slate-200" d={linkPath(link)} key={link.index} />
+          <path d={linkPath(link) ?? ""} key={link.index} strokeWidth={link.width} />
         ))}
       </g>
 

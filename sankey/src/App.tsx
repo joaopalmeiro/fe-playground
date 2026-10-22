@@ -1,6 +1,7 @@
 import type { JSX } from "react";
 
 import SankeyChart from "./SankeyChart.tsx";
+import SquishySankeyChart from "./SquishySankeyChart.tsx";
 
 const data = {
   links: [
@@ -15,8 +16,9 @@ const data = {
 
 function App(): JSX.Element {
   return (
-    <main className="p-8">
+    <main className="flex justify-between gap-2 p-2">
       <SankeyChart data={data} height={300} width={600} />
+      <SquishySankeyChart data={data} height={300} width={600} />
     </main>
   );
 }
