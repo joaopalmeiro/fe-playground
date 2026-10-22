@@ -8,6 +8,8 @@ const data = {
     { source: "A", target: "C", value: 5 },
     { source: "B", target: "D", value: 8 },
     { source: "C", target: "D", value: 3 },
+    { source: "B", target: "E", value: 2 },
+    { source: "C", target: "E", value: 2 },
   ],
 };
 
