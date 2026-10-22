@@ -2,29 +2,7 @@ import { sankey } from "d3-sankey";
 import type { SankeyLink as D3SankeyLink, SankeyNode } from "d3-sankey";
 import type { JSX } from "react";
 
-interface SankeyLink {
-  source: string;
-  target: string;
-  value: number;
-}
-
-interface SankeyData {
-  links: SankeyLink[];
-}
-
-interface SankeyChartProps {
-  height: number;
-  width: number;
-  data: SankeyData;
-}
-
-interface NodeDatum {
-  id: string;
-}
-
-interface LinkDatum {
-  value: number;
-}
+import type { LinkDatum, NodeDatum, SankeyChartProps, SankeyData } from "./types.ts";
 
 const NODE_WIDTH = 12;
 const NODE_PADDING = 16;
