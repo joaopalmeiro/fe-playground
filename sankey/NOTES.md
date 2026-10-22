@@ -9,6 +9,10 @@
 - https://developer.mozilla.org/en-US/docs/Web/API/Window/structuredClone
 - https://www.npmjs.com/package/@visx/sankey
 - https://github.com/airbnb/visx/tree/v4.0.0/packages/visx-sankey
+- https://nivo.rocks/sankey/
+- https://github.com/plouc/nivo/tree/v0.99.0/packages/sankey
+- https://observablehq.com/@d3/sankey/2: "Applies it to the data. We make a copy of the nodes and links objects so as to avoid mutating the original."
+- https://github.com/plouc/nivo/blob/v0.99.0/packages/sankey/src/hooks.ts#L63: "deep clone is required as the sankey diagram mutates data we need a different identity for correct updates"
 
 ## Commands
 

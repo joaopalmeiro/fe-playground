@@ -29,7 +29,6 @@ const NODE_WIDTH = 12;
 const NODE_PADDING = 16;
 const LABEL_OFFSET = 6;
 
-// Nodes are derived from the links. Links are cloned since d3-sankey mutates them.
 const layout = sankey<SankeyData, NodeDatum, LinkDatum>()
   .nodeId((node) => node.id)
   .nodeWidth(NODE_WIDTH)
