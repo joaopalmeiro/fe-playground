@@ -1,0 +1,5 @@
+{
+  "files.readonlyInclude": {
+    "package-lock.json": true
+  }
+}
