@@ -3,7 +3,7 @@ import type { JSX } from "react";
 
 import type { Datum } from "./constants";
 import GemPatterns from "./GemPatterns";
-import { patternElementId } from "./patterns";
+import { PATTERN_ELEMENT_ID_PREFIX } from "./patterns";
 
 const BAND_PADDING = 0.1;
 const WIDTH = 300;
@@ -37,7 +37,7 @@ function BarChart({ data }: BarChartProps): JSX.Element {
           y={yScale(datum.y)}
           width={xScale.bandwidth()}
           height={HEIGHT - yScale(datum.y)}
-          fill={`url(#${patternElementId(datum.pattern)})`}
+          fill={`url(#${PATTERN_ELEMENT_ID_PREFIX}${datum.pattern})`}
           stroke={STROKE_COLOR}
         />
       ))}

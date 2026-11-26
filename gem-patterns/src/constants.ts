@@ -1,19 +1,19 @@
-import { randomPattern } from "./patterns";
+import type { PatternId } from "./patterns";
 
 export interface Datum {
-  pattern: ReturnType<typeof randomPattern>;
+  pattern: PatternId;
   x: string;
   y: number;
 }
 
 export const DATA: Datum[] = [
-  { pattern: randomPattern(), x: "A", y: 28 },
-  { pattern: randomPattern(), x: "B", y: 55 },
-  { pattern: randomPattern(), x: "C", y: 43 },
-  { pattern: randomPattern(), x: "D", y: 91 },
-  { pattern: randomPattern(), x: "E", y: 81 },
-  { pattern: randomPattern(), x: "F", y: 53 },
-  { pattern: randomPattern(), x: "G", y: 19 },
-  { pattern: randomPattern(), x: "H", y: 87 },
-  { pattern: randomPattern(), x: "I", y: 52 },
+  { pattern: 9, x: "A", y: 28 },
+  { pattern: 11, x: "B", y: 55 },
+  { pattern: 12, x: "C", y: 43 },
+  { pattern: 14, x: "D", y: 91 },
+  { pattern: 16, x: "E", y: 81 },
+  { pattern: 17, x: "F", y: 53 },
+  { pattern: 19, x: "G", y: 19 },
+  { pattern: 20, x: "H", y: 87 },
+  { pattern: 24, x: "I", y: 52 },
 ];
