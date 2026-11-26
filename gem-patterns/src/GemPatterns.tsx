@@ -15,7 +15,7 @@ function GemPatterns(): JSX.Element {
           width={PATTERN_WIDTH * PIXEL_SIZE}
           height={PATTERN_HEIGHT * PIXEL_SIZE}
         >
-          <path d={patternToPath(rows)} className="fill-blue-500" transform={`scale(${PIXEL_SIZE})`} />
+          <path d={patternToPath(rows)} className="fill-slate-700" transform={`scale(${PIXEL_SIZE})`} />
         </pattern>
       ))}
     </defs>

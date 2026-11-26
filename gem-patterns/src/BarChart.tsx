@@ -36,7 +36,7 @@ function BarChart({ data }: BarChartProps): JSX.Element {
           width={xScale.bandwidth()}
           height={HEIGHT - yScale(datum.y)}
           fill={`url(#${PATTERN_ELEMENT_ID_PREFIX}${datum.pattern})`}
-          className="stroke-blue-500"
+          className="stroke-slate-700"
         />
       ))}
     </svg>
