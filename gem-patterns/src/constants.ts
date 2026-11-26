@@ -1,4 +1,4 @@
-interface Datum {
+export interface Datum {
   x: string;
   y: number;
 }

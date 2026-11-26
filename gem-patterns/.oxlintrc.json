@@ -13,6 +13,7 @@
   "rules": {
     "func-style": ["error", "declaration"],
     "import/no-default-export": "off",
+    "one-var": "off",
     "react/jsx-filename-extension": ["error", { "extensions": ["tsx"] }],
     "react/jsx-no-literals": "off",
     "react/react-in-jsx-scope": "off",
