@@ -10,8 +10,6 @@ const WIDTH = 300;
 const HEIGHT = 200;
 const ORIGIN = 0;
 
-const STROKE_COLOR = "steelblue";
-
 interface BarChartProps {
   data: Datum[];
 }
@@ -38,7 +36,7 @@ function BarChart({ data }: BarChartProps): JSX.Element {
           width={xScale.bandwidth()}
           height={HEIGHT - yScale(datum.y)}
           fill={`url(#${PATTERN_ELEMENT_ID_PREFIX}${datum.pattern})`}
-          stroke={STROKE_COLOR}
+          className="stroke-blue-500"
         />
       ))}
     </svg>
